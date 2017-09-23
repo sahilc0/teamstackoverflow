@@ -1,6 +1,11 @@
-.col-sm-12 li{
-	border-style: solid;
+#rightSide ul li{
+	border-style: solid;  /*this is only for visual */
+	border-width: 1px;
 	display: inline;
 	font-size: 20px;
-	padding-left: 10px;
+	margin-left: 5px;
+}
+
+#name{
+	display: inline;
 }
