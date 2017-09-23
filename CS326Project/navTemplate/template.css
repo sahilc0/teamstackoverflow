@@ -8,7 +8,7 @@ img{
 }
 .navbar #searchBox{
 	size: 10px;
-	padding-top: 10px;
+	padding-top: 20px;
 }
 
 p{
@@ -33,4 +33,11 @@ input{
 	display: inline-block;
 	color: yellow;
 	padding-top: 10px;
+}
+
+.leftColumn, .rightColumn{
+	height: 100%;
+	border-style: dotted;
+	padding-left: 0px;
+
 }
