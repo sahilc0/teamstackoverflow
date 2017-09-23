@@ -15,6 +15,15 @@
 
 img{
 	border-radius: 1px;
-	max-width: 150%;
+	max-width: 110%;
 	max-height: 75%;
+}
+
+#searchBox{
+	display: inline;
+}
+
+input{
+	display: inline;
+	border-style: solid;
 }
