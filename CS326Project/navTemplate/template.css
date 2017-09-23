@@ -1,0 +1,6 @@
+.col-sm-12 li{
+	border-style: solid;
+	display: inline;
+	font-size: 20px;
+	padding-left: 10px;
+}
