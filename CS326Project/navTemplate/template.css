@@ -29,7 +29,7 @@ ol{
 	display: inline;
 }
 
-li a, li p{
+li p, li a{
 	float: right;
 	color: green;
 	padding-left: 10px;
@@ -37,7 +37,7 @@ li a, li p{
 
 }
 .leftColumn, .rightColumn{
-	height: 100%;
+	height: 120%;
 	border-style: dotted;
 
 }
