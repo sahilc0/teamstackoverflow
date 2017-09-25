@@ -1,43 +1,103 @@
-.row{
-	background-color: black;
+/* nav bar styling */
+.nav {
+	height:3.5em;
+	width: 100%;
+	padding: 0;
 }
 .col-sm-3, .col-sm-6{
-	border-width: 1px;
+	border-width: 0px 0px 1px 0px;
 	border-style: solid;
 }
 
 img{
-	max-width: 50%;
+	max-width: 60%;
 	display: inline;
+	margin:7px 0;
 }
 
-button, input{
-	color: green;
+#searchBox {
+	margin: 11px 15px;
+}
+
+button img {
+	max-width: 90%;
+	max-height: 90%;
+	padding:3px;
+	margin: 3px;
+}
+button img:hover{
+	color:white;
+}
+
+button{
+	border:0;
+	margin:0;
+	padding:0;
 	background-color: white;
 	display: inline-block;
-	padding-top: 22px; 
 }
+
+button a{
+	border-radius: 50%;
+	border: 0;
+	padding:6px 6px 9px 6px;
+	background-color: white;
+}
+
+button a:link{}
+button a:visited{
+	background-color: white;
+	display: inline-block;
+}
+button a:focus{outline:none;}
+button a:hover{
+	background-color: green;
+	color:white;
+}
+button a:active{outline: none;}
 
 input{
-	width: 80%;
-	padding-right: 0px;
-	color: green;
+	padding-left:6px;
+	margin-right: 2px;
 }
 
-ol{
+
+#name-and-login ul{
+	margin: 2px 2px 2px -8px;
+	padding:0;
 	list-style-type: none;
+	margin:0px 0px;
+	padding:0px 0px;
+}
+
+#name-and-login ul li {
+	/*border: 1px solid black;*/
+	width:100px;
+	height:50px;
+	display:inline;
+}
+
+#name-and-login img{
+	max-width: 25%;
+	margin: 7px 2px;
+	padding:2px;
 	display: inline;
 }
 
-li p, li a{
-	float: right;
-	color: green;
-	padding-left: 10px;
-	padding-right: 10px;
+#name-and-login li a{
+	color:green;
+	margin:2px;
+	max-width:75px;
+	padding:12px 4px 14px 3px;
+}
+
+#name-and-login li a:link{
 
 }
-.leftColumn, .rightColumn{
-	height: 120%;
-	border-style: dotted;
-
+#name-and-login li a:hover{
+	color: white;
+	text-decoration: none;
+	background-color: green;
 }
+
+/* ^ end nav bar styling ^ */
