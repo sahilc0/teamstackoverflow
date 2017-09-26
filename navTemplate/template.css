@@ -7,16 +7,17 @@
 .col-sm-3, .col-sm-6{
 	border-width: 0px 0px 1px 0px;
 	border-style: solid;
+	height:140%;
 }
 
 img{
-	max-width: 60%;
+	max-width: 40%;
 	display: inline;
 	margin:7px 0;
 }
 
 #searchBox {
-	margin: 11px 15px;
+	margin: 15px 15px;
 }
 
 button img {
@@ -25,36 +26,26 @@ button img {
 	padding:3px;
 	margin: 3px;
 }
-button img:hover{
-	color:white;
-}
 
-button{
+button {
 	border:0;
 	margin:0;
 	padding:0;
 	background-color: white;
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 button a{
-	border-radius: 50%;
-	border: 0;
-	padding:6px 6px 9px 6px;
+	display: block;
 	background-color: white;
+	border-radius: 50%;
+	border: 1px solid green;
+	padding:4px 4px 4px 4px;
 }
 
-button a:link{}
-button a:visited{
-	background-color: white;
-	display: inline-block;
+#searchBox button a:hover{
+	background-color: green !important;
 }
-button a:focus{outline:none;}
-button a:hover{
-	background-color: green;
-	color:white;
-}
-button a:active{outline: none;}
 
 input{
 	padding-left:6px;
@@ -63,7 +54,7 @@ input{
 
 
 #name-and-login ul{
-	margin: 2px 2px 2px -8px;
+	margin: 5px 2px 2px -8px;
 	padding:0;
 	list-style-type: none;
 	margin:0px 0px;
@@ -78,9 +69,9 @@ input{
 }
 
 #name-and-login img{
-	max-width: 25%;
+	max-width: 15%;
 	margin: 7px 2px;
-	padding:2px;
+	padding:3px;
 	display: inline;
 }
 
@@ -88,7 +79,7 @@ input{
 	color:green;
 	margin:2px;
 	max-width:75px;
-	padding:12px 4px 14px 3px;
+	padding:12px 6px 16px 5px;
 }
 
 #name-and-login li a:link{
