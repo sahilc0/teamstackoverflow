@@ -1,51 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
+<!Doctype html>
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>A particular soundtrack</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="index.css">
-
-  </head>
-
-
-  <body>
-    <div class="container-fluid">
-      <div clas="row featured">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-          <h2>Featured</h2>
-          <span class = "featured-box"></span>
-          <span class = "featured-box"></span>
-          <span class = "featured-box"></span>
-        </div>
-        <div class = "col-md-2"></div>
-
-      </div>
-    </div>
-
-
+    <!-- Latest compiled and minified CSS -->
     
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
 
+    <link rel="stylesheet" type="text/css" href="./soundtrack.css">
+  </head>
+  <body>
 
+  <!-- nav bar begins here -->
+  <div class="navwrapper">
+  <div class="nav">
+    <div id="logo">
+      <a href = "../index.html">
+        <img  src = "https://media.giphy.com/media/VGsMTDfdn3e7u/giphy.gif">
+      </a>
+    </div>
+    <div id="searchBox">
+        <input id="inputBox" type="text" placeholder="Search....">
+        <button type="submit" class="searchButton"><a href=""><img src="./navTemplate/images/search_image"></a></button>
+    </div>
+    <div id="name-and-login">
+      <ul>
+        <li><a href = "profile.html"><img src="./navTemplate/images/profile_default.png">Name</a></li>
+        <li><a href = "login.html">Login</a></li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <!-- nav bar ends here -->
 
+  <div class ="contentwrap">
+    <div class = "sidebars"></div>
 
+    <div class = "content">
 
+      <div id="info">
+        <div id="picture"><img src="./navTemplate/images/profile_default.png"></div>
+        <ul id="names-and-info">
+          <li>Track Name</li>
+          <li>Artist Name</li>
+          <li>Keywords</li>
+        </ul>
+        <ul id="social-buttons">
+          <li>Facebook</li>
+          <li>Twitter</li>
+          <li>SoundCloud</li>
+          <li>YouTube</li>
+        </ul>
+      </div><!--info close-->
 
+      <div id="the-track">
+        <img id="wave" src="https://media.giphy.com/media/VGsMTDfdn3e7u/giphy.gif">
+        <ul id="site-social">
+          <li>Upvote</li>
+          <li>Recommend a spitter</li>
+        </ul>
+      </div><!--the-track close-->
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+      <div id="lyrics-and-comments-wrapper">
+        <div class="lyrics-and-comments">
+          <p class="lyrics">
+            Rappety rap rap yaht yaht
+          </p>
+          <p class="comments">
+            This is such a good beaet!!1!one!
+          </p>
+        </div>
+      </div><!--lyric-and-comments close-->
+
+    </div><!--content close-->
+
+    <div class = "sidebars"></div>
+  </div>
   </body>
 </html>
