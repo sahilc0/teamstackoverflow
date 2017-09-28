@@ -2,29 +2,36 @@
 	
 }
 
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left:15px;
+	padding-right: 15px;
+}
+
+
 h2{
 	margin: 20px;
 }
-.card{
+/*.card{
 	float: left;
 	display: inline-block;
 	padding:10px;
 	margin: 15px;
 	max-width: 30%;
-}
-
+}*/
+/*
 .lyrics {
 	width: 100%;
-}
+}*/
 
-.card-body img {
-	background-image: 'http://inyourspeakers.com/files/images/reviews/odesza-13120.jpg';
+img {
 	width: 100%;
 	height: 100%;
 }
 
-.card-text {
+/*.card-text {
 	height: 100%;
 	width: 100%;
 	overflow-y: scroll;
-}
+}*/
