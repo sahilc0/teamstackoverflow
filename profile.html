@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	    <!-- Required meta tags -->
+	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Profile Page</title>
@@ -12,8 +12,11 @@
     <!-- Font Awesome for Social Links -->
     <script src="https://use.fontawesome.com/9d055d83d3.js"></script>
 
+    <!-- General CSS -->
+    <link rel='stylesheet' href='styles/main.css'>
+
    <!--  Own CSS -->
-    <link rel="stylesheet" type="text/css" href="profileStyles.css">
+    <link rel="stylesheet" type="text/css" href="styles/profileStyles.css">
 
 </head>
 <body>
@@ -21,29 +24,45 @@
 	
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
-				<div class="card user-header">
-					<div class="card-body">
-						<img src="https://pbs.twimg.com/profile_images/891552595059146753/mao5zWtT_400x400.jpg" class="rounded-circle" id="user-pic" 
-						alt="User profile picture">
-						<div id="user-info">
-							<div>
-								<h2 class="card-title" id="user-info-name">Bob Chang</h2>
-								<i class="fa fa-twitter" id="twitter-link" aria-hidden="true"></i>
-								<i class="fa fa-instagram" id="instagram-link" aria-hidden="true"></i>
-								<i class="fa fa-soundcloud" id="soundcloud-link" aria-hidden="true"></i>
-							</div>
-							<p class="card-subtitle" id="user-info-location">Boston, MA</p>
-							<p class="card-text" id="user-info-description">Rapper/Producer from the Bean.</p>
-						</div>
+      <div class="col-md-12">
+        <div class="card user-header">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="card-body" id="user-header-details">
+                <img src="https://pbs.twimg.com/profile_images/891552595059146753/mao5zWtT_400x400.jpg" class="rounded-circle" id="user-pic" alt="User profile picture">
+                <div>
+                  <h2 class="card-title" id="user-info-name">Bob Chang</h2>
+                  <p class="card-subtitle" id="user-info-location">Boston, MA</p>
+                  <p class="card-text" id="user-info-description">Rapper/Producer from the Bean.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="card-body" id="user-header-socials"> 
+                <div id="user-stats">
+                  <div> 
+                    <strong>45</strong>
+                    <p class="card-text">Spits</p>
+                  </div>
+                  <div>
+                    <strong>321</strong>
+                    <p class="card-text">Following</p>
+                  </div>
+                  <div> 
+                    <strong>229k</strong>
+                    <p class="card-text">Followers</p>
+                  </div>
+                </div>
 
-						<div id="user-socials">
-							<p class="card-text">229k followers</p>
-							<button type="button" class="btn btn-primary" id="follow-btn">Follow</button>
-						</div>
-					</div>
-				</div>
-			</div>
+                <button type="button" class="btn btn-primary" id="follow-btn">Follow</button>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
 		</div>
 
 		<div class="row">
