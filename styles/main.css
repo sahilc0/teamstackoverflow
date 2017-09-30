@@ -22,6 +22,10 @@ nav #logo-name {
 	color:green;
 }
 
+nav ul {
+	list-style-type: none;
+}
+
 nav ul.navbar-nav{
 	float: right;
 	max-width: 220px;
