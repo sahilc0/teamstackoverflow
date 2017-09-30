@@ -27,7 +27,17 @@
   display: inline-block;
 }
 
+#user-stats #strong1{
+  margin-right: 10px;
+}
+
+#user-stats #strong2, #user-stats #strong3{
+  margin-right: 20px;
+}
+
 #follow-btn{
+  position: relative;
+  right: 30px;
 	cursor: pointer;
   width: 120px;
 }
