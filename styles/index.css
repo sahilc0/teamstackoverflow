@@ -1,14 +1,15 @@
-h2{
+.section-title{
 	margin: 20px;
+  text-transform: uppercase;
 }
 
-img {
+.soundtrack-image {
 	width: 100%;
 	height: 100%;
 	padding-bottom: 10px;
 }
 
-.card-group{
+.soundtrack-box{
   margin-bottom: 30px;
 }
 

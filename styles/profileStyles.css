@@ -38,6 +38,7 @@
 #follow-btn{
 	cursor: pointer;
   width: 190px;
+  margin-top: 20px;
 }
 
 #user-header-socials{
