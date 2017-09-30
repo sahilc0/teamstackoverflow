@@ -16,6 +16,7 @@
 
   </head>
 
+<!-- This page is used for the uploader to sync their lyrics with the instrumental track. They can choose which parts of the track (timestamp) is shown in the lyrics -->
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -100,12 +101,21 @@
             <div class="card col-md-4">
               <div class="card-body">
                 <h4>Timestamps</h4>
+                <ul class='timestamps'>
+                  <li>00:00 - 00:10</li>
+                  <li>00:12 - 00:17</li>
+                  <li>00:18 - 00:25</li>
+                  <li>00:45 - 01:02</li>
+                  <li>01:12 - 01:25</li>
                 </div>
               </div>
               <div class="card col-md-8">
                 <div class="card-body">
                   <h4 class="card-title">Paste Your Lyrics Here</h4>
-                  <p class="card-text">I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual</p>
+                  <div class="form-group">
+                    <label for="comment"></label>
+                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                  </div>
                 </div>
               </div>
             </div>
