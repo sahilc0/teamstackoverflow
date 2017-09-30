@@ -36,13 +36,11 @@
 }
 
 #follow-btn{
-  position: relative;
-  right: 30px;
 	cursor: pointer;
-  width: 120px;
+  width: 190px;
 }
 
-#user-header-socials div{
+#user-header-socials{
 }
 
 /* Feed styles */

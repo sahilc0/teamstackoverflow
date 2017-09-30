@@ -13,14 +13,60 @@
     <script src="https://use.fontawesome.com/9d055d83d3.js"></script>
 
     <!-- General CSS -->
-    <link rel='stylesheet' href='styles/main.css'>
+    <link rel='stylesheet' href='../styles/main.css'>
 
    <!--  Own CSS -->
-    <link rel="stylesheet" type="text/css" href="styles/profileStyles.css">
+    <link rel="stylesheet" type="text/css" href="../styles/profileStyles.css">
+
+    <!-- Nav CSS -->
+    <link rel="stylesheet" type="text/css" href="../styles/template.css">
 
 </head>
 <body>
 	<!-- nav bar goes here -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="col-md-4">
+        <div id="logo">
+          <a href = "index.html">
+            <img  src = "../images/camel.png">
+            <span id="logo-name">Firespitters</span>
+          </a>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+
+    <div class="col-md-4">
+      <ul class="navbar-nav">
+        <li>
+          <a href="#">
+            <button id="upload-button" type="button" class="btn btn-primary">Upload</button>
+          </a>    
+        </li>
+        <li>
+          <div id="ddmenu" class="dropdown">
+            <button href="./profile.html" class="btn btn-secondary dropdown-toggle"
+                    type="button" id="dropdownMenu1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+            <img id="profile-pic" src="../images/profile_default.png">
+                  Name
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <a class="dropdown-item" href="#!">Profile</a>
+              <a class="dropdown-item" href="#!">Settings</a>
+              <a class="dropdown-item" href="#!">About us</a>
+              <a class="dropdown-item" href="#!">Sign In/Out</a>
+            </div>
+          </div> <!-- dropdown div ends here-->
+        </li>
+      </ul>
+    </div>
+  </nav>
 	
 	<div class="container">
 		<div class="row">
