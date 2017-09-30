@@ -11,31 +11,65 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-
-    <link rel="stylesheet" type="text/css" href="./soundtrack.css">
+    <link rel='stylesheet' type='text/css' href='../styles/template.css'>
   </head>
   <body>
 
   <!-- nav bar begins here -->
-  <div class="navwrapper">
-  <div class="nav">
-    <div id="logo">
-      <a href = "../index.html">
-        <img  src = "https://media.giphy.com/media/VGsMTDfdn3e7u/giphy.gif">
-      </a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+    <div class="col-md-4">
+        <div id="logo">
+          <a href = "index.html">
+            <img  src = "../images/camel.png">
+            <span id="logo-name">Firespitters</span>
+          </a>
+        </div>
     </div>
-    <div id="searchBox">
-        <input id="inputBox" type="text" placeholder="Search....">
-        <button type="submit" class="searchButton"><a href=""><img src="./navTemplate/images/search_image"></a></button>
+    
+    <div class="col-md-4">
+      
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
     </div>
-    <div id="name-and-login">
-      <ul>
-        <li><a href = "profile.html"><img src="./navTemplate/images/profile_default.png">Name</a></li>
-        <li><a href = "login.html">Login</a></li>
+
+    <div class="col-md-4">
+      
+      <ul class="navbar-nav">
+        <li>
+          <a href="#">
+          <button id="upload-button" type="button" class="btn btn-primary">Upload</button>
+          </a>    
+        </li>
+        <li>
+          <div id="ddmenu" class="dropdown">
+            <button href="./profile.html" class="btn btn-secondary dropdown-toggle"
+                    type="button" id="dropdownMenu1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                
+                  <img id="profile-pic" src="../images/profile_default.png">
+                  Name
+                
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <a class="dropdown-item" href="#!">Profile</a>
+              <a class="dropdown-item" href="#!">Settings</a>
+              <a class="dropdown-item" href="#!">About us</a>
+              <a class="dropdown-item" href="#!">Sign In/Out</a>
+            </div>
+          </div> <!-- dropdown div ends here-->
+        </li>
       </ul>
+
+      
+
+      
+
     </div>
-  </div>
-  </div>
+  </nav>
   <!-- nav bar ends here -->
 
   <div class ="contentwrap">
@@ -44,7 +78,7 @@
     <div class = "content">
 
       <div id="info">
-        <div id="picture"><img src="./navTemplate/images/profile_default.png"></div>
+        <div id="picture"><img src="../images/profile_default.png"></div>
         <ul id="names-and-info">
           <li>Track Name</li>
           <li>Artist Name</li>
@@ -57,7 +91,7 @@
           <li>YouTube</li>
         </ul>
       </div><!--info close-->
-
+      
       <div id="the-track">
         <img id="wave" src="https://media.giphy.com/media/VGsMTDfdn3e7u/giphy.gif">
         <ul id="site-social">
