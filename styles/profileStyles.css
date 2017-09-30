@@ -23,10 +23,6 @@
   text-align: right;
 }
 
-#user-stats{
-  display: inline-block;
-}
-
 #user-stats div{
   display: inline-block;
 }
@@ -40,10 +36,8 @@
 }
 
 #follow-btn{
-  /*position: relative;
-  right: 30px;*/
 	cursor: pointer;
-  width: 120px;
+  width: 190px;
 }
 
 #user-header-socials{
