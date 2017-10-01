@@ -95,3 +95,13 @@ nav #profile-pic {
 	padding-left:15px;
 	padding-right: 15px;
 }
+
+.soundtrack-image {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 10px;
+}
+
+.soundtrack-box{
+  margin-bottom: 30px;
+}
