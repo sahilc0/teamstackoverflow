@@ -18,11 +18,11 @@
 
 .row{
 	border-style: solid;
+	border-width: 1px;
 }
 
 #music-icon{
 	height: 100px;
-	/*border-style: solid;*/
 	margin-top: 20px;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .card-group{
-	height: 450px;
+	height: 490px;
 }
 
 
