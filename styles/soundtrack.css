@@ -1,15 +1,44 @@
 #trackInfo img{
-	display: inline;
 	height: 100px;
-	border-style: solid;
 	float: left;
 }
 
 #names-and-info li{
 	list-style-type: none;
 	width: 160px;
+	margin-left: 5px;
+	position: relative;
+	left: 40px;
 }
 
 #social-buttons{
-	float
+	list-style-type: none;
+	float: left;
 }
+
+.row{
+	padding-top: 20px;
+}
+
+#music-icon{
+	height: 100px;
+	border-style: solid;
+	margin-top: 20px;
+}
+
+#music-gif{
+	width: 300px;
+	position: relative;
+	height:95px;
+	margin-top: 0px;
+	padding-top: 0px;
+	position: relative;
+	bottom: 20px;
+}
+
+.btn btn-primary{
+	display: inline;
+
+}
+
+
