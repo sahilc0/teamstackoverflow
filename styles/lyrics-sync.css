@@ -16,3 +16,7 @@ h4{
 	list-style-type:none;
 	padding: 5px;
 }
+
+.button {
+	float:right;
+}
