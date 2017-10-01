@@ -1,0 +1,15 @@
+#trackInfo img{
+	display: inline;
+	height: 100px;
+	border-style: solid;
+	float: left;
+}
+
+#names-and-info li{
+	list-style-type: none;
+	width: 160px;
+}
+
+#social-buttons{
+	float
+}
