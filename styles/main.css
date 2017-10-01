@@ -88,6 +88,9 @@ nav #profile-pic {
 
  /*^ end nav bar styling ^ */
 
+body {
+	background-color: #f9f9f9;
+}
 
 .container {
 	margin-left: auto;
