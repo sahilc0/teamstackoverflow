@@ -37,7 +37,11 @@
 }
 
 .btn btn-primary{
+	border-style: solid;
 	display: inline;
+	position: relative;
+	left: 30px;
+	color: green;
 
 }
 
