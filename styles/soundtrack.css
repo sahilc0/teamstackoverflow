@@ -17,12 +17,12 @@
 }
 
 .row{
-	padding-top: 20px;
+	border-style: solid;
 }
 
 #music-icon{
 	height: 100px;
-	border-style: solid;
+	/*border-style: solid;*/
 	margin-top: 20px;
 }
 
@@ -33,16 +33,43 @@
 	margin-top: 0px;
 	padding-top: 0px;
 	position: relative;
-	bottom: 20px;
 }
 
-.btn btn-primary{
-	border-style: solid;
-	display: inline;
+#thumb{
+	float:right;
+	padding-left: 18px;
+	padding-right: 18px;
+	background-color: black;
 	position: relative;
-	left: 30px;
-	color: green;
-
+	right: 140px;
 }
+
+#recButton{
+	float: right;
+	position: relative;
+	top: 40px;
+	right: 15px;
+	background-color: black;
+}
+
+#lyrics{
+	margin-top: 30px;
+	height: 500px;
+}
+
+.card-group{
+	height: 450px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
