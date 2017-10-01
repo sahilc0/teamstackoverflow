@@ -37,6 +37,7 @@
 
 #thumb{
 	float:right;
+	margin-top: 10px;
 	padding-left: 18px;
 	padding-right: 18px;
 	background-color: black;
@@ -45,6 +46,7 @@
 }
 
 #recButton{
+	margin-top: 10px;
 	float: right;
 	position: relative;
 	top: 40px;
