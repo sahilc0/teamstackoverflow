@@ -1,10 +1,18 @@
 /* nav bar styling */
+nav{
+	background-color: white;
+	width:100%;
+	max-width: 1920px;
+	border-bottom:1px solid rgb(224, 224, 224);
+	box-shadow: 2px gray;
+}
+
 nav button{
 	cursor: pointer;
 }
 
 nav #logo {
-	width:60%;
+	width:36%;
 	max-width:220px;
 	padding: 0px;
 	display: inline-block;
@@ -22,15 +30,19 @@ nav #logo-name {
 	color:green;
 }
 
-nav ul {
+nav ul.navbar-nav{
+	margin-right: 7%;
+	float: right;
+	max-width: 220px;
 	list-style-type: none;
 }
 
-nav ul.navbar-nav{
-	float: right;
-	max-width: 220px;
+nav #contests-link{
+	margin: 13% 0;
+	padding: 0px 25% 0 0;
+	display: inline-block;
+	color:green;
 }
-
 
 nav #upload-button{
 	background-color: green;
@@ -42,7 +54,7 @@ nav #upload-button{
 }
 
 nav #ddmenu{
-	margin: 0 -5% 0 3%;
+	margin: 0 -5% 0 5%;
 	padding:0 10px 0 0;
 	display: inline-block;
 	cursor: pointer;
