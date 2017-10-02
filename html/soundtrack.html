@@ -11,7 +11,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-    <link rel='stylesheet' type='text/css' href='../styles/template.css'>
+ <!--   <link rel='stylesheet' type='text/css' href='../styles/template.css'>  -->
     <link rel='stylesheet' type='text/css' href='../styles/soundtrack.css'>
     <link rel="stylesheet" type="text/css" href="../styles/main.css">
   </head>
@@ -76,7 +76,7 @@
   <!-- content -->
 
   <div class="container">
-      <div class="row"> <!-- header section -->
+      <div class="row" id="profile"> <!-- header section -->
         <div class='col-md-8'>
           <div id="trackInfo">
               <div id="picture"><img src="../images/profile_default.png"></div>
@@ -109,13 +109,15 @@
           <div class="card-group">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Lyrics</h4>
+                <h4 class="card-title">Lyrics1</h4>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
                 <p class="card-text">Yo, yo, humpty dumpty sat on a wall, humpty dumpty had a great fall, the whole crowd goes so loud, moms spaghetti.</p>
               </div>
             </div>
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Comments</h4>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
                 <p class="card-text">
                   <strong> Bobby Mcdonald says......</strong>
                   <p> Hey this is great stuff, humpty dumpty makes spaghetti?</p>
@@ -125,7 +127,37 @@
           </div>
         </div> 
       </div>
+      <div class="row"> 
+        <div class='col-md-12'>
+          <div class="card-group">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Lyrics2</h4>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
+                <p class="card-text"> Some lyrics go here. blah blah.</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Comments</h4>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
+                <p class="card-text">
+                  <strong> John says......</strong>
+                  <p> Good stuff man! Keep it up!</p>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    <div class="row">
+        <div class='col-md-12'>
+          <button type="button" id="postLyrics" class="btn btn-secondary">Post Lyrics</button>
+          <button type="button" id="postComment" class="btn btn-secondary">Post Comment</button>
+        </div>
+    </div>
   </div>
+
 
   
 
