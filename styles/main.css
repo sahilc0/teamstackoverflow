@@ -137,3 +137,7 @@ body {
 	/*color: black;*/
 	cursor: pointer;
 }
+
+.card-text {
+	width: 80%;
+}
