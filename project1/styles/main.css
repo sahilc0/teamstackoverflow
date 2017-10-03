@@ -1,3 +1,7 @@
+:root {
+	--main-color: #e74c3c;
+}
+
 /* nav bar styling */
 nav{
 	background-color: white;
@@ -27,7 +31,7 @@ nav #logo * > img{
 nav #logo-name {
 	font-weight: bold;
 	letter-spacing: 1px;
-	color:green;
+	color: var(--main-color);
 }
 
 nav ul.navbar-nav{
@@ -41,11 +45,11 @@ nav #contests-link{
 	margin: 13% 0;
 	padding: 0px 25% 0 0;
 	display: inline-block;
-	color:green;
+	color:var(--main-color);
 }
 
 nav #upload-button{
-	background-color: green;
+	background-color: var(--main-color);
 	border:0;
 	color:white;
 	display: inline-block;
@@ -65,6 +69,19 @@ nav #ddmenu *{
 	padding:2px 3.5px;
 }
 
+nav .btn-outline-primary {
+	background-color: white;
+	color: var(--main-color);
+	border-color: var(--main-color);
+}
+
+
+nav .btn-outline-primary:hover {
+	background-color: var(--main-color);
+	color: white;
+	border-color: var(--main-color);
+}
+
 nav .btn-secondary{
 	background-color: white;
 	border:0;
@@ -77,16 +94,16 @@ nav .btn-secondary:focus{
 
 nav .btn-secondary:hover{
 	color:white;
-	background-color:rgb(110, 175, 105)
+	background-color:var(--main-color);
 }
 
 nav .btn-secondary.active, .btn-secondary:active, .show>.btn-secondary.dropdown-toggle {
-    background-color:rgb(110, 175, 105); 
+    background-color:var(--main-color); 
     border:none;
 }
 
 nav button.dropdown-toggle{
-	color:green;
+	color:var(--main-color);
 	padding:0;
 }
 
@@ -140,4 +157,18 @@ body {
 
 .card-text {
 	width: 80%;
+}
+
+.btn-primary {
+	background-color: var(--main-color);
+	color: white;
+	border-color: var(--main-color);
+
+}
+
+.btn-primary:hover {
+	background-color: #d64637;
+	color: white;
+		border-color: var(--main-color);
+
 }

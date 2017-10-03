@@ -2,6 +2,10 @@
 	margin: 20px;
 }
 
+.card-link{
+    color: var(--main-color);
+}
+
 /*.soundtrack-image:after{
 	content:'\A';
     position:absolute;
