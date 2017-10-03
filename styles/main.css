@@ -1,3 +1,7 @@
+:root{
+  --main-color: green;
+}
+
 /* nav bar styling */
 nav{
 	background-color: white;
