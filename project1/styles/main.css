@@ -43,7 +43,7 @@ nav ul.navbar-nav{
 
 nav #contests-link{
 	margin: 13% 0;
-	padding: 0px 25% 0 0;
+	padding: 0px 15px 0px 0px;
 	display: inline-block;
 	color:var(--main-color);
 }
