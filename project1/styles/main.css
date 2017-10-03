@@ -3,6 +3,8 @@
 }
 
 /* nav bar styling */
+
+
 nav{
 	background-color: white;
 	width:100%;
@@ -67,6 +69,10 @@ nav #ddmenu{
 nav #ddmenu *{
 	cursor: pointer;
 	padding:2px 3.5px;
+}
+
+nav #dropdownMenu1{
+  width: 115px;
 }
 
 nav .btn-outline-primary {
