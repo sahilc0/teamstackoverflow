@@ -6,7 +6,7 @@
   padding: 20px;
 }
 
-#user-header-details div{
+#user-header-details > div{
   display: inline-block;
   position: absolute;
   top: 50%;
@@ -19,7 +19,27 @@
   margin-right: 25px;
 }
 
-#user-header-socials{
+#user-info-description{
+  margin-bottom: 0px;
+}
+
+#twitter-link:hover{
+  cursor: pointer;
+  color: #0084b4;
+}
+
+#instagram-link:hover{
+  cursor: pointer;
+  color: #bc2a8d;
+}
+
+#soundcloud-link:hover{
+  cursor: pointer;
+  color: #ff7700;
+}
+
+
+#user-header-stats{
   text-align: right;
 }
 
@@ -41,9 +61,6 @@
   margin-top: 20px;
 }
 
-#user-header-socials{
-}
-
 /* Feed styles */
 
 #dropdownMenu1{
@@ -62,7 +79,7 @@
     margin-right: 20px;
   }
 
-  #user-header-socials{
+  #user-header-stats{
     text-align: center;
   }
 
