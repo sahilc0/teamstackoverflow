@@ -6,6 +6,14 @@
     color: var(--main-color);
 }
 
+#time-selector{
+  margin-left: 20px;
+}
+
+#time-selector p, #time-selector a{
+  font-size: 20px;
+}
+
 /*.soundtrack-image:after{
 	content:'\A';
     position:absolute;
