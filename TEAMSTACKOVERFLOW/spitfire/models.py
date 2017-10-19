@@ -18,7 +18,7 @@ class Genre(models.Model):
 
 class TrackComment(models.Model):
     """
-    Model for 
+    Model for the comments for specified Track
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
     upvotes = models.PositiveIntegerField(default=0)
@@ -33,7 +33,7 @@ class TrackComment(models.Model):
 
 class LyricComment(models.Model):
     """
-    Model for 
+    Model for the comments to a lyric
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
     upvotes = models.PositiveIntegerField(default=0)
