@@ -12,8 +12,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
   <!-- Add additional CSS in static file -->
-
-  <link rel="stylesheet" href="../static/css/navBar.css">
+  {% load static %}
+  <link rel="stylesheet" href="{% static '../static/css/main.css' %}">
+  <link rel="stylesheet" href="{% static '../static/css/soundtrack.css' %}">
 
 
 </head>
@@ -72,7 +73,7 @@
           </ul>
         </div>
       </nav>
-
+      {% block bodyContent %}{% endblock %}
 
 </body>
 </html>
