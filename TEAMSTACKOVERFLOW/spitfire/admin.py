@@ -3,10 +3,11 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Track, Artist, Genre, Comment, Lyrics
+from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist
 
-admin.site.register(Track)
+admin.site.register(TrackComment)
 admin.site.register(Artist)
 admin.site.register(Genre)
-admin.site.register(Comment)
+admin.site.register(LyricComment)
 admin.site.register(Lyrics)
+admin.site.register(Track)
