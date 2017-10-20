@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <!--{% block title %}<title>Local Library</title>{% endblock %} -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+  <!-- Add additional CSS in static file -->
+
+  <link rel="stylesheet" href="../static/css/navBar.css">
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="col-md-4">
+            <div id="logo">
+              <a href = "./index.html">
+                <img  src = "../static/images/camel.png">
+                <span id="logo-name">spit.fire</span>
+              </a>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+          
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+
+        </div>
+
+        <div class="col-md-4">
+          
+          <ul class="navbar-nav">
+            <li>
+              <a  href="./contest.html">
+              <p id="contests-link" class="btn-link">Contests</p>
+              </a>
+            </li>
+            <li>
+              <a href="./upload.html">
+              <button id="upload-button" type="button" class="btn btn-primary">Upload</button>
+              </a>    
+            </li>
+            <li>
+              <div id="ddmenu" class="dropdown">
+                <button href="./profile.html" class="btn btn-secondary dropdown-toggle"
+                        type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    
+                      {% block UserProfilePic %} {% endblock %}
+                    
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <a class="dropdown-item" href="./profile.html">Profile</a>
+                  <a class="dropdown-item" href="#!">Settings</a>
+                  <a class="dropdown-item" href="#!">About us</a>
+                  <a class="dropdown-item" href="#!">Sign In/Out</a>
+                </div>
+              </div> <!-- dropdown div ends here-->
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+</body>
+</html>

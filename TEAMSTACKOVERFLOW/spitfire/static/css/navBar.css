@@ -1,0 +1,124 @@
+:root {
+	--main-color: #e74c3c;
+}
+
+/* nav bar styling */
+
+
+nav{
+	background-color: white;
+	width:100%;
+	max-width: 1920px;
+	border-bottom:1px solid rgb(224, 224, 224);
+	box-shadow: 2px gray;
+}
+
+nav button{
+	cursor: pointer;
+}
+
+nav #logo {
+	width:36%;
+	max-width:220px;
+	padding: 0px;
+	display: inline-block;
+}
+
+nav #logo * > img{
+	width: 28%;
+	display: inline;
+	max-width: 100px;
+}
+
+nav #logo-name {
+	font-weight: bold;
+	letter-spacing: 1px;
+	color: var(--main-color);
+}
+
+nav ul.navbar-nav{
+	margin-right: 7%;
+	float: right;
+	max-width: 220px;
+	list-style-type: none;
+}
+
+nav #contests-link{
+	margin: 5% 5% 0 0;
+	padding:7px;
+	display: inline-block;
+	color:var(--main-color);
+}
+
+nav #upload-button{
+	background-color: var(--main-color);
+	border:0;
+	color:white;
+	display: inline-block;
+	padding:7px 8px;
+	margin: 8% 0 0 5%;
+}
+
+nav #ddmenu{
+	margin: 0 -5% 0 5%;
+	padding:0 10px 0 0;
+	display: inline-block;
+	cursor: pointer;
+}
+
+nav #ddmenu *{
+	cursor: pointer;
+	padding:2px 3.5px;
+}
+
+nav #dropdownMenu1{
+  width: 115px;
+}
+
+nav .btn-outline-primary {
+	background-color: white;
+	color: var(--main-color);
+	border-color: var(--main-color);
+}
+
+
+nav .btn-outline-primary:hover {
+	background-color: var(--main-color);
+	color: white;
+	border-color: var(--main-color);
+}
+
+nav .btn-secondary{
+	background-color: white;
+	border:0;
+}
+
+nav .btn-secondary:focus{
+	border:none;
+	box-shadow: none;	
+}
+
+nav .btn-secondary:hover{
+	color:white;
+	background-color:var(--main-color);
+}
+
+nav .btn-secondary.active, .btn-secondary:active, .show>.btn-secondary.dropdown-toggle {
+    background-color:var(--main-color); 
+    border:none;
+}
+
+nav button.dropdown-toggle{
+	color:var(--main-color);
+	padding:0;
+}
+
+nav #profile-pic {
+	margin:1%;
+	padding:2.5%;
+	width: 90%;
+	max-width:40px;
+	display: inline;
+}
+
+ /*^ end nav bar styling ^ */

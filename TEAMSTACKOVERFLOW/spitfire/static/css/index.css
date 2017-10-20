@@ -1,0 +1,32 @@
+.section-title{
+	margin: 20px;
+}
+
+.card-link{
+    color: var(--main-color);
+}
+
+#time-selector{
+  margin-left: 20px;
+}
+
+#time-selector p, #time-selector a{
+  font-size: 20px;
+}
+
+/*.soundtrack-image:after{
+	content:'\A';
+    position:absolute;
+    width:100%; height:100%;
+    top:0; left:0;
+    background:rgba(0,0,0,0.6);
+    opacity:0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+.soundtrack-image:hover:after {
+    opacity:1;
+}
+
+*/
