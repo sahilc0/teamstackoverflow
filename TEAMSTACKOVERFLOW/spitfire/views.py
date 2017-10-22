@@ -23,12 +23,21 @@ def profile(request):
 	put stuff here!
 	"""
 	artistPic = Artist.objects.all().get(first_name = 'Flo').propic #this line doesnt work
+
 	artistName = Artist.objects.all().get(first_name = 'Flo')
-	#numOfFollowers = Artist.get(number_of_followers)
+	numOfFollowers = Artist.objects.get(number_of_followers = 100).number_of_followers
+	followingNumber = Artist.objects.get(first_name = 'Flo').number_following
+	homeAddress = Artist.objects.get(first_name = 'Flo').homeAddress
+	numOfSpits = Artist.objects.get(first_name = 'Flo').spits
 	return render(
 		request, 
 		'profile.html',
-		context = {'artistName': artistName, 'artistPic': artistPic},
+		context = {'artistName': artistName, 
+				   'artistPic': artistPic, 
+				   'numOfFollowers': numOfFollowers, 
+				   'followingNum': followingNumber, 
+				   'userAddress': homeAddress,
+				   'numOfSpits': numOfSpits},
 	)
 
 def track(request):

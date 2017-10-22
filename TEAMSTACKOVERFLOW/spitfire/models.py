@@ -114,7 +114,8 @@ class Artist(models.Model):
     last_name = models.CharField(max_length=100)
     Track.artist = models.ManyToManyField(Track)
     Lyrics.artist = models.ManyToManyField(Lyrics)
-
+    homeAddress = models.CharField(max_length=100, default="")
+    spits = models.CharField(max_length=100, default="")
     number_of_followers = models.PositiveIntegerField(default=0)
     # followers = models.ManyToManyField(self, null=True)
     number_following = models.PositiveIntegerField(default=0)
