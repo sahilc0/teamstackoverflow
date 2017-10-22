@@ -1,0 +1,89 @@
+/*User header styles*/
+
+.user-header{
+	margin-top: 30px;
+	margin-bottom: 50px;
+  padding: 20px;
+}
+
+#user-header-details > div{
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#user-pic{
+	width: 120px;
+	height: 120px;
+  margin-right: 25px;
+}
+
+#user-info-description{
+  margin-bottom: 0px;
+}
+
+#twitter-link:hover{
+  cursor: pointer;
+  color: #0084b4;
+}
+
+#instagram-link:hover{
+  cursor: pointer;
+  color: #bc2a8d;
+}
+
+#soundcloud-link:hover{
+  cursor: pointer;
+  color: #ff7700;
+}
+
+
+#user-header-stats{
+  text-align: right;
+}
+
+#user-stats div{
+  display: inline-block;
+}
+
+#user-stats #strong1{
+  margin-right: 10px;
+}
+
+#user-stats #strong2, #user-stats #strong3{
+  margin-right: 20px;
+}
+
+#follow-btn{
+	cursor: pointer;
+  width: 190px;
+  margin-top: 20px;
+}
+
+/* Feed styles */
+
+#dropdownMenu1{
+	cursor: pointer;
+	width: 115px;
+}
+
+.user-content{
+	height: 1000px;
+}
+
+/*Media queries*/
+
+@media (max-width: 768px) { /*when less than col-sm in boostrap*/
+  #user-header-details div{
+    margin-right: 20px;
+  }
+
+  #user-header-stats{
+    text-align: center;
+  }
+
+  #follow-btn{
+    width: 100%;
+  }
+}

@@ -1,0 +1,87 @@
+#trackInfo img{
+	height: 100px;
+	float: left;
+}
+
+#names-and-info li{
+	list-style-type: none;
+	width: 160px;
+	margin-left: 5px;
+	position: relative;
+	left: 40px;
+}
+ 
+#profile{
+	padding-top: 20px;
+}
+
+#social-buttons{
+	list-style-type: none;
+	float: left;
+}
+
+#music-icon{
+	height: 100px;
+	margin-top: 20px;
+}
+
+#music-gif{
+	width: 300px;
+	position: relative;
+	height:95px;
+	margin-top: 0px;
+	padding-top: 0px;
+	position: relative;
+}
+
+.btn-group-vertical{
+	float: right;
+}
+#thumb{
+	font-size: 15px;
+	color: black;
+	background-color: white;
+}
+
+#recButton{
+	font-size: 15px;
+	color: black;
+	background-color: white;
+}
+
+#lyrics{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.card-group{
+	height: 200px;
+}
+
+#postLyrics{
+	margin-top: 10px;
+	position: relative;
+	left: 360px;
+}
+
+#postComment{
+	margin-top: 10px;
+	position: relative;
+	float: right;
+}
+
+.card-title{
+	display: inline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
