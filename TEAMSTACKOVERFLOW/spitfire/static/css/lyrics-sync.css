@@ -1,0 +1,22 @@
+h2{
+	margin: 20px;
+}
+h4{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+
+.timestamps {
+	padding-top: 25px;
+}
+
+.timestamps li {
+	list-style-type:none;
+	padding: 5px;
+}
+
+.button {
+	float:right;
+}

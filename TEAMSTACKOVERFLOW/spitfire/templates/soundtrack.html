@@ -1,7 +1,10 @@
 {% extends "baseTemplate.html" %}
 
-
-
+{% block cssForSoundTrack %} 
+  {% load static %}
+  <link rel="stylesheet" href="{% static '../static/css/soundtrack.css' %}"> 
+  }
+{% endblock %}
 
 
 {% block UserProfilePic %}

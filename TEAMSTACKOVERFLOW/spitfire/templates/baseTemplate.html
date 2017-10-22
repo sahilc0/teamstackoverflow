@@ -14,8 +14,15 @@
   <!-- Add additional CSS in static file -->
   {% load static %}
   <link rel="stylesheet" href="{% static '../static/css/main.css' %}">
-  <link rel="stylesheet" href="{% static '../static/css/soundtrack.css' %}">
 
+
+  {% block cssForSoundTrack %} {% endblock %}
+
+  {% block cssForIndex %} {% endblock %}
+
+  {% block cssForProfile %} {% endblock %}
+  
+  
 
 </head>
 
@@ -24,7 +31,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="col-md-4">
             <div id="logo">
-              <a href = "./index.html">
+              <a href = "{% url 'index' %}">
                 <img  src = "../static/images/camel.png">
                 <span id="logo-name">spit.fire</span>
               </a>

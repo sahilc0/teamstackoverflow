@@ -15,6 +15,17 @@ def index(request):
 		context = {},
 	)
 
+def profile(request):
+	"""
+	put stuff here!
+	"""
+	artistPic = Artist.objects.all().get(first_name = 'Flo').propic #this line doesnt work
+	userName = Artist.objects.all().get(first_name = 'Flo')
+	return render(
+		request, 
+		'profile.html',
+		context = {'userName': userName, 'artistPic': artistPic},
+	)
 
 def track(request):
 
