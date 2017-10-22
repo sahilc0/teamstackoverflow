@@ -20,11 +20,12 @@ def profile(request):
 	put stuff here!
 	"""
 	artistPic = Artist.objects.all().get(first_name = 'Flo').propic #this line doesnt work
-	userName = Artist.objects.all().get(first_name = 'Flo')
+	artistName = Artist.objects.all().get(first_name = 'Flo')
+	#numOfFollowers = Artist.get(number_of_followers)
 	return render(
 		request, 
 		'profile.html',
-		context = {'userName': userName, 'artistPic': artistPic},
+		context = {'artistName': artistName, 'artistPic': artistPic},
 	)
 
 def track(request):
@@ -40,6 +41,7 @@ def track(request):
 
 
 	)
+#change request page for the functions below~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def artist(request):
 

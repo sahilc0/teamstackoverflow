@@ -24,8 +24,8 @@
                 <div class="card-body" id="user-header-details">
                   <img src="https://pbs.twimg.com/profile_images/891552595059146753/mao5zWtT_400x400.jpg" class="rounded-circle" id="user-pic" alt="User profile picture">
                   <div>
-                    <h2 class="card-title" id="user-info-name">{{ userName }} </h2>
-                    <p class="card-subtitle" id="user-info-location">Boston, MA</p>
+                    <h2 class="card-title" id="user-info-name">{{ artistName }} </h2>
+                    <p class="card-subtitle" id="user-info-location">{{ userAddress }} </p>
                     <p class="card-text" id="user-info-description">Rapper/Producer from the Bean.</p>
                     <div>
                       <i class="fa fa-twitter" id="twitter-link" aria-hidden="true"></i>
@@ -39,15 +39,15 @@
                 <div class="card-body" id="user-header-stats"> 
                   <div id="user-stats">
                     <div> 
-                      <strong id="strong1">45</strong>
+                      <strong id="strong1">{{ numOfSpits }}</strong>
                       <p class="card-text">Spits</p>
                     </div>
                     <div>
-                      <strong id ="strong2">321</strong>
+                      <strong id ="strong2">{{ followingNum }}</strong>
                       <p class="card-text">Following</p>
                     </div>
                     <div> 
-                      <strong id ="strong3">229k</strong>
+                      <strong id ="strong3">{{ numOfFollowers }} </strong>
                       <p class="card-text">Followers</p>
                     </div>
                   </div>
