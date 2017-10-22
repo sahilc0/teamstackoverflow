@@ -9,10 +9,13 @@ def index(request):
 	put stuff here!
 	"""
 
+	# artistName = Artist.objects.all().get(first_name = 'Flo') #TODO Fix this
+	# trackName = Track.objects.title()	
+
 	return render(
 		request,
 		'index.html',
-		context = {},
+		context = {'artistName': "Artist Name", 'trackName': "Track Name", 'trackDescription': "Description of the track of artist, etc etc", 'upvoteCount': "6969", 'lyricsUserName': "Lyricist Username", 'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", },
 	)
 
 def profile(request):
