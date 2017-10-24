@@ -13,7 +13,7 @@
 
   <!-- Add additional CSS in static file -->
   {% load static %}
-  <link rel="stylesheet" href="{% static '../static/css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
 
   {% block cssForSoundTrack %} {% endblock %}
@@ -21,9 +21,6 @@
   {% block cssForIndex %} {% endblock %}
 
   {% block cssForProfile %} {% endblock %}
-  
-  
-
 </head>
 
 <body>
