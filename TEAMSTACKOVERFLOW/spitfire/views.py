@@ -15,29 +15,35 @@ def index(request):
 	return render(
 		request,
 		'index.html',
-		context = {'artistName': "Artist Name", 'trackName': "Track Name", 'trackDescription': "Description of the track of artist, etc etc", 'upvoteCount': "6969", 'lyricsUserName': "Lyricist Username", 'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", },
+		context = {'artistName': "Artist Name", 
+				   'trackName': "Track Name", 
+				   'trackDescription': "Description of the track of artist, etc etc", 
+				   'upvoteCount': "6969", 
+				   'lyricsUserName': "Lyricist Username", 
+				   'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
+				   },
 	)
 
 def profile(request):
 	"""
 	put stuff here!
 	"""
-	artistPic = Artist.objects.all().get(first_name = 'Flo').propic #this line doesnt work
-
+	#track1Comment = 
 	artistName = Artist.objects.all().get(first_name = 'Flo')
 	numOfFollowers = Artist.objects.get(number_of_followers = 100).number_of_followers
 	followingNumber = Artist.objects.get(first_name = 'Flo').number_following
 	homeAddress = Artist.objects.get(first_name = 'Flo').homeAddress
 	numOfSpits = Artist.objects.get(first_name = 'Flo').spits
+	trackName = Track.objects.get(title = '10miles').title
 	return render(
 		request, 
 		'profile.html',
 		context = {'artistName': artistName, 
-				   'artistPic': artistPic, 
 				   'numOfFollowers': numOfFollowers, 
 				   'followingNum': followingNumber, 
 				   'userAddress': homeAddress,
-				   'numOfSpits': numOfSpits},
+				   'numOfSpits': numOfSpits,
+				   'trackName': trackName}
 	)
 
 def track(request):

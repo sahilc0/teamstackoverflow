@@ -51,11 +51,12 @@ class Track(models.Model):
     Model for track
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular track across whole site")
-    title  = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
     artist = models.ForeignKey('Artist', on_delete=models.SET_NULL,null=True)
-    lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL,null=True)
+    #Should lyrics be a required entry? Can it be null? As of right now it can't be null.
+    #lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL,null=True)
     upvotes = models.PositiveIntegerField(default=0)
-    trackComment = models.ForeignKey('TrackComment', on_delete=models.SET_NULL,null=True)
+    #TrackComment.track = models.ForeignKey('TrackComment', on_delete=models.SET_NULL,null=True)
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     
     # file should be named trackid_userid_number
@@ -87,10 +88,11 @@ class Lyrics(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
     artist = models.ForeignKey('Artist', on_delete=models.SET_NULL,null=True)
+    title = models.CharField(max_length=100, null=True)
     upvotes = models.PositiveIntegerField(default=0)
-    LyricComment.lyrics = models.ForeignKey('LyricComment', on_delete=models.SET_NULL,null=True)
-    track = models.ForeignKey('Track', on_delete=models.SET_NULL, null=True)
-    #genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
+    #LyricComment.lyrics = models.ForeignKey('LyricComment', on_delete=models.SET_NULL,null=True)
+    Track = models.ForeignKey('Track', on_delete=models.SET_NULL, blank = True, null=True)
+    genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     text = models.TextField(max_length=1000, help_text="Enter lyrics", default="Lyrical spiritual lyrics!")
 
     def display_genre(self):
@@ -103,7 +105,7 @@ class Lyrics(models.Model):
         """
         String for representing the lyrics object
         """
-        return '%s (%s)' % (self.track.title,self.id)
+        return self.title
 
 class Artist(models.Model):
     """
@@ -112,14 +114,14 @@ class Artist(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular artist across whole site")
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    homeAddress = models.CharField(max_length=100, default="")
-    spits = models.CharField(max_length=100, default="")
+    #Track.artist = models.ManyToManyField(Track)
+    Lyrics.artist = models.ManyToManyField(Lyrics)
+    homeAddress = models.CharField(max_length=100, blank = True, null=True)
+    spits = models.CharField(max_length=100, blank = True, null=True)
     number_of_followers = models.PositiveIntegerField(default=0)
     # followers = models.ManyToManyField(self, null=True)
     number_following = models.PositiveIntegerField(default=0)
     # following = models.ManyToManyField(self, null=True)
-    #Track.artist = models.ManyToManyField(Track)
-    #Lyrics.artist = models.ManyToManyField(Lyrics)
 
     date_of_birth = models.DateField(null=True, blank=True)
     first_joined = models.DateField(null=True, blank=True)
