@@ -31,7 +31,7 @@ class TrackComment(models.Model):
         """
         return 'Artist %s %s comment %s on %s' % (self.artist.first_name,self.artist.last_name,self.id,self.track.title)
 
-class LyricComment(models.Model):
+class LyricComment(models.Model):  
     """
     Model for the comments to a lyric
     """
@@ -39,20 +39,21 @@ class LyricComment(models.Model):
     upvotes = models.PositiveIntegerField(default=0)
     artist = models.ForeignKey('Artist', on_delete=models.SET_NULL, null=True)
     text = models.TextField(max_length=1000, help_text="Enter a comment")
-    #lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL, null=True)
+    lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         """
         """
-        return 'Artist %s %s comment %s on %s' % (self.artist.first_name,self.artist.last_name,self.id,self.lyrics.title)
+        return 'Artist %s %s comment on %s' % (self.artist.first_name,self.artist.last_name,self.lyrics.title)
 
-class Track(models.Model):
+class Track(models.Model):  #the genre of a track is all the possible genres. This is a problem. Need fix
     """
     Model for track
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular track across whole site")
     title = models.CharField(max_length=200)
     artist = models.ForeignKey('Artist', on_delete=models.SET_NULL,null=True)
+    #lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL,null=True)
     upvotes = models.PositiveIntegerField(default=0)
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     

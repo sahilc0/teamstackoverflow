@@ -28,15 +28,20 @@ def profile(request):
 	"""
 	put stuff here!
 	"""
-	#track1Comment = 
-	artistName = Artist.objects.all().get(first_name = 'Flo')
+	artistName = Artist.objects.all().get(first_name = 'Bob')
 	numOfFollowers = Artist.objects.get(number_of_followers = 100).number_of_followers
-	followingNumber = Artist.objects.get(first_name = 'Flo').number_following
-	homeAddress = Artist.objects.get(first_name = 'Flo').homeAddress
-	numOfSpits = Artist.objects.get(first_name = 'Flo').spits
+	followingNumber = Artist.objects.get(first_name = 'Bob').number_following
+	homeAddress = Artist.objects.get(first_name = 'Bob').homeAddress
+	numOfSpits = Artist.objects.get(first_name = 'Bob').spits
 	trackName = Track.objects.get(title = '10miles').title
-	lyrics = Lyrics.objects.get(title = 'EminemTrack').text
-	deleteThis = Lyrics.objects.get(title = 'EminemTrack').LyricComment.lyrics
+	eminemTrackLyrics = Lyrics.objects.get(title = 'EminemTrack').text
+	eminemRemixLyrics = Lyrics.objects.get(title = 'EminemRemix').text
+	deadBeefLyrics = Lyrics.objects.get(title = 'DeadBeef').text
+	artistOfLyric = Lyrics.objects.get(title = 'EminemTrack').artist
+	lyricist1 = Lyrics.objects.get(title = 'EminemRemix').artist
+	lyricist2 = Lyrics.objects.get(title = 'DeadBeef').artist
+	trackName1 = Track.objects.get(title = '99Problems')
+	trackName2 = Track.objects.get(title = 'UptownFunk')
 	return render(
 		request, 
 		'profile.html',
@@ -46,7 +51,14 @@ def profile(request):
 				   'userAddress': homeAddress,
 				   'numOfSpits': numOfSpits,
 				   'trackName': trackName,
-				   'lyrics': lyrics},
+				   'eminemTrackLyrics': eminemTrackLyrics,
+				   'eminemRemixLyrics': eminemRemixLyrics,
+				   'deadBeefLyrics': deadBeefLyrics,
+				   'artistOfLyric': artistOfLyric,
+				   'trackName1': trackName1,
+				   'trackName2': trackName2,
+				   'lyricist1': lyricist1,
+				   'lyricist2': lyricist2},
 	)
 
 def track(request):
