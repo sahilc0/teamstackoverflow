@@ -35,6 +35,8 @@ def profile(request):
 	homeAddress = Artist.objects.get(first_name = 'Flo').homeAddress
 	numOfSpits = Artist.objects.get(first_name = 'Flo').spits
 	trackName = Track.objects.get(title = '10miles').title
+	lyrics = Lyrics.objects.get(title = 'EminemTrack').text
+	deleteThis = Lyrics.objects.get(title = 'EminemTrack').LyricComment.lyrics
 	return render(
 		request, 
 		'profile.html',
@@ -43,7 +45,8 @@ def profile(request):
 				   'followingNum': followingNumber, 
 				   'userAddress': homeAddress,
 				   'numOfSpits': numOfSpits,
-				   'trackName': trackName}
+				   'trackName': trackName,
+				   'lyrics': lyrics},
 	)
 
 def track(request):
