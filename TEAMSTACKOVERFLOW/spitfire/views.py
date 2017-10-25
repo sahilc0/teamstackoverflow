@@ -25,9 +25,6 @@ def index(request):
 	)
 
 def profile(request):
-	"""
-	put stuff here!
-	"""
 	artistName = Artist.objects.all().get(first_name = 'Bob')
 	numOfFollowers = Artist.objects.get(number_of_followers = 100).number_of_followers
 	followingNumber = Artist.objects.get(first_name = 'Bob').number_following
@@ -103,16 +100,26 @@ def genre(request):
 
 	)
 
-
 def lyrics(request):
 	"""
 	put stuff here
 	"""
 
 	return render(
-	request,
-	'profile.html',
-	context = {},
+		request,
+		'profile.html',
+		context = {},
+	)
+
+def upload(request):
+	"""
+	put stuff here
+	"""
+
+	return render(
+		request,
+		'upload.html',
+		context = {},
 	)
 
 

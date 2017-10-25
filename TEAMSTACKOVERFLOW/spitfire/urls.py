@@ -8,5 +8,6 @@ urlpatterns = [
 	url(r'^genre$', views.genre, name='genre'),
 	url(r'^lyrics$', views.lyrics, name='lyrics'),
 	url(r'^profile$', views.profile, name='profile'),
+	url(r'^upload$', views.upload, name='upload'), #this can be used as include(), but let this be for now.
 
 ]
