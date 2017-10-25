@@ -21,12 +21,11 @@ def index(request):
 	topArtistName1 = Artist.objects.get(first_name = 'Chance the').first_name + " " + Artist.objects.get(first_name = 'Chance the').last_name
 	topArtistName2 = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a').first_name
 	topArtistName3 = Artist.objects.get(id = '2e0a396d94cb446198a89d1bd921ee58').first_name
-	#topTrackName1 = Track.objects.filter(artist_id = )
-
+	topTrackName1 = Track.objects.get(artist_id = '993722bac92d4cd087497fbf24580bbb')
 	topTrackName2 = Track.objects.get(artist_id = '4c8b7e638ce24032ac6eb8225eafa76a').title
 	topTrackName3 = Track.objects.get(artist_id = '2e0a396d94cb446198a89d1bd921ee58').title
-	#yesterdayArtist =
-	#yesterdayTrack = 
+	yesterdayArtist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f').first_name
+	yesterdayTrack = Track.objects.filter(artist_id = '72f7f315034b4d9fbd7f140b8270156f')[1].title
 	return render(
 		request,
 		'index.html',
@@ -44,9 +43,11 @@ def index(request):
 				   'topArtistName1': topArtistName1,
    				   'topArtistName2': topArtistName2,
 				   'topArtistName3': topArtistName3,
-				   #'topTrackName1': topTrackName1,
+				   'topTrackName1': topTrackName1,
 				   'topTrackName2': topTrackName2,
 				   'topTrackName3': topTrackName3,
+				   'yesterdayArtist': yesterdayArtist,
+				   'yesterdayTrack': yesterdayTrack,
 				   'upvoteCount': "6969", 
 				   'lyricsUserName2': lyricsUserName2,
 				   'lyricsUserName1': lyricsUserName1, 
