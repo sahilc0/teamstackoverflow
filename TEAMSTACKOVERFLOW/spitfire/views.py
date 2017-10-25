@@ -122,6 +122,17 @@ def upload(request):
 		context = {},
 	)
 
+def contest(request):
+	"""
+	put stuff here
+	"""
+
+	return render(
+		request,
+		'contest.html',
+		context= {},
+		)
+
 
 
 
