@@ -5,21 +5,51 @@ from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist
 
 
 def index(request):
-	"""
-	put stuff here!
-	"""
+	trackDescription1 = Track.objects.get(title='Rolling in the Deep').description
+	trackDescription2 = Track.objects.get(title='UptownFunk').description
+	trackDescription3 = Track.objects.get(title='99Problems').description
+	featArtist1 = Track.objects.get(title='Rolling in the Deep').artist
+	featArtist2 = Track.objects.get(title='Let It Go!').artist
+	featArtist3 = Track.objects.get(title='99Problems').artist
+	featTrackName1 = Track.objects.get(id = '5443d08db1ba486a81cf27b2dcf71158')
+	featTrackName3 = Track.objects.get(id = 'b95a3265471b43f49172029cfdceaeb1')
+	featTrackName2 = Track.objects.get(id = '0f8779be3ad340acbf192bbe48a6d1a8')
+	lyricsUserName1 = Lyrics.objects.get(artist_id = '4d4422f7743944e98239940cf6f27963').artist
+	lyricsUserName2 = Lyrics.objects.get(artist_id = '986a07ef4b824899b1c09983a373fa63').artist
+	lyrics1 = Lyrics.objects.get(id = 'a61f37d97ecd4b84a009ef48c41b457f').text
+	lyrics2 = Lyrics.objects.get(id = '25863132de194e3c8d1b3b6c49a91f90').text
+	topArtistName1 = Artist.objects.get(first_name = 'Chance the').first_name + " " + Artist.objects.get(first_name = 'Chance the').last_name
+	topArtistName2 = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a').first_name
+	topArtistName3 = Artist.objects.get(id = '2e0a396d94cb446198a89d1bd921ee58').first_name
+	#topTrackName1 = Track.objects.filter(artist_id = )
 
-	# artistName = Artist.objects.all().get(first_name = 'Flo') #TODO Fix this
-	# trackName = Track.objects.title()	
-
+	topTrackName2 = Track.objects.get(artist_id = '4c8b7e638ce24032ac6eb8225eafa76a').title
+	topTrackName3 = Track.objects.get(artist_id = '2e0a396d94cb446198a89d1bd921ee58').title
+	#yesterdayArtist =
+	#yesterdayTrack = 
 	return render(
 		request,
 		'index.html',
-		context = {'artistName': "Artist Name", 
-				   'trackName': "Track Name", 
-				   'trackDescription': "Description of the track of artist, etc etc", 
+		context = {'trackDescription1': trackDescription1, 
+   				   'trackDescription2': trackDescription2, 
+				   'trackDescription3': trackDescription3, 
+				   'featArtist1': featArtist1,
+				   'featArtist2': featArtist2,
+				   'featArtist3': featArtist3,
+				   'featTrackName1': featTrackName1,
+				   'featTrackName3': featTrackName3,
+				   'featTrackName2': featTrackName2,
+				   'lyrics1': lyrics1,
+				   'lyrics2': lyrics2,
+				   'topArtistName1': topArtistName1,
+   				   'topArtistName2': topArtistName2,
+				   'topArtistName3': topArtistName3,
+				   #'topTrackName1': topTrackName1,
+				   'topTrackName2': topTrackName2,
+				   'topTrackName3': topTrackName3,
 				   'upvoteCount': "6969", 
-				   'lyricsUserName': "Lyricist Username", 
+				   'lyricsUserName2': lyricsUserName2,
+				   'lyricsUserName1': lyricsUserName1, 
 				   'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
 				   },
 	)

@@ -8,8 +8,6 @@
 {% endblock %}
 
 
-
-
 {% block bodyContent %}
     <div class="container">
       <div class="row">
@@ -20,10 +18,10 @@
             <div class="card">
                 <div class="card-body">
                   <img src='http://static.djbooth.net/pics-features/chance-3-artwork.jpg' class="soundtrack-image" >
-                  <h4 class="card-title">{{ trackName }}</h4>
-                  <h6 class="card-subtitle mb-2 text-muted">{{ artistName }}</h6>
+                  <h4 class="card-title">{{ featTrackName1 }}</h4>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ featArtist1 }}</h6>
                   <p class="card-text">
-                    {{ trackDescription }}
+                    {{ trackDescription1 }}
                   </p>
                   <a href="./soundtrack.html" class="card-link">LISTEN</a>
                   <a href="./profile.html" class="card-link">VIEW ARTIST</a>
@@ -34,10 +32,10 @@
           <div class="card">
             <div class="card-body">
               <img src='https://pbs.twimg.com/media/DEEg9ZmUIAAcdEb.jpg' class="soundtrack-image">
-              <h4 class="card-title">{{ trackName }}</h4>
-              <h6 class="card-subtitle mb-2 text-muted">{{ artistName }}</h6>
+              <h4 class="card-title">{{ featTrackName2 }}</h4>
+              <h6 class="card-subtitle mb-2 text-muted">{{ featArtist2 }}</h6>
               <p class="card-text">
-                {{ trackDescription }}
+                {{ trackDescription2 }}
               </p>
               <a href="./soundtrack.html" class="card-link">LISTEN</a>
               <a href="./profile.html" class="card-link">VIEW ARTIST</a>
@@ -48,10 +46,10 @@
           <div class="card">
             <div class="card-body">
               <img src='https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg' class="soundtrack-image">
-              <h4 class="card-title">{{ trackName }}</h4>
-              <h6 class="card-subtitle mb-2 text-muted">{{ artistName }}</h6>
+              <h4 class="card-title">{{ featTrackName3 }}</h4>
+              <h6 class="card-subtitle mb-2 text-muted">{{ featArtist3 }}</h6>
               <p class="card-text">
-                {{ trackDescription }}
+                {{ trackDescription3 }}
               </p>
               <a href="./soundtrack.html" class="card-link">LISTEN</a>
               <a href="./profile.html" class="card-link">VIEW ARTIST</a>
@@ -81,8 +79,8 @@
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ artistName }}</h4>
-                <h5>{{ trackName }}</h5>
+                <h4>{{ topArtistName1 }}</h4>
+                <h5>{{ topTrackName1 }}</h5>
               </div>
               <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
               <img src="http://inyourspeakers.com/files/images/reviews/odesza-13120.jpg" class="soundtrack-image">
@@ -94,12 +92,12 @@
             <div class="card col-md-8">
               <div class="card-body">
                 <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricsUserName }}</h5>
-                <p class="card-text float-left">{{ lyrics }}</p>
+                <h5 class='card-text float-left'>{{ lyricsUserName1 }}</h5>
+                <p class="card-text float-left">{{ lyrics1 }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
 
-                <h5 class='card-text float-left'>{{ lyricsUserName }}</h5>
-                <p class="card-text float-left">{{ lyrics }}</p>
+                <h5 class='card-text float-left'>{{ lyricsUserName2 }}</h5>
+                <p class="card-text float-left">{{ lyrics2 }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
               </div>
             </div>
@@ -109,8 +107,8 @@
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ artistName }}</h4>
-                <h5>{{ trackName }}</h5>
+                <h4>{{ topArtistName2 }}</h4>
+                <h5>{{ topTrackName2 }}</h5>
               </div>
               <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
               <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
@@ -122,12 +120,12 @@
             <div class="card col-md-8">
               <div class="card-body">
                 <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricsUserName }}</h5>
-                <p class="card-text float-left">{{ lyrics }}</p>
+                <h5 class='card-text float-left'>{{ lyricsUserName1 }}</h5>
+                <p class="card-text float-left">{{ lyrics1 }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
 
-                <h5 class='card-text float-left'> {{ lyricsUserName }}</h5>
-                <p class="card-text float-left">{{ lyrics }}</p>
+                <h5 class='card-text float-left'> {{ lyricsUserName2 }}</h5>
+                <p class="card-text float-left">{{ lyrics2 }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
               </div>
             </div>
@@ -137,8 +135,8 @@
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ artistName }}</h4>
-                <h5>{{ trackName }}</h5>
+                <h4>{{ topArtistName3 }}</h4>
+                <h5>{{ topTrackName3 }}</h5>
               </div>
               <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
               <img src="http://inyourspeakers.com/files/images/reviews/odesza-13120.jpg" class="soundtrack-image">
@@ -150,12 +148,12 @@
             <div class="card col-md-8">
               <div class="card-body">
                 <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricsUserName }}</h5>
-                <p class="card-text float-left">{{ lyrics }}</p>
+                <h5 class='card-text float-left'>{{ lyricsUserName2 }}</h5>
+                <p class="card-text float-left">{{ lyrics1 }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
 
-                <h5 class='card-text float-left'>{{ lyricsUserName }}</h5>
-                <p class="card-text float-left">{{ lyrics }}</p>
+                <h5 class='card-text float-left'>{{ lyricsUserName1 }}</h5>
+                <p class="card-text float-left">{{ lyrics2 }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount}}</b></button>
               </div>
             </div>
@@ -171,8 +169,8 @@
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ artistName }}</h4>
-                <h5>{{ trackName }}</h5>
+                <h4>{{ yesterdayArtist }}</h4>
+                <h5>{{ yesterdayTrac }}</h5>
               </div>
               <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
               <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
@@ -184,12 +182,12 @@
             <div class="card col-md-8">
               <div class="card-body">
                 <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricsUserName }}</h5>
-                <p class="card-text float-left">{{ lyrics }}</p>
+                <h5 class='card-text float-left'>{{ lyricsUserName2 }}</h5>
+                <p class="card-text float-left">{{ lyrics1 }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
 
-                <h5 class='card-text float-left'>{{ lyricsUserName}}</h5>
-                <p class="card-text float-left">{{ lyrics }}</p>
+                <h5 class='card-text float-left'>{{ lyricsUserName1 }}</h5>
+                <p class="card-text float-left">{{ lyrics2 }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount}}</b></button>
               </div>
             </div>
