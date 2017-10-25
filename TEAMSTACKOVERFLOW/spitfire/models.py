@@ -119,7 +119,7 @@ class Artist(models.Model): #this looks good
     first_joined = models.DateField(null=True, blank=True)
 
     # file should be named userid_ppic_number
-    propic = models.FileField(default = "user_propics/profile_default.png",upload_to='user_propics/')
+    image = models.FileField(null=True, blank=True)
     
     def get_absolute_url(self):
         """

@@ -1,7 +1,7 @@
 {% extends 'baseTemplate.html' %}
 
 
-{% block cssForProfile %}
+{% block includeCSS %}
   {% load static %}
     <link rel="stylesheet" href="{% static '../static/css/profileStyles.css' %}">
     <!-- Font Awesome for Social Links -->
@@ -9,9 +9,7 @@
 {% endblock %}
 
 {% block UserProfilePic %}
-
-    {{ UserProfileSource }}
-           
+    {{ profileImage }}
 {% endblock %}
 
 {% block bodyContent %}

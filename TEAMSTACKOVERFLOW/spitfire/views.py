@@ -42,6 +42,7 @@ def profile(request):
 	lyricist2 = Lyrics.objects.get(title = 'DeadBeef').artist
 	trackName1 = Track.objects.get(title = '99Problems')
 	trackName2 = Track.objects.get(title = 'UptownFunk')
+	profileImage = Artist.objects.get(first_name = 'Bob').image
 	return render(
 		request, 
 		'profile.html',
@@ -58,7 +59,8 @@ def profile(request):
 				   'trackName1': trackName1,
 				   'trackName2': trackName2,
 				   'lyricist1': lyricist1,
-				   'lyricist2': lyricist2},
+				   'lyricist2': lyricist2,
+				   'profileImage': profileImage},
 	)
 
 def track(request):
