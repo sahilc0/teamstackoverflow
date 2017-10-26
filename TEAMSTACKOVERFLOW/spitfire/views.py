@@ -5,25 +5,35 @@ from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist
 
 
 def index(request):
+	#descriptions of featured Tracks
 	trackDescription1 = Track.objects.get(title='Rolling in the Deep').description
 	trackDescription2 = Track.objects.get(title='UptownFunk').description
 	trackDescription3 = Track.objects.get(title='99Problems').description
-	featArtist1 = Track.objects.get(title='Rolling in the Deep').artist
-	featArtist2 = Track.objects.get(title='Let It Go!').artist
-	featArtist3 = Track.objects.get(title='99Problems').artist
-	featTrackName1 = Track.objects.get(id = '5443d08db1ba486a81cf27b2dcf71158')
-	featTrackName3 = Track.objects.get(id = 'b95a3265471b43f49172029cfdceaeb1')
-	featTrackName2 = Track.objects.get(id = '0f8779be3ad340acbf192bbe48a6d1a8')
+	#artists in the featured section
+	featArtist1 = Track.objects.get(description = trackDescription1).artist
+	featArtist2 = Track.objects.get(description = trackDescription2).artist
+	featArtist3 = Track.objects.get(description = trackDescription3).artist
+	#track names of tracks in feature sections
+	featTrackName1 = Track.objects.get(description = trackDescription1).title
+	featTrackName2 = Track.objects.get(description = trackDescription2).title
+	featTrackName3 = Track.objects.get(description = trackDescription3).title
+
 	lyricsUserName1 = Lyrics.objects.get(artist_id = '4d4422f7743944e98239940cf6f27963').artist
 	lyricsUserName2 = Lyrics.objects.get(artist_id = '986a07ef4b824899b1c09983a373fa63').artist
-	lyrics1 = Lyrics.objects.get(id = 'a61f37d97ecd4b84a009ef48c41b457f').text
-	lyrics2 = Lyrics.objects.get(id = '25863132de194e3c8d1b3b6c49a91f90').text
-	topArtistName1 = Artist.objects.get(first_name = 'Chance the').first_name + " " + Artist.objects.get(first_name = 'Chance the').last_name
-	topArtistName2 = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a').first_name
-	topArtistName3 = Artist.objects.get(id = '2e0a396d94cb446198a89d1bd921ee58').first_name
-	topTrackName1 = Track.objects.get(artist_id = '993722bac92d4cd087497fbf24580bbb')
-	topTrackName2 = Track.objects.get(artist_id = '4c8b7e638ce24032ac6eb8225eafa76a').title
-	topTrackName3 = Track.objects.get(artist_id = '2e0a396d94cb446198a89d1bd921ee58').title
+	lyrics1 = Lyrics.objects.get(artist = lyricsUserName1).text
+	lyrics2 = Lyrics.objects.get(artist = lyricsUserName2).text
+	
+	topArtistObject1 = Artist.objects.get(id = '993722bac92d4cd087497fbf24580bbb')
+	topArtistObject2 = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
+	topArtistObject3 = Artist.objects.get(id = '2e0a396d94cb446198a89d1bd921ee58')
+	topArtistName1 = topArtistObject1.first_name + " " + topArtistObject1.last_name
+	topArtistName2 = topArtistObject2.first_name
+	topArtistName3 = topArtistObject3.first_name
+	
+	topTrackName1 = Track.objects.get(artist = topArtistObject1).title
+	topTrackName2 = Track.objects.get(artist = topArtistObject2).title
+	topTrackName3 = Track.objects.get(artist = topArtistObject3).title
+	
 	yesterdayArtist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f').first_name
 	yesterdayTrack = Track.objects.filter(artist_id = '72f7f315034b4d9fbd7f140b8270156f')[1].title
 	return render(
