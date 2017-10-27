@@ -107,19 +107,23 @@ def track(request):
 	TrackName =	Track.objects.get(artist_id = artistObject.id).title
 	ArtistName = artistObject.first_name + " " + artistObject.last_name
 	Keywords = Track.objects.get(title = TrackName).keywords
-	"""
-	lyricName1 = 
-	lyrics1 = 
+	
+	lyricObject1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
+	lyricName1 = lyricObject1.title
+	lyrics1 = lyricObject1.text
 
-	commenter = 
-	comment =
+	commentObject = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
+	commenter = commentObject.artist.first_name
+	comment = commentObject.text
 
-	lyricName2 =
-	lyrics2 = 
+	lyricObject2 = Lyrics.objects.get(id = '25863132de194e3c8d1b3b6c49a91f90')
+	lyricName2 = lyricObject2.title
+	lyrics2 = lyricObject2.text
 
-	commenter2 = 
-	comment2 =
-	"""
+	commentObject2 = LyricComment.objects.get(id = 'e861350b34af4b28916f266b05e97b81')
+	commenter2 = commentObject2.artist.first_name
+	comment2 = commentObject.text
+	
 	
 	return render(
 		request,
@@ -127,6 +131,14 @@ def track(request):
 		context = {'TrackName': TrackName,
 				   'ArtistName': ArtistName,
 				   'Keywords': Keywords,
+				   'lyricName1': lyricName1,
+				   'lyrics1': lyrics1,
+				   'commenter': commenter + " " + "says",
+				   'comment': comment,
+   				   'lyricName2': lyricName2,
+				   'lyrics2': lyrics2,
+				   'commenter2': commenter2 + " " + "says",
+				   'comment2': comment2,
 				  },
 
 
