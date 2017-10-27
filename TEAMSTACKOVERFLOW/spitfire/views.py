@@ -102,15 +102,32 @@ def profile(request):
 	)
 
 def track(request):
-
+	
+	artistObject = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
+	TrackName =	Track.objects.get(artist_id = artistObject.id).title
+	ArtistName = artistObject.first_name + " " + artistObject.last_name
+	Keywords = Track.objects.get(title = TrackName).keywords
 	"""
-	put stuff here
-	"""
+	lyricName1 = 
+	lyrics1 = 
 
+	commenter = 
+	comment =
+
+	lyricName2 =
+	lyrics2 = 
+
+	commenter2 = 
+	comment2 =
+	"""
+	
 	return render(
 		request,
 		'soundtrack.html',
-		context = {},
+		context = {'TrackName': TrackName,
+				   'ArtistName': ArtistName,
+				   'Keywords': Keywords,
+				  },
 
 
 	)

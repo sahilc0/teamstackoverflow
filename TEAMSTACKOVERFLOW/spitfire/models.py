@@ -57,6 +57,7 @@ class Track(models.Model):  #the genre of a track is all the possible genres. Th
     upvotes = models.PositiveIntegerField(default=0)
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     description = models.TextField(blank=True, max_length=300)
+    keywords = models.TextField(blank = True, max_length=30)
     
     # file should be named trackid_userid_number
     mp3 = models.FileField(default = "user_audio/track_default.mp3",upload_to='user_audio/')
@@ -118,9 +119,8 @@ class Artist(models.Model): #this looks good
     number_following = models.PositiveIntegerField(default=0)
     date_of_birth = models.DateField(null=True, blank=True)
     first_joined = models.DateField(null=True, blank=True)
-
     # file should be named userid_ppic_number
-    image = models.FileField(null=True, blank=True)
+    image = models.FileField(upload_to='static/media', null=True, blank=True)
     
     def get_absolute_url(self):
         """

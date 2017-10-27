@@ -20,14 +20,14 @@
           <div id="trackInfo">
               <div id="picture"><img src="../images/profile_default.png"></div>
                 <ul id="names-and-info">
-                  <li>Track Name</li>
-                  <li>Artist Name</li>
-                  <li>Keywords</li>
+                  <li>{{ TrackName }}</li>
+                  <li>{{ ArtistName }}</li>
+                  <li>{{ Keywords }}</li>
                 </ul>
             </div>
           </div>
           <div class='col-md-4'>
-                <ul id="social-buttons">
+                <ul id="social-buttons">        <!-- Make this part dynamic -->
                   <li>Facebook</li>
                   <li>Twitter</li>
                   <li>SoundCloud</li>
@@ -50,9 +50,9 @@
           <div class="card-group">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Lyrics1</h4>
+                <h4 class="card-title">{{ lyricName1 }}</h4>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
-                <p class="card-text">Yo, yo, humpty dumpty sat on a wall, humpty dumpty had a great fall, the whole crowd goes so loud, moms spaghetti.</p>
+                <p class="card-text">{{ lyrics1 }} </p>
               </div>
             </div>
             <div class="card">
@@ -60,8 +60,8 @@
                 <h4 class="card-title">Comments</h4>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
                 <p class="card-text">
-                  <strong> Bobby Mcdonald says......</strong>
-                  <p> Hey this is great stuff, humpty dumpty makes spaghetti?</p>
+                  <strong> {{ commenter }}</strong>
+                  <p> {{ comment }} </p>
                 </p>
               </div>
             </div>
@@ -73,9 +73,9 @@
           <div class="card-group">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Lyrics2</h4>
+                <h4 class="card-title">{{ LyricName2 }}</h4>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
-                <p class="card-text"> Some lyrics go here. blah blah.</p>
+                <p class="card-text"> {{ lyrics2 }}</p>
               </div>
             </div>
             <div class="card">
@@ -83,8 +83,8 @@
                 <h4 class="card-title">Comments</h4>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
                 <p class="card-text">
-                  <strong> John says......</strong>
-                  <p> Good stuff man! Keep it up!</p>
+                  <strong> {{ commenter2 }}</strong>
+                  <p> {{ comment2 }} </p>
                 </p>
               </div>
             </div>

@@ -25,4 +25,3 @@ urlpatterns = [
     url(r'^spitfire/', include('spitfire.urls')),
     url(r'^$', RedirectView.as_view(url='/spitfire/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
