@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist
+from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Sponsor
 
 admin.site.register(Sponsor)
 admin.site.register(TrackComment)
