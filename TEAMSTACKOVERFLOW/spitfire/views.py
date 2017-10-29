@@ -208,6 +208,9 @@ def contest(request):
 	sponsor_description2 = Sponsor.objects.get(sponsor_description='This contest is sponsored by Google. Create a track based on how the Google Assistant can help you in your everyday life. Winner gets $20,000 and a free trip to New York City.')
 	sponsor_description3 = Sponsor.objects.get(sponsor_description='This contest is sponsored by Coke. Create a track based on the refreshing feeling that Coke gives you. Or something like that.')
 
+	sponsor_image1 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
+	sponsor_image2 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
+	sponsor_image3 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
 
 	
 	return render(
