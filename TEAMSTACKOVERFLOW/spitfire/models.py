@@ -11,12 +11,13 @@ class Sponsor (models.Model):
 
     sponsor_name = models.CharField (max_length=200)
     sponsor_description = models.CharField (max_length=2000)
+    sponsor_image = models.TextField (max_length=200, help_text="Enter Image URL", default = "http://static.djbooth.net/pics-features/chance-3-artwork.jpg")
 
     def __str__(self):
         """
         String for representing the Model object.
         """
-        return '%s, %s' % (self.sponsor_name, self.sponsor_description)
+        return '%s, %s, %s' % (self.sponsor_name, self.sponsor_description, self.sponsor_image)
 
 class Genre(models.Model):
     """
