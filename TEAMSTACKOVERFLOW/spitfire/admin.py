@@ -5,6 +5,7 @@ from django.contrib import admin
 
 from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist
 
+admin.site.register(Sponsor)
 admin.site.register(TrackComment)
 admin.site.register(Artist)
 admin.site.register(Genre)
