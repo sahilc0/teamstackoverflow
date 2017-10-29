@@ -171,19 +171,16 @@ def genre(request):
 	)
 
 def lyrics(request):
-	"""
-	put stuff here
-	"""
+  track = Track.objects.get(title="50's Manhattan")
 
-
-	return render(
-		request,
-		'lyrics-sync.html',
-		context = {
-                'trackName': '50s Manhattan',
-                'artistName': 'Jesse James',
+  return render(
+  	request,
+  	'lyrics-sync.html',
+  	context = {
+                'trackName': track.title,
+                'artistName': track.artist,
                 },
-	)
+  )
 
 def upload(request):
 	"""
