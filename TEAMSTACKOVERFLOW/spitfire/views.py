@@ -200,10 +200,17 @@ def contest(request):
 	"""
 	put stuff here
 	"""
+	sponsor_name1 = Sponsor.objects.get(sponsor_name='Red Bull').sponsor_name
+	sponsor_name2 = Sponsor.objects.get(sponsor_name='Google').sponsor_name
+	sponsor_description1 = Sponsor.objects.get(sponsor_description='This contest is sponsored by Red Bull. Create a track based on the sound of Red Bull giving you wings. Winner will get a free trip to our HQ in LA and $10,000 ayy nice')
+	sponsor_description2 = Sponsor.objects.get(sponsor_description='This contest is sponsored by Google. Create a track based on how the Google Assistant can help you in your everyday life. Winner gets $20,000 and a free trip to New York City.')
+
+
+	
 	return render(
 		request,
 		'contest.html',
-		context= {},
+		context= {'sponsor_name1': sponsor_name1, 'sponsor_name2': sponsor_name2, 'sponsor_description1': sponsor_description1, 'sponsor_description2': sponsor_description2},
 		)
 
 
