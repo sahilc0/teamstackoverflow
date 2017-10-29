@@ -157,6 +157,8 @@ def contest(request):
 	"""
 	put stuff here
 	"""
+
+	
 	return render(
 		request,
 		'contest.html',

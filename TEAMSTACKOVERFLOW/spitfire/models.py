@@ -4,6 +4,20 @@ from django.urls import reverse #Used to generate URLs by reversing the URL patt
 
 # Create your models here.
 
+class Sponsor (models.Model):
+    """
+    Model for sponsors for contests
+    """
+
+    sponsor_name = models.CharField (max_length=200)
+    sponsor_description = models.CharField (max_length=2000)
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return '%s, %s' % (self.sponsor_name, self.sponsor_description)
+
 class Genre(models.Model):
     """
     Model for music genres (hip hop, R&B, 90s, etc)
