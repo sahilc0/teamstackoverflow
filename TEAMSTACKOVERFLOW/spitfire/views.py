@@ -175,10 +175,14 @@ def lyrics(request):
 	put stuff here
 	"""
 
+
 	return render(
 		request,
-		'profile.html',
-		context = {},
+		'lyrics-sync.html',
+		context = {
+                'trackName': '50s Manhattan',
+                'artistName': 'Jesse James',
+                },
 	)
 
 def upload(request):
