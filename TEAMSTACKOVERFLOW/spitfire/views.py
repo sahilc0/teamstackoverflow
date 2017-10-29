@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist
+from .models import Genre, TrackComment, LyricComment, Track, Lyric, Artist
 
 
 def index(request):
@@ -18,10 +18,10 @@ def index(request):
 	featTrackName2 = Track.objects.get(description = trackDescription2).title
 	featTrackName3 = Track.objects.get(description = trackDescription3).title
 
-	lyricsUserName1 = Lyrics.objects.get(artist_id = '4d4422f7743944e98239940cf6f27963').artist
-	lyricsUserName2 = Lyrics.objects.get(artist_id = '986a07ef4b824899b1c09983a373fa63').artist
-	lyrics1 = Lyrics.objects.get(artist = lyricsUserName1).text
-	lyrics2 = Lyrics.objects.get(artist = lyricsUserName2).text
+	lyricsUserName1 = Lyric.objects.get(artist_id = '4d4422f7743944e98239940cf6f27963').artist
+	lyricsUserName2 = Lyric.objects.get(artist_id = '986a07ef4b824899b1c09983a373fa63').artist
+	lyrics1 = Lyric.objects.get(artist = lyricsUserName1).text
+	lyrics2 = Lyric.objects.get(artist = lyricsUserName2).text
 	
 	topArtistObject1 = Artist.objects.get(id = '993722bac92d4cd087497fbf24580bbb')
 	topArtistObject2 = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
@@ -72,12 +72,12 @@ def profile(request):
 	homeAddress = Artist.objects.get(first_name = 'Bob').homeAddress
 	numOfSpits = Artist.objects.get(first_name = 'Bob').spits
 	trackName = Track.objects.get(title = '10miles').title
-	eminemTrackLyrics = Lyrics.objects.get(title = 'EminemTrack').text
-	eminemRemixLyrics = Lyrics.objects.get(title = 'EminemRemix').text
-	deadBeefLyrics = Lyrics.objects.get(title = 'DeadBeef').text
-	artistOfLyric = Lyrics.objects.get(title = 'EminemTrack').artist
-	lyricist1 = Lyrics.objects.get(title = 'EminemRemix').artist
-	lyricist2 = Lyrics.objects.get(title = 'DeadBeef').artist
+	eminemTrackLyrics = Lyric.objects.get(title = 'EminemTrack').text
+	eminemRemixLyrics = Lyric.objects.get(title = 'EminemRemix').text
+	deadBeefLyrics = Lyric.objects.get(title = 'DeadBeef').text
+	artistOfLyric = Lyric.objects.get(title = 'EminemTrack').artist
+	lyricist1 = Lyric.objects.get(title = 'EminemRemix').artist
+	lyricist2 = Lyric.objects.get(title = 'DeadBeef').artist
 	trackName1 = Track.objects.get(title = '99Problems')
 	trackName2 = Track.objects.get(title = 'UptownFunk')
 	profileImage = Artist.objects.get(first_name = 'Bob').image
@@ -108,7 +108,7 @@ def track(request):
 	ArtistName = artistObject.first_name + " " + artistObject.last_name
 	Keywords = Track.objects.get(title = TrackName).keywords
 	
-	lyricObject1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
+	lyricObject1 = Lyric.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
 	lyricName1 = lyricObject1.title
 	lyrics1 = lyricObject1.text
 
@@ -116,7 +116,7 @@ def track(request):
 	commenter = commentObject.artist.first_name
 	comment = commentObject.text
 
-	lyricObject2 = Lyrics.objects.get(id = '25863132de194e3c8d1b3b6c49a91f90')
+	lyricObject2 = Lyric.objects.get(id = '25863132de194e3c8d1b3b6c49a91f90')
 	lyricName2 = lyricObject2.title
 	lyrics2 = lyricObject2.text
 
@@ -204,7 +204,7 @@ def contest(request):
 	sponsor_name2 = Sponsor.objects.get(sponsor_name='Google').sponsor_name
 	sponsor_description1 = Sponsor.objects.get(sponsor_description='This contest is sponsored by Red Bull. Create a track based on the sound of Red Bull giving you wings. Winner will get a free trip to our HQ in LA and $10,000 ayy nice')
 	sponsor_description2 = Sponsor.objects.get(sponsor_description='This contest is sponsored by Google. Create a track based on how the Google Assistant can help you in your everyday life. Winner gets $20,000 and a free trip to New York City.')
-	
+
 
 	
 	return render(
