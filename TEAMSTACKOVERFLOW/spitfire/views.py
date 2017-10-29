@@ -213,7 +213,7 @@ def contest(request):
 	return render(
 		request,
 		'contest.html',
-		context= {'sponsor_name1': sponsor_name1, 'sponsor_name2': sponsor_name2, 'sponsor_description1': sponsor_description1, 'sponsor_description2': sponsor_description2, 'sponsor_description3': sponsor_description3},
+		context= {'sponsor_name1': sponsor_name1, 'sponsor_name2': sponsor_name2, 'sponsor_description1': sponsor_description1, 'sponsor_description2': sponsor_description2, 'sponsor_name3': sponsor_name3, 'sponsor_description3': sponsor_description3},
 		)
 
 
