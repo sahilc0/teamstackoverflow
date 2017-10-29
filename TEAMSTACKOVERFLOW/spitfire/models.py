@@ -96,7 +96,7 @@ class Track(models.Model):  #the genre of a track is all the possible genres. Th
         return self.title
 
 
-class Lyric(models.Model): #this model looks good
+class Lyrics(models.Model): #this model looks good
     """
     Model for lyrics
     """
