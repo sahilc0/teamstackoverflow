@@ -61,6 +61,10 @@ def index(request):
 				   'upvoteCount': "6969", 
 				   'lyricsUserName2': lyricsUserName2,
 				   'lyricsUserName1': lyricsUserName1, 
+           'audio1': "track_default.mp3",
+           'audio2': "track_default.mp3",
+           'audio3': "track_default.mp3",
+           'yesterdayAudio': "track_default.mp3",
 				   'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
 				   },
 	)
@@ -98,6 +102,9 @@ def profile(request):
 				   'trackName2': trackName2,
 				   'lyricist1': lyricist1,
 				   'lyricist2': lyricist2,
+           'audio1': "track_default.mp3",
+           'audio2': "track_default.mp3",
+           'audio3': "track_default.mp3",
 				   'profileImage': profileImage},
 	)
 
@@ -156,7 +163,7 @@ def genre(request):
 	)
 
 def lyrics(request):
-  track = Track.objects.get(title="50's Manhattan")
+  track = Track.objects.get(title="Rudolph the Reindeer")
 
   return render(
   	request,
@@ -164,6 +171,7 @@ def lyrics(request):
   	context = {
                 'trackName': track.title,
                 'artistName': track.artist,
+                'audio1': "track_default.mp3",
                 },
   )
 
