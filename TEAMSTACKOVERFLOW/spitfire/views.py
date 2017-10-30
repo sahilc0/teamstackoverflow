@@ -61,6 +61,10 @@ def index(request):
 				   'upvoteCount': "6969", 
 				   'lyricsUserName2': lyricsUserName2,
 				   'lyricsUserName1': lyricsUserName1, 
+           'audio1': "track_default.mp3",
+           'audio2': "track_default.mp3",
+           'audio3': "track_default.mp3",
+           'yesterdayAudio': "track_default.mp3",
 				   'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
 				   },
 	)
