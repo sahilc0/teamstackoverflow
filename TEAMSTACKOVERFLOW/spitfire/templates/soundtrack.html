@@ -1,5 +1,9 @@
 {% extends "baseTemplate.html" %}
 
+{% block title %}
+<title>A Soundtrack</title>
+{% endblock %}
+
 {% block includeCSS %} 
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/soundtrack.css' %}"> 
@@ -17,13 +21,12 @@
   <div class="container">
       <div class="row" id="profile"> <!-- header section -->
         <div class='col-md-8'>
-          <div id="trackInfo">
-                                          <!-- Make the imgage below this dynamic -->
-              <div id="picture"><img src="../static/images/profile_default.png" width= '100px'></div>
+          <div id="trackInfo">                                
+              <div id="picture"><img src ="{% static '/images/profile_default.png' %}" width= '100px'></div>
                 <ul id="names-and-info">
-                  <li>{{ TrackName }}</li>
-                  <li>{{ ArtistName }}</li>
-                  <li>{{ Keywords }}</li>
+                  <li>{{ thisTrack.title }}</li>
+                  <li>{{ thisArtist.first_name }} {{ thisArtist.last_name }}</li>
+                  <li>{{ thisTrack.keywords }}</li>
                 </ul>
             </div>
           </div>
@@ -51,18 +54,18 @@
           <div class="card-group">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">{{ lyricName1 }}</h4>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
-                <p class="card-text">{{ lyrics1 }} </p>
+                <h4 class="card-title">{{ lyric1.title }}</h4>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric1.upvotes }}</b></button>
+                <p class="card-text">{{ lyric1.text }}</p>
               </div>
             </div>
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Comments</h4>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ comment1.upvotes }}</b></button>
                 <p class="card-text">
-                  <strong> {{ commenter }}</strong>
-                  <p> {{ comment }} </p>
+                  <strong> {{ comment1.artist.first_name }}</strong>
+                  <p> {{ comment1.text }} </p>
                 </p>
               </div>
             </div>
@@ -74,18 +77,18 @@
           <div class="card-group">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">{{ LyricName2 }}</h4>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
-                <p class="card-text"> {{ lyrics2 }}</p>
+                <h4 class="card-title">{{ lyric2.title }}</h4>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric2.upvotes }}</b></button>
+                <p class="card-text"> {{ lyric2.text }}</p>
               </div>
             </div>
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Comments</h4>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ comment2.upvotes }}</b></button>
                 <p class="card-text">
-                  <strong> {{ commenter2 }}</strong>
-                  <p> {{ comment2 }} </p>
+                  <strong> {{ comment2.artist.first_name }} {{ comment2.artist.last_name }}</strong>
+                  <p> {{ comment2.text }} </p>
                 </p>
               </div>
             </div>
@@ -94,18 +97,13 @@
       </div>
     <div class="row">
         <div class='col-md-12'>
-          <a href="./lyrics-sync.html">
+          <a href="{% url 'lyrics' %}">
             <button type="button" id="postLyrics" class="btn btn-secondary">Post Lyrics</button>
           </a>
           <button type="button" id="postComment" class="btn btn-secondary">Post Comment</button>
         </div>
     </div>
   </div><!--content close-->
-  <div class = "sidebars"></div>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 {% endblock %}
 
