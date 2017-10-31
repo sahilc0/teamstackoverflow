@@ -151,12 +151,12 @@
             <div class="card col-md-8">
               <div class="card-body">
                 <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyrics1.title }}</h5>
-                <p class="card-text float-left">{{ lyrics1.text }}</p>
+                <h5 class='card-text float-left'>{{ lyricsList3.title }}</h5>
+                <p class="card-text float-left">{{ lyricsList3.text }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
 
-                <h5 class='card-text float-left'>{{ lyrics }}</h5>
-                <p class="card-text float-left">{{ lyrics2 }}</p>
+                <h5 class='card-text float-left'>{{ lyricsList31.title }}</h5>
+                <p class="card-text float-left">{{ lyricsList31.text }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount}}</b></button>
               </div>
             </div>
@@ -172,8 +172,8 @@
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ yesterdayTrack }}</h4>
-                <h5>{{ yesterdayArtist }}</h5>
+                <h4>{{ yesterdayTrack.artist }}</h4>
+                <h5>{{ yesterdayTrack.title }}</h5>
               </div>
               <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
               <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
@@ -186,12 +186,12 @@
             <div class="card col-md-8">
               <div class="card-body">
                 <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricsUserName2 }}</h5>
-                <p class="card-text float-left">{{ lyrics1 }}</p>
+                <h5 class='card-text float-left'>{{ yesterdayLyric1.title }}</h5>
+                <p class="card-text float-left">{{ yesterdayLyric1.text }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
 
-                <h5 class='card-text float-left'>{{ lyricsUserName1 }}</h5>
-                <p class="card-text float-left">{{ lyrics2 }}</p>
+                <h5 class='card-text float-left'>{{ yesterdayLyric2.title }}</h5>
+                <p class="card-text float-left">{{ yesterdayLyric2.text }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount}}</b></button>
               </div>
             </div>

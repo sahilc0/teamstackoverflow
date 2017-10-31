@@ -18,12 +18,12 @@ def index(request):
 	
 	lyricsList2 = Lyrics.objects.filter(Track = '445e3187e4b4468bb6c983d2b13244e7')
 
+	lyricsList3 = Lyrics.objects.filter(Track = 'e4dd123404ed43618195ebe356eaddd7')
 
-	#lyrics2 = Lyrics.objects.get(Track = '445e3187e4b4468bb6c983d2b13244e7')
 
+	yesterdayTrack = Track.objects.get(id = 'b95a3265471b43f49172029cfdceaeb1')
+	yesterdayLyrics = Lyrics.objects.filter(Track = yesterdayTrack.id)
 
-	yesterdayArtist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f').first_name
-	yesterdayTrack = Track.objects.filter(artist_id = '72f7f315034b4d9fbd7f140b8270156f')[1].title
 	return render(
 		request,
 		'index.html',
@@ -37,16 +37,20 @@ def index(request):
 				   'lyricsList2': lyricsList2[0],
 				   'lyricsList21': lyricsList2[1],
 
+				   'lyricsList3': lyricsList3[0],
+				   'lyricsList31': lyricsList3[1],
 				   'topTrack': topTrack,
 				   'topTrack2': topTrack2,
 				   'topTrack3': topTrack3,
 
 
-				   'yesterdayArtist': yesterdayArtist,
 				   'yesterdayTrack': yesterdayTrack,
+				   'yesterdayLyric1': yesterdayLyrics[0],
+				   'yesterdayLyric2': yesterdayLyrics[1],
+
+
 				   'upvoteCount': "6969", 
-				   #'lyricsUserName2': lyricsUserName2,
-				   #'lyricsUserName1': lyricsUserName1, 
+
            'audio1': "track_default.mp3",
            'audio2': "track_default.mp3",
            'audio3': "track_default.mp3",
