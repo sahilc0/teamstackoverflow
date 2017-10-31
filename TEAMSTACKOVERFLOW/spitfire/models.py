@@ -9,8 +9,8 @@ class Sponsor (models.Model):
     Model for sponsors for contests
     """
 
-    sponsor_name = models.CharField (max_length=200)
-    sponsor_description = models.CharField (max_length=2000)
+    name = models.CharField (max_length=200)
+    description = models.CharField (max_length=2000)
     # sponsor_image = models.TextField (max_length=200, help_text="Enter Image URL", default = "http://static.djbooth.net/pics-features/chance-3-artwork.jpg")
 
     def __str__(self):
