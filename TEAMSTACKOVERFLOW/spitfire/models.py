@@ -105,7 +105,7 @@ class Lyrics(models.Model): #this model looks good
     artist = models.ForeignKey('Artist', on_delete=models.SET_NULL,null=True)
     title = models.CharField(max_length=100, null=True)
     upvotes = models.PositiveIntegerField(default=0)
-    Track = models.OneToOneField('Track', on_delete=models.SET_NULL, blank = True, null=True)
+    Track = models.ForeignKey('Track', on_delete=models.SET_NULL, null=True)
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     text = models.TextField(max_length=1000, help_text="Enter lyrics", default="Lyrical spiritual lyrics!")
 

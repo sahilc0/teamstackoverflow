@@ -5,62 +5,53 @@ from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Sp
 
 
 def index(request):
-	#descriptions of featured Tracks
-	trackDescription1 = Track.objects.get(title='Rolling in the Deep').description
-	trackDescription2 = Track.objects.get(title='UptownFunk').description
-	trackDescription3 = Track.objects.get(title='99Problems').description
-	#artists in the featured section
-	featArtist1 = Track.objects.get(description = trackDescription1).artist
-	featArtist2 = Track.objects.get(description = trackDescription2).artist
-	featArtist3 = Track.objects.get(description = trackDescription3).artist
-	#track names of tracks in feature sections
-	featTrackName1 = Track.objects.get(description = trackDescription1).title
-	featTrackName2 = Track.objects.get(description = trackDescription2).title
-	featTrackName3 = Track.objects.get(description = trackDescription3).title
 
-	lyricsUserName1 = Lyrics.objects.get(artist_id = '4d4422f7743944e98239940cf6f27963').artist
-	lyricsUserName2 = Lyrics.objects.get(artist_id = '986a07ef4b824899b1c09983a373fa63').artist
-	lyrics1 = Lyrics.objects.get(artist = lyricsUserName1).text
-	lyrics2 = Lyrics.objects.get(artist = lyricsUserName2).text
-	
-	topArtistObject1 = Artist.objects.get(id = '993722bac92d4cd087497fbf24580bbb')
-	topArtistObject2 = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
-	topArtistObject3 = Artist.objects.get(id = '2e0a396d94cb446198a89d1bd921ee58')
-	topArtistName1 = topArtistObject1.first_name + " " + topArtistObject1.last_name
-	topArtistName2 = topArtistObject2.first_name
-	topArtistName3 = topArtistObject3.first_name
-	
-	topTrackName1 = Track.objects.get(artist = topArtistObject1).title
-	topTrackName2 = Track.objects.get(artist = topArtistObject2).title
-	topTrackName3 = Track.objects.get(artist = topArtistObject3).title
+	featTrack1 = Track.objects.get(title='Rolling in the Deep')
+	featTrack2 = Track.objects.get(title='UptownFunk')
+	featTrack3 = Track.objects.get(title='99Problems')
+
+
+	lyrics1 = Lyrics.objects.get(Track = '5443d08db1ba486a81cf27b2dcf71158')
+	lyrics2 = Lyrics.objects.get(Track = '445e3187e4b4468bb6c983d2b13244e7')
+
+
+	topTrack = Track.objects.get(title = 'Rolling in the Deep')
+	topTrack2 = Track.objects.get(title = 'UptownFunk')
+	topTrack3 = Track.objects.get(title = '10miles')
+
+
+
+	#topTrackName1 = Track.objects.get(artist = topArtistObject1).title
+	#topTrackName2 = Track.objects.get(artist = topArtistObject2).title
+	#topTrackName3 = Track.objects.get(artist = topArtistObject3).title
 	
 	yesterdayArtist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f').first_name
 	yesterdayTrack = Track.objects.filter(artist_id = '72f7f315034b4d9fbd7f140b8270156f')[1].title
 	return render(
 		request,
 		'index.html',
-		context = {'trackDescription1': trackDescription1, 
-   				   'trackDescription2': trackDescription2, 
-				   'trackDescription3': trackDescription3, 
-				   'featArtist1': featArtist1,
-				   'featArtist2': featArtist2,
-				   'featArtist3': featArtist3,
-				   'featTrackName1': featTrackName1,
-				   'featTrackName3': featTrackName3,
-				   'featTrackName2': featTrackName2,
+		context = {'featTrack1': featTrack1, 
+   				   'featTrack2': featTrack2, 
+				   'featTrack3': featTrack3, 
+
 				   'lyrics1': lyrics1,
 				   'lyrics2': lyrics2,
-				   'topArtistName1': topArtistName1,
-   				   'topArtistName2': topArtistName2,
-				   'topArtistName3': topArtistName3,
-				   'topTrackName1': topTrackName1,
-				   'topTrackName2': topTrackName2,
-				   'topTrackName3': topTrackName3,
+				   
+				   'topTrack': topTrack,
+				   'topTrack2': topTrack2,
+				   'topTrack3': topTrack3,
+
+
+
+
+
+
+	
 				   'yesterdayArtist': yesterdayArtist,
 				   'yesterdayTrack': yesterdayTrack,
 				   'upvoteCount': "6969", 
-				   'lyricsUserName2': lyricsUserName2,
-				   'lyricsUserName1': lyricsUserName1, 
+				   #'lyricsUserName2': lyricsUserName2,
+				   #'lyricsUserName1': lyricsUserName1, 
            'audio1': "track_default.mp3",
            'audio2': "track_default.mp3",
            'audio3': "track_default.mp3",
@@ -137,30 +128,6 @@ def track(request):
 	)
 #change request page for the functions below~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-def artist(request):
-
-	"""
-	put stuff here
-	"""
-
-	return render(
-		request,
-		'profile.html',
-		context = {},
-	)
-
-
-def genre(request):
-	"""
-	put stuff here
-	"""
-
-	return render(
-		request,
-		'profile.html',
-		context = {},
-
-	)
 
 def lyrics(request):
   track = Track.objects.get(title="Rudolph the Reindeer")
