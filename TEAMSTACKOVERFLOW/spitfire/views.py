@@ -36,7 +36,6 @@ def index(request):
 				   'yesterdayTrack': yesterdayTrack,
 				   'yesterdayLyric1': yesterdayLyrics[0],
 				   'yesterdayLyric2': yesterdayLyrics[1],
-				   'upvoteCount': "6969", 
            		   'audio1': "track_default.mp3",
            		   'audio2': "track_default.mp3",
            		   'audio3': "track_default.mp3",
