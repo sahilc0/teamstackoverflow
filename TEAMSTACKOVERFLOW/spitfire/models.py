@@ -17,7 +17,7 @@ class Sponsor (models.Model):
         """
         String for representing the Model object.
         """
-        return '%s, %s' % (self.sponsor_name, self.sponsor_description)
+        return '%s, %s' % (self.name, self.description)
 
 class Genre(models.Model):
     """

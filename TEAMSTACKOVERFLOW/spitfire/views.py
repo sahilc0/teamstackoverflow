@@ -21,9 +21,9 @@ def index(request):
 	return render(
 		request,
 		'index.html',
-		context = {'featTrack1': featTrack1, 
-   				   'featTrack2': featTrack2, 
-				   'featTrack3': featTrack3, 
+		context = {'featTrack1': featTrack1,
+   				   'featTrack2': featTrack2,
+				   'featTrack3': featTrack3,
 				   'lyricsList1': lyricsList1[0],
 				   'lyricsList12': lyricsList1[1],
 				   'lyricsList2': lyricsList2[0],
@@ -40,7 +40,7 @@ def index(request):
            		   'audio2': "track_default.mp3",
            		   'audio3': "track_default.mp3",
            		   'yesterdayAudio': "track_default.mp3",
-				   'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
+				   'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual",
 				   },
 	)
 
@@ -62,11 +62,11 @@ def profile(request):
 	trackName2 = Track.objects.get(title = 'UptownFunk')
 	profileImage = Artist.objects.get(first_name = 'Bob').image
 	return render(
-		request, 
+		request,
 		'profile.html',
-		context = {'artistName': artistName, 
-				   'numOfFollowers': numOfFollowers, 
-				   'followingNum': followingNumber, 
+		context = {'artistName': artistName,
+				   'numOfFollowers': numOfFollowers,
+				   'followingNum': followingNumber,
 				   'userAddress': homeAddress,
 				   'numOfSpits': numOfSpits,
 				   'trackName': trackName,
@@ -85,7 +85,6 @@ def profile(request):
 	)
 
 def track(request):
-	
 	thisArtist = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
 	thisTrack = Track.objects.get(artist_id = thisArtist.id)
 	lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
@@ -135,9 +134,9 @@ def contest(request):
 	put stuff here
 	"""
 
-	sponsor1 = Sponsor.objects.get (sponsor_name = 'Red Bull')
-	sponsor2 = Sponsor.objects.get (sponsor_name = 'Google')
-	sponsor3 = Sponsor.objects.get (sponsor_name = 'Coca-Cola')
+	sponsor1 = Sponsor.objects.get (name = 'Red Bull')
+	sponsor2 = Sponsor.objects.get (name = 'Google')
+	sponsor3 = Sponsor.objects.get (name = 'Coca-Cola')
 
 	# sponsor_name1 = Sponsor.objects.get(sponsor_name='Red Bull').sponsor_name
 	# sponsor_name2 = Sponsor.objects.get(sponsor_name='Google').sponsor_name
@@ -151,13 +150,8 @@ def contest(request):
 	# sponsor_image2 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
 	# sponsor_image3 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
 
-	
 	return render(
 		request,
 		'contest.html',
 		context= {'sponsor1':sponsor1, 'sponsor2':sponsor2, 'sponsor3':sponsor3, }
 		)
-
-
-
-
