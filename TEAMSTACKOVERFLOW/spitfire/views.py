@@ -21,6 +21,36 @@ def index(request):
 	return render(
 		request,
 		'index.html',
+<<<<<<< HEAD
+		context = {'featTrack1': featTrack1, 
+						 'featTrack2': featTrack2, 
+					 'featTrack3': featTrack3, 
+					 'lyricsList1': lyricsList1[0],
+					 'lyricsList12': lyricsList1[1],
+					 'lyricsList2': lyricsList2[0],
+					 'lyricsList21': lyricsList2[1],
+					 'lyricsList3': lyricsList3[0],
+					 'lyricsList31': lyricsList3[1],
+					 'topTrack': topTrack,
+					 'topTrack2': topTrack2,
+					 'topTrack3': topTrack3,
+					 'yesterdayTrack': yesterdayTrack,
+					 'yesterdayLyric1': yesterdayLyrics[0],
+					 'yesterdayLyric2': yesterdayLyrics[1],
+					 'upvoteCount': "6969", 
+								 'audio1': "track_default.mp3",
+								 'audio2': "track_default.mp3",
+								 'audio3': "track_default.mp3",
+								 'yesterdayAudio': "track_default.mp3",
+					 'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
+					 },
+	)
+
+def profile(request):
+	artist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f')
+	tracks = Track.objects.filter(artist = '72f7f315034b4d9fbd7f140b8270156f').order_by('-upvotes')
+
+=======
 		context = {'featTrack1': featTrack1,
    				   'featTrack2': featTrack2,
 				   'featTrack3': featTrack3,
@@ -61,9 +91,15 @@ def profile(request):
 	trackName1 = Track.objects.get(title = '99Problems')
 	trackName2 = Track.objects.get(title = 'UptownFunk')
 	profileImage = Artist.objects.get(first_name = 'Bob').image
+>>>>>>> master
 	return render(
 		request,
 		'profile.html',
+<<<<<<< HEAD
+		context = { 'artist': artist,
+								'tracks': tracks,
+								},
+=======
 		context = {'artistName': artistName,
 				   'numOfFollowers': numOfFollowers,
 				   'followingNum': followingNumber,
@@ -82,6 +118,7 @@ def profile(request):
            	       'audio2': "track_default.mp3",
                    'audio3': "track_default.mp3",
 				   'profileImage': profileImage},
+>>>>>>> master
 	)
 
 def track(request):
@@ -95,28 +132,28 @@ def track(request):
 		request,
 		'soundtrack.html',
 		context = {'thisTrack': thisTrack,
-				   'thisArtist': thisArtist,
-				   'lyric1': lyric1,
-				   'comment1': comment1,
-   				   'lyric2': lyric2,
-				   'comment2': comment2,
-				  },
+					 'thisArtist': thisArtist,
+					 'lyric1': lyric1,
+					 'comment1': comment1,
+						 'lyric2': lyric2,
+					 'comment2': comment2,
+					},
 	)
 #change request page for the functions below~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 def lyrics(request):
-  track = Track.objects.get(title="Rudolph the Reindeer")
+	track = Track.objects.get(title="Rudolph the Reindeer")
 
-  return render(
-  	request,
-  	'lyrics-sync.html',
-  	context = {
-                'trackName': track.title,
-                'artistName': track.artist,
-                'audio1': "track_default.mp3",
-                },
-  )
+	return render(
+		request,
+		'lyrics-sync.html',
+		context = {
+								'trackName': track.title,
+								'artistName': track.artist,
+								'audio1': "track_default.mp3",
+								},
+	)
 
 def upload(request):
 	"""
