@@ -68,7 +68,6 @@ class Track(models.Model):  #the genre of a track is all the possible genres. Th
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular track across whole site")
     title = models.CharField(max_length=200)
     artist = models.ForeignKey('Artist', on_delete=models.SET_NULL,null=True)
-    #lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL,null=True)
     upvotes = models.PositiveIntegerField(default=0)
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     description = models.TextField(blank=True, max_length=300)

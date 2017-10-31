@@ -10,21 +10,18 @@ def index(request):
 	featTrack2 = Track.objects.get(title='UptownFunk')
 	featTrack3 = Track.objects.get(title='99Problems')
 
-
-	lyrics1 = Lyrics.objects.get(Track = '5443d08db1ba486a81cf27b2dcf71158')
-	lyrics2 = Lyrics.objects.get(Track = '445e3187e4b4468bb6c983d2b13244e7')
-
-
 	topTrack = Track.objects.get(title = 'Rolling in the Deep')
 	topTrack2 = Track.objects.get(title = 'UptownFunk')
 	topTrack3 = Track.objects.get(title = '10miles')
 
-
-
-	#topTrackName1 = Track.objects.get(artist = topArtistObject1).title
-	#topTrackName2 = Track.objects.get(artist = topArtistObject2).title
-	#topTrackName3 = Track.objects.get(artist = topArtistObject3).title
+	lyricsList1 = Lyrics.objects.filter(Track = '5443d08db1ba486a81cf27b2dcf71158')
 	
+	lyricsList2 = Lyrics.objects.filter(Track = '445e3187e4b4468bb6c983d2b13244e7')
+
+
+	#lyrics2 = Lyrics.objects.get(Track = '445e3187e4b4468bb6c983d2b13244e7')
+
+
 	yesterdayArtist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f').first_name
 	yesterdayTrack = Track.objects.filter(artist_id = '72f7f315034b4d9fbd7f140b8270156f')[1].title
 	return render(
@@ -34,19 +31,17 @@ def index(request):
    				   'featTrack2': featTrack2, 
 				   'featTrack3': featTrack3, 
 
-				   'lyrics1': lyrics1,
-				   'lyrics2': lyrics2,
+				   'lyricsList1': lyricsList1[0],
+				   'lyricsList12': lyricsList1[1],
 				   
+				   'lyricsList2': lyricsList2[0],
+				   'lyricsList21': lyricsList2[1],
+
 				   'topTrack': topTrack,
 				   'topTrack2': topTrack2,
 				   'topTrack3': topTrack3,
 
 
-
-
-
-
-	
 				   'yesterdayArtist': yesterdayArtist,
 				   'yesterdayTrack': yesterdayTrack,
 				   'upvoteCount': "6969", 
