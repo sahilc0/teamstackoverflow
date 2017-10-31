@@ -89,6 +89,9 @@ class Track(models.Model):  #the genre of a track is all the possible genres. Th
         return ', '.join([ genre.name for genre in self.genre.all()[:3] ])
     display_genre.short_description = 'Genre'
 
+    def top_lyrics(self):
+        return Lyrics.objects.filter(Track=self.id).order_by('-upvotes')
+
     def __str__(self):
         """
         String for representing the track object.
@@ -127,15 +130,24 @@ class Artist(models.Model): #this looks good
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular artist across whole site")
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    homeAddress = models.CharField(max_length=100, blank = True, null=True)
-    spits = models.CharField(max_length=100, blank = True, null=True)
+    city = models.CharField(max_length=100, blank = True, null=True)
+    number_of_spits = models.CharField(max_length=100, blank = True, null=True)
     number_of_followers = models.PositiveIntegerField(default=0)
-    number_following = models.PositiveIntegerField(default=0)
+    number_of_following = models.PositiveIntegerField(default=0)
     date_of_birth = models.DateField(null=True, blank=True)
     first_joined = models.DateField(null=True, blank=True)
+    twitter_link = models.CharField(max_length=100, blank=True)
+    instagram_link = models.CharField(max_length=100, blank=True)
+    soundcloud_link = models.CharField(max_length=100, blank=True)
     # file should be named userid_ppic_number
     image = models.FileField(upload_to='static/media', null=True, blank=True)
     
+    def full_name(self):
+        """
+        Returns the full name of this Artist.
+        """
+        return self.first_name + " " + self.last_name
+
     def get_absolute_url(self):
         """
         Returns the url to access a particular artist instance.
