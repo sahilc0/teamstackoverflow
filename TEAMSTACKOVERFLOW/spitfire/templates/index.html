@@ -37,8 +37,8 @@
               <p class="card-text">
                 {{ featTrack2.description }}
               </p>
-              <a href="./soundtrack.html" class="card-link">LISTEN</a>
-              <a href="./profile.html" class="card-link">VIEW ARTIST</a>
+              <a href="./soundtrack" class="card-link">LISTEN</a>
+              <a href="./profile" class="card-link">VIEW ARTIST</a>
             </div>
           </div>
         </div>
@@ -51,8 +51,8 @@
               <p class="card-text">
                 {{ featTrack3.description }}
               </p>
-              <a href="./soundtrack.html" class="card-link">LISTEN</a>
-              <a href="./profile.html" class="card-link">VIEW ARTIST</a>
+              <a href="./soundtrack" class="card-link">LISTEN</a>
+              <a href="./profile" class="card-link">VIEW ARTIST</a>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
                 <h4>{{ topTrack.artist }}</h4>
                 <h5>{{ topTrack.title }}</h5>
               </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ topTrack.upvotes }}</b></button>
               <img src="http://inyourspeakers.com/files/images/reviews/odesza-13120.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
@@ -95,11 +95,11 @@
                 <h4 class="card-title">Top Lyrics</h4>
                 <h5 class='card-text float-left'>{{ lyricsList1.title }}</h5>
                 <p class="card-text float-left">{{ lyricsList1.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList1.upvotes }}</b></button>
 
                 <h5 class='card-text float-left'>{{ lyricsList12.title }}</h5>
                 <p class="card-text float-left">{{ lyricsList12.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList12.upvotes }}</b></button>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@
                 <h4>{{ topTrack2.artist }}</h4>
                 <h5>{{ topTrack2.title }}</h5>
               </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ topTrack2.upvotes }}</b></button>
               <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
@@ -124,11 +124,11 @@
                 <h4 class="card-title">Top Lyrics</h4>
                 <h5 class='card-text float-left'>{{ lyricsList2.title }}</h5>
                 <p class="card-text float-left">{{ lyricsList2.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList2.upvotes }}</b></button>
 
                 <h5 class='card-text float-left'> {{ lyricsList21.title }}</h5>
                 <p class="card-text float-left">{{ lyricsList21.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList21.upvotes }}</b></button>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@
                 <h4>{{ topTrack3.artist }}</h4>
                 <h5>{{ topTrack3.title }}</h5>
               </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ topTrack3.upvotes }}</b></button>
               <img src="http://inyourspeakers.com/files/images/reviews/odesza-13120.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
@@ -153,11 +153,11 @@
                 <h4 class="card-title">Top Lyrics</h4>
                 <h5 class='card-text float-left'>{{ lyricsList3.title }}</h5>
                 <p class="card-text float-left">{{ lyricsList3.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList3.upvotes }}</b></button>
 
                 <h5 class='card-text float-left'>{{ lyricsList31.title }}</h5>
                 <p class="card-text float-left">{{ lyricsList31.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount}}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ .upvotes}}</b></button>
               </div>
             </div>
           </div>
@@ -175,7 +175,7 @@
                 <h4>{{ yesterdayTrack.artist }}</h4>
                 <h5>{{ yesterdayTrack.title }}</h5>
               </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ yesterdayTrack.upvotes }}</b></button>
               <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
@@ -188,11 +188,11 @@
                 <h4 class="card-title">Top Lyrics</h4>
                 <h5 class='card-text float-left'>{{ yesterdayLyric1.title }}</h5>
                 <p class="card-text float-left">{{ yesterdayLyric1.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount }}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ yesterdayLyric1.upvotes }}</b></button>
 
                 <h5 class='card-text float-left'>{{ yesterdayLyric2.title }}</h5>
                 <p class="card-text float-left">{{ yesterdayLyric2.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ upvoteCount}}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ yesterdayLyric2.upvotes}}</b></button>
               </div>
             </div>
           </div>
