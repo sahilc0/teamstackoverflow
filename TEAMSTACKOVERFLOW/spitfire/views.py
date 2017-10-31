@@ -9,18 +9,12 @@ def index(request):
 	featTrack1 = Track.objects.get(title='Rolling in the Deep')
 	featTrack2 = Track.objects.get(title='UptownFunk')
 	featTrack3 = Track.objects.get(title='99Problems')
-
 	topTrack = Track.objects.get(title = 'Rolling in the Deep')
 	topTrack2 = Track.objects.get(title = 'UptownFunk')
 	topTrack3 = Track.objects.get(title = '10miles')
-
 	lyricsList1 = Lyrics.objects.filter(Track = '5443d08db1ba486a81cf27b2dcf71158')
-	
 	lyricsList2 = Lyrics.objects.filter(Track = '445e3187e4b4468bb6c983d2b13244e7')
-
 	lyricsList3 = Lyrics.objects.filter(Track = 'e4dd123404ed43618195ebe356eaddd7')
-
-
 	yesterdayTrack = Track.objects.get(id = 'b95a3265471b43f49172029cfdceaeb1')
 	yesterdayLyrics = Lyrics.objects.filter(Track = yesterdayTrack.id)
 
@@ -30,31 +24,23 @@ def index(request):
 		context = {'featTrack1': featTrack1, 
    				   'featTrack2': featTrack2, 
 				   'featTrack3': featTrack3, 
-
 				   'lyricsList1': lyricsList1[0],
 				   'lyricsList12': lyricsList1[1],
-				   
 				   'lyricsList2': lyricsList2[0],
 				   'lyricsList21': lyricsList2[1],
-
 				   'lyricsList3': lyricsList3[0],
 				   'lyricsList31': lyricsList3[1],
 				   'topTrack': topTrack,
 				   'topTrack2': topTrack2,
 				   'topTrack3': topTrack3,
-
-
 				   'yesterdayTrack': yesterdayTrack,
 				   'yesterdayLyric1': yesterdayLyrics[0],
 				   'yesterdayLyric2': yesterdayLyrics[1],
-
-
 				   'upvoteCount': "6969", 
-
-           'audio1': "track_default.mp3",
-           'audio2': "track_default.mp3",
-           'audio3': "track_default.mp3",
-           'yesterdayAudio': "track_default.mp3",
+           		   'audio1': "track_default.mp3",
+           		   'audio2': "track_default.mp3",
+           		   'audio3': "track_default.mp3",
+           		   'yesterdayAudio': "track_default.mp3",
 				   'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
 				   },
 	)
@@ -92,9 +78,9 @@ def profile(request):
 				   'trackName2': trackName2,
 				   'lyricist1': lyricist1,
 				   'lyricist2': lyricist2,
-           'audio1': "track_default.mp3",
-           'audio2': "track_default.mp3",
-           'audio3': "track_default.mp3",
+           		   'audio1': "track_default.mp3",
+           	       'audio2': "track_default.mp3",
+                   'audio3': "track_default.mp3",
 				   'profileImage': profileImage},
 	)
 
@@ -102,16 +88,10 @@ def track(request):
 	
 	thisArtist = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
 	thisTrack = Track.objects.get(artist_id = thisArtist.id)
-	
 	lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-
 	comment1 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
-
 	lyric2 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-
 	comment2 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
-	
-	
 	return render(
 		request,
 		'soundtrack.html',
@@ -122,8 +102,6 @@ def track(request):
    				   'lyric2': lyric2,
 				   'comment2': comment2,
 				  },
-
-
 	)
 #change request page for the functions below~~~~~~~~~~~~~~~~~~~~~~~~~~
 
