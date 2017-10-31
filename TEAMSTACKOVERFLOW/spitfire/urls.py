@@ -8,11 +8,9 @@ from django.conf import settings
 urlpatterns = [
 	url(r'^$', views.index, name="index"),
 	url(r'^soundtrack$', views.track, name='track'),
-	#url(r'^artist$', views.artist, name='artist'),
-	#url(r'^genre$', views.genre, name='genre'),
 	url(r'^lyrics$', views.lyrics, name='lyrics'),
 	url(r'^profile$', views.profile, name='profile'),
 	url(r'^upload$', views.upload, name='upload'), #this can be used as include(), but let this be for now.
 	url(r'^contest$', views.contest, name='contest'),
 ]   #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-	#the line above is for uploading files. ignore for now
+	#the line above is for uploading files. ignore for now ~Ronny
