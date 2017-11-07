@@ -22,8 +22,8 @@
                 <div class="card-body" id="user-header-details">
                   <img src="https://pbs.twimg.com/profile_images/891552595059146753/mao5zWtT_400x400.jpg" class="rounded-circle" id="user-pic" alt="User profile picture">
                   <div>
-                    <h2 class="card-title" id="user-info-name">{{ artistName }} </h2>
-                    <p class="card-subtitle" id="user-info-location">{{ userAddress }} </p>
+                    <h2 class="card-title" id="user-info-name">{{ artist.full_name }} </h2>
+                    <p class="card-subtitle" id="user-info-location">{{ artist.city }}</p>
                     <p class="card-text" id="user-info-description">Rapper/Producer from the Bean.</p>
                     <div>
                       <i class="fa fa-twitter" id="twitter-link" aria-hidden="true"></i>
@@ -37,15 +37,15 @@
                 <div class="card-body" id="user-header-stats"> 
                   <div id="user-stats">
                     <div> 
-                      <strong id="strong1">{{ numOfSpits }}</strong>
+                      <strong id="strong1">{{ artist.number_of_spits }}</strong>
                       <p class="card-text">Spits</p>
                     </div>
                     <div>
-                      <strong id ="strong2">{{ followingNum }}</strong>
+                      <strong id ="strong2">{{ artist.number_of_following }}</strong>
                       <p class="card-text">Following</p>
                     </div>
                     <div> 
-                      <strong id ="strong3">{{ numOfFollowers }} </strong>
+                      <strong id ="strong3">{{ artist.number_of_followers }} </strong>
                       <p class="card-text">Followers</p>
                     </div>
                   </div>
@@ -69,92 +69,34 @@
   				  </div>
   				</div>	
 
+          {% for track in tracks %}
   				<div class="card-group soundtrack-box">
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ artistName }} </h4>
-                <h5> {{ trackName }} </h5>
+                <h4>{{ track.title }}</h4>
+                <h5>{{ track.artist.full_name }}</h5>
               </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
+              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ track.upvotes }}</b></button>
               <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
-                <source src="/static/{{ audio1 }}" type="audio/mpeg">
+                <source src="/static/track_default.mp3" type="audio/mpeg">
               </audio>
               </div>
             </div>
             <div class="card col-md-8">
               <div class="card-body">
-                <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'> {{ artistOfLyric }}</h5>
-                <p class="card-text float-left"> {{ deadBeefLyrics }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 420</b></button>
-
-                <h5 class='card-text float-left'> {{ lyricist1 }}</h5>
-                <p class="card-text float-left">{{ eminemRemixLyrics }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 311</b></button>
+                <h4 class="card-title">Top Lyrics</h4>               
+                {% for lyric in track.top_lyrics%}
+                  <h5 class='card-text float-left'> {{ lyric.artist }}</h5>
+                  <p class="card-text float-left"> {{ lyric.text }}</p>
+                  <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric.upvotes }}</b></button>
+                {% endfor %}
               </div>
             </div>
           </div>
-          
-          <div class="card-group soundtrack-box">
-          <div class="card col-md-4">
-            <div class="card-body">
-              <div class = 'float-left'>
-                <h4>{{ artistName }}</h4>
-                <h5>{{ trackName1 }}</h5>
-              </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
-              <img src="http://inyourspeakers.com/files/images/reviews/odesza-13120.jpg" class="soundtrack-image">
-              <audio controls="controls">
-                Your browser does not support the audio element.
-                <source src="/static/{{ audio2 }}" type="audio/mpeg">
-              </audio>
-              </div>
-            </div>
-            <div class="card col-md-8">
-              <div class="card-body">
-                <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricist2 }}</h5>
-                <p class="card-text float-left">{{ eminemTrackLyrics }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 420</b></button>
-
-                <h5 class='card-text float-left'>{{ lyricist1 }}</h5>
-                <p class="card-text float-left"> {{ eminemRemixLyrics }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 311</b></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-group soundtrack-box">
-          <div class="card col-md-4">
-            <div class="card-body">
-              <div class = 'float-left'>
-                <h4>{{ artistName }}</h4>
-                <h5>{{ trackName2 }} </h5>
-              </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 239</b></button>
-              <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
-              <audio controls="controls">
-                Your browser does not support the audio element.
-                <source src="/static/{{ audio3 }}" type="audio/mpeg">
-              </audio>
-              </div>
-            </div>
-            <div class="card col-md-8">
-              <div class="card-body">
-                <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricist1 }}</h5>
-                <p class="card-text float-left">{{ deadBeefLyrics }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 420</b></button>
-
-                <h5 class='card-text float-left'>{{ lyricist2 }}</h5>
-                <p class="card-text float-left">{{ eminemTrackLyrics }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ 311</b></button>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
             
   			</div>
   		</div>

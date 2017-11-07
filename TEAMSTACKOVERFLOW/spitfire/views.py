@@ -22,70 +22,42 @@ def index(request):
 		request,
 		'index.html',
 		context = {'featTrack1': featTrack1, 
-   				   'featTrack2': featTrack2, 
-				   'featTrack3': featTrack3, 
-				   'lyricsList1': lyricsList1[0],
-				   'lyricsList12': lyricsList1[1],
-				   'lyricsList2': lyricsList2[0],
-				   'lyricsList21': lyricsList2[1],
-				   'lyricsList3': lyricsList3[0],
-				   'lyricsList31': lyricsList3[1],
-				   'topTrack': topTrack,
-				   'topTrack2': topTrack2,
-				   'topTrack3': topTrack3,
-				   'yesterdayTrack': yesterdayTrack,
-				   'yesterdayLyric1': yesterdayLyrics[0],
-				   'yesterdayLyric2': yesterdayLyrics[1],
-           		   'audio1': "track_default.mp3",
-           		   'audio2': "track_default.mp3",
-           		   'audio3': "track_default.mp3",
-           		   'yesterdayAudio': "track_default.mp3",
-				   'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
-				   },
+						 'featTrack2': featTrack2, 
+					 'featTrack3': featTrack3, 
+					 'lyricsList1': lyricsList1[0],
+					 'lyricsList12': lyricsList1[1],
+					 'lyricsList2': lyricsList2[0],
+					 'lyricsList21': lyricsList2[1],
+					 'lyricsList3': lyricsList3[0],
+					 'lyricsList31': lyricsList3[1],
+					 'topTrack': topTrack,
+					 'topTrack2': topTrack2,
+					 'topTrack3': topTrack3,
+					 'yesterdayTrack': yesterdayTrack,
+					 'yesterdayLyric1': yesterdayLyrics[0],
+					 'yesterdayLyric2': yesterdayLyrics[1],
+					 'upvoteCount': "6969", 
+								 'audio1': "track_default.mp3",
+								 'audio2': "track_default.mp3",
+								 'audio3': "track_default.mp3",
+								 'yesterdayAudio': "track_default.mp3",
+					 'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
+					 },
 	)
 
 def profile(request):
+	artist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f')
+	tracks = Track.objects.filter(artist = '72f7f315034b4d9fbd7f140b8270156f').order_by('-upvotes')
 
-	artistName = Artist.objects.all().get(first_name = 'Bob')
-	numOfFollowers = Artist.objects.get(number_of_followers = 100).number_of_followers
-	followingNumber = Artist.objects.get(first_name = 'Bob').number_following
-	homeAddress = Artist.objects.get(first_name = 'Bob').homeAddress
-	numOfSpits = Artist.objects.get(first_name = 'Bob').spits
-	trackName = Track.objects.get(title = '10miles').title
-	eminemTrackLyrics = Lyrics.objects.get(title = 'EminemTrack').text
-	eminemRemixLyrics = Lyrics.objects.get(title = 'EminemRemix').text
-	deadBeefLyrics = Lyrics.objects.get(title = 'DeadBeef').text
-	artistOfLyric = Lyrics.objects.get(title = 'EminemTrack').artist
-	lyricist1 = Lyrics.objects.get(title = 'EminemRemix').artist
-	lyricist2 = Lyrics.objects.get(title = 'DeadBeef').artist
-	trackName1 = Track.objects.get(title = '99Problems')
-	trackName2 = Track.objects.get(title = 'UptownFunk')
-	profileImage = Artist.objects.get(first_name = 'Bob').image
 	return render(
-		request, 
+		request,
 		'profile.html',
-		context = {'artistName': artistName, 
-				   'numOfFollowers': numOfFollowers, 
-				   'followingNum': followingNumber, 
-				   'userAddress': homeAddress,
-				   'numOfSpits': numOfSpits,
-				   'trackName': trackName,
-				   'eminemTrackLyrics': eminemTrackLyrics,
-				   'eminemRemixLyrics': eminemRemixLyrics,
-				   'deadBeefLyrics': deadBeefLyrics,
-				   'artistOfLyric': artistOfLyric,
-				   'trackName1': trackName1,
-				   'trackName2': trackName2,
-				   'lyricist1': lyricist1,
-				   'lyricist2': lyricist2,
-           		   'audio1': "track_default.mp3",
-           	       'audio2': "track_default.mp3",
-                   'audio3': "track_default.mp3",
-				   'profileImage': profileImage},
+		context = { 'artist': artist,
+								'tracks': tracks,
+								},
 	)
 
 def track(request):
-	
 	thisArtist = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
 	thisTrack = Track.objects.get(artist_id = thisArtist.id)
 	lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
@@ -96,28 +68,28 @@ def track(request):
 		request,
 		'soundtrack.html',
 		context = {'thisTrack': thisTrack,
-				   'thisArtist': thisArtist,
-				   'lyric1': lyric1,
-				   'comment1': comment1,
-   				   'lyric2': lyric2,
-				   'comment2': comment2,
-				  },
+					 'thisArtist': thisArtist,
+					 'lyric1': lyric1,
+					 'comment1': comment1,
+						 'lyric2': lyric2,
+					 'comment2': comment2,
+					},
 	)
 #change request page for the functions below~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 def lyrics(request):
-  track = Track.objects.get(title="Rudolph the Reindeer")
+	track = Track.objects.get(title="Rudolph the Reindeer")
 
-  return render(
-  	request,
-  	'lyrics-sync.html',
-  	context = {
-                'trackName': track.title,
-                'artistName': track.artist,
-                'audio1': "track_default.mp3",
-                },
-  )
+	return render(
+		request,
+		'lyrics-sync.html',
+		context = {
+								'trackName': track.title,
+								'artistName': track.artist,
+								'audio1': "track_default.mp3",
+								},
+	)
 
 def upload(request):
 	"""
@@ -135,9 +107,9 @@ def contest(request):
 	put stuff here
 	"""
 
-	sponsor1 = Sponsor.objects.get (sponsor_name = 'Red Bull')
-	sponsor2 = Sponsor.objects.get (sponsor_name = 'Google')
-	sponsor3 = Sponsor.objects.get (sponsor_name = 'Coca-Cola')
+	sponsor1 = Sponsor.objects.get (name = 'Red Bull')
+	sponsor2 = Sponsor.objects.get (name = 'Google')
+	sponsor3 = Sponsor.objects.get (name = 'Coca-Cola')
 
 	# sponsor_name1 = Sponsor.objects.get(sponsor_name='Red Bull').sponsor_name
 	# sponsor_name2 = Sponsor.objects.get(sponsor_name='Google').sponsor_name
@@ -151,13 +123,8 @@ def contest(request):
 	# sponsor_image2 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
 	# sponsor_image3 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
 
-	
 	return render(
 		request,
 		'contest.html',
 		context= {'sponsor1':sponsor1, 'sponsor2':sponsor2, 'sponsor3':sponsor3, }
 		)
-
-
-
-
