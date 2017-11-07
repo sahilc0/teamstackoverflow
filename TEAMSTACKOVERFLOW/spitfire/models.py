@@ -132,6 +132,7 @@ class Artist(AbstractUser): #this looks good
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular artist across whole site")
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=254, unique=True)
     city = models.CharField(max_length=100, blank = True, null=True)
     number_of_spits = models.CharField(max_length=100, blank = True, null=True)
     number_of_followers = models.PositiveIntegerField(default=0)
