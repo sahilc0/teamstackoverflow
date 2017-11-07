@@ -1,6 +1,8 @@
 from django.db import models
 import uuid # Required for unique book instances
 from django.urls import reverse #Used to generate URLs by reversing the URL patterns
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
 # Create your models here.
 
@@ -37,7 +39,7 @@ class TrackComment(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
     upvotes = models.PositiveIntegerField(default=0)
-    artist = models.ForeignKey('Artist', on_delete=models.SET_NULL, null=True)
+    artist = models.ForeignKey('settings.AUTH_USER_MODEL', on_delete=models.SET_NULL, null=True)
     text = models.TextField(max_length=1000, help_text="Enter a comment")
     track = models.ForeignKey('Track', on_delete=models.SET_NULL, null=True)
 
@@ -52,7 +54,7 @@ class LyricComment(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
     upvotes = models.PositiveIntegerField(default=0)
-    artist = models.ForeignKey('Artist', on_delete=models.SET_NULL, null=True)
+    artist = models.ForeignKey('settings.AUTH_USER_MODEL', on_delete=models.SET_NULL, null=True)
     text = models.TextField(max_length=1000, help_text="Enter a comment")
     lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL, null=True)
 
@@ -67,7 +69,7 @@ class Track(models.Model):  #the genre of a track is all the possible genres. Th
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular track across whole site")
     title = models.CharField(max_length=200)
-    artist = models.ForeignKey('Artist', on_delete=models.SET_NULL,null=True)
+    artist = models.ForeignKey('settings.AUTH_USER_MODEL', on_delete=models.SET_NULL,null=True)
     upvotes = models.PositiveIntegerField(default=0)
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     description = models.TextField(blank=True, max_length=300)
@@ -104,7 +106,7 @@ class Lyrics(models.Model): #this model looks good
     Model for lyrics
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
-    artist = models.ForeignKey('Artist', on_delete=models.SET_NULL,null=True)
+    artist = models.ForeignKey('settings.AUTH_USER_MODEL', on_delete=models.SET_NULL,null=True)
     title = models.CharField(max_length=100, null=True)
     upvotes = models.PositiveIntegerField(default=0)
     Track = models.ForeignKey('Track', on_delete=models.SET_NULL, null=True)
@@ -123,7 +125,7 @@ class Lyrics(models.Model): #this model looks good
         """
         return self.title
 
-class Artist(models.Model): #this looks good
+class Artist(AbstractUser): #this looks good
     """
     Model for Users/Artists (for purposes of simplicity we assume all users are potential artists even if they post no tracks)
     """
