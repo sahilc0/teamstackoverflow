@@ -55,7 +55,7 @@ ROOT_URLCONF = 'TEAMSTACKOVERFLOW.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,5 +123,6 @@ STATIC_URL = '/static/'
 #MEDIA_ROOT = os.path.join('TEAMSTACKOVERFLOW/spitfire/', 'media')
 #MEDIA_URL = '/media/'
 
+LOGIN_REDIRECT_URL = '/'
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
