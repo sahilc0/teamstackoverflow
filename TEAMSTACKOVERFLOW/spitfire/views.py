@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Sponsor
 
+from .forms import UserForm, ArtistForm
+
 def create_profile(request):
 
 	if request.method == 'POST':
@@ -20,15 +22,13 @@ def create_profile(request):
 		user_form = UserForm(instance=request.user)
 		artist_form = ArtistForm(request.POST, instance=request.user.artist)
 
-	return render
-	(
+	return render(
 		request,
 		'create_profile.html',
-		context = 
-		{
+		context = {
 			'user_form':user_form,
 			'artist_form':artist_form,
-		}
+		},
 	)
 
 def index(request):

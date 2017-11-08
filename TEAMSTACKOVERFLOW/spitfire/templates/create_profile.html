@@ -10,6 +10,7 @@
 {% block bodyContent %}
 
     <form method="post">
+      {% csrf_token %}
       {{ user_form.as_p }}
       {{ artist_form.as_p }}
       <button type="submit">Save changes</button>

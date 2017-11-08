@@ -128,6 +128,10 @@ class Lyrics(models.Model): #this model looks good
         return self.title
 
 
+class User(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=254)
 
 class Artist(models.Model): 
     """
@@ -176,4 +180,4 @@ class Artist(models.Model):
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
+        instance.artist.save()
