@@ -10,17 +10,26 @@ from .forms import UserForm, ArtistForm
 def create_profile(request):
 
 	if request.method == 'POST':
-		user_form = UserForm(request.POST, instance = request.user)
-		artist_form = ArtistForm(request.POST, instance=request.user.artist)
+		user_form = UserForm(request.POST)
+		artist_form = ArtistForm(request.POST)
 		if user_form.is_valid() and artist_form.is_valid():
-			user_form.save()
-			artist_form.save()
-			return redirect('profile')
-		else:
-			messages.error(request, _('Please correct the error below.'))
+			first_name = user_form.cleaned_data['first_name']
+			last_name = user_form.cleaned_data['last_name']
+			username = user_form.cleaned_data['username']
+			password = user_form.cleaned_data['password']
+			email = user_form.cleaned_data['email']
+
+			city = artist_form.cleaned_data['city']
+
+			user = User.objects.create_user(username, email, password)
+			user.first_name = first_name
+			user.last_name = last_name
+
+			user.save()
+			return render(request,'index.html')
 	else:
-		user_form = UserForm(instance=request.user)
-		artist_form = ArtistForm(request.POST, instance=request.user.artist)
+		user_form = UserForm()
+		artist_form = ArtistForm()
 
 	return render(
 		request,

@@ -5,11 +5,10 @@ from .models import Sponsor, Genre, TrackComment, LyricComment, Track, Lyrics, A
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email')
+        fields = ('first_name', 'last_name','username','password', 'email')
 
 class ArtistForm(forms.ModelForm):
     class Meta:
         model = Artist
         fields = (
-            'city', 'date_of_birth', 'image',
-        )
+            'city',)
