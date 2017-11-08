@@ -1,6 +1,10 @@
 from django.db import models
 import uuid # Required for unique book instances
 from django.urls import reverse #Used to generate URLs by reversing the URL patterns
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 # Create your models here.
 
@@ -123,10 +127,14 @@ class Lyrics(models.Model): #this model looks good
         """
         return self.title
 
-class Artist(models.Model): #this looks good
+
+
+class Artist(models.Model): 
     """
     Model for Users/Artists (for purposes of simplicity we assume all users are potential artists even if they post no tracks)
     """
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null = True)
+    # set the default value
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular artist across whole site")
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -161,3 +169,11 @@ class Artist(models.Model): #this looks good
         """
         return '%s, %s' % (self.last_name, self.first_name)
 
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Artist.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
