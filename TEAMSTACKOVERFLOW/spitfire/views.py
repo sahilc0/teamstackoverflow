@@ -1,8 +1,44 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django.contrib.auth.models import User
+
 from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Sponsor
 
+from .forms import UserForm, ArtistForm
+
+def create_profile(request):
+
+	if request.method == 'POST':
+		user_form = UserForm(request.POST)
+		artist_form = ArtistForm(request.POST)
+		if user_form.is_valid() and artist_form.is_valid():
+			first_name = user_form.cleaned_data['first_name']
+			last_name = user_form.cleaned_data['last_name']
+			username = user_form.cleaned_data['username']
+			password = user_form.cleaned_data['password']
+			email = user_form.cleaned_data['email']
+
+			city = artist_form.cleaned_data['city']
+
+			user = User.objects.create_user(username, email, password)
+			user.first_name = first_name
+			user.last_name = last_name
+
+			user.save()
+			return render(request,'index.html')
+	else:
+		user_form = UserForm()
+		artist_form = ArtistForm()
+
+	return render(
+		request,
+		'create_profile.html',
+		context = {
+			'user_form':user_form,
+			'artist_form':artist_form,
+		},
+	)
 
 def index(request):
 
@@ -110,18 +146,6 @@ def contest(request):
 	sponsor1 = Sponsor.objects.get (name = 'Red Bull')
 	sponsor2 = Sponsor.objects.get (name = 'Google')
 	sponsor3 = Sponsor.objects.get (name = 'Coca-Cola')
-
-	# sponsor_name1 = Sponsor.objects.get(sponsor_name='Red Bull').sponsor_name
-	# sponsor_name2 = Sponsor.objects.get(sponsor_name='Google').sponsor_name
-	# sponsor_name3 = Sponsor.objects.get(sponsor_name='Coca-Cola').sponsor_name
-
-	# sponsor_description1 = Sponsor.objects.get(sponsor_description='This contest is sponsored by Red Bull. Create a track based on the sound of Red Bull giving you wings. Winner will get a free trip to our HQ in LA and $10,000')
-	# sponsor_description2 = Sponsor.objects.get(sponsor_description='This contest is sponsored by Google. Create a track based on how the Google Assistant can help you in your everyday life. Winner gets $20,000 and a free trip to New York City.')
-	# sponsor_description3 = Sponsor.objects.get(sponsor_description='This contest is sponsored by Coke. Create a track based on the refreshing feeling that Coke gives you. Or something like that.')
-
-	# sponsor_image1 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
-	# sponsor_image2 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
-	# sponsor_image3 = Sponsor.objects.get(sponsor_image='http://static.djbooth.net/pics-features/chance-3-artwork.jpg').sponsor_image
 
 	return render(
 		request,

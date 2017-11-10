@@ -55,6 +55,7 @@
               </a>    
             </li>
             <li>
+              {% if user.is_authenticated %}
               <div id="ddmenu" class="dropdown">
                 <button href="{% url 'profile' %}" class="btn btn-secondary dropdown-toggle"
                         type="button" id="dropdownMenu1" data-toggle="dropdown"
@@ -68,9 +69,13 @@
                   <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
                   <a class="dropdown-item" href="#!">Settings</a>
                   <a class="dropdown-item" href="#!">About us</a>
-                  <a class="dropdown-item" href="#!">Sign In/Out</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}?next={{request.path}}">Sign Out</a>
                 </div>
               </div> <!-- dropdown div ends here-->
+
+              {% else %}
+              <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+              {% endif %}
             </li>
           </ul>
         </div>
