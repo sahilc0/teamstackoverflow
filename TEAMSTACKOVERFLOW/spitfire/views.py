@@ -1,14 +1,17 @@
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 from django.contrib.auth.models import User
-
 from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Sponsor
-
 from .forms import UserForm, ArtistForm
+from .forms import TrackForm
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import reverse #this line might not be needed
+from django.contrib.auth.decorators import login_required
 
 def create_profile(request):
-
 	if request.method == 'POST':
 		user_form = UserForm(request.POST)
 		artist_form = ArtistForm(request.POST)
@@ -18,13 +21,10 @@ def create_profile(request):
 			username = user_form.cleaned_data['username']
 			password = user_form.cleaned_data['password']
 			email = user_form.cleaned_data['email']
-
 			city = artist_form.cleaned_data['city']
-
 			user = User.objects.create_user(username, email, password)
 			user.first_name = first_name
 			user.last_name = last_name
-
 			user.save()
 			return render(request,'index.html')
 	else:
@@ -82,15 +82,15 @@ def index(request):
 	)
 
 def profile(request):
+	user = request.user
 	artist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f')
 	tracks = Track.objects.filter(artist = '72f7f315034b4d9fbd7f140b8270156f').order_by('-upvotes')
-
 	return render(
 		request,
 		'profile.html',
 		context = { 'artist': artist,
-								'tracks': tracks,
-								},
+					'tracks': tracks,
+				  },
 	)
 
 def track(request):
@@ -121,17 +121,16 @@ def lyrics(request):
 		request,
 		'lyrics-sync.html',
 		context = {
-								'trackName': track.title,
-								'artistName': track.artist,
-								'audio1': "track_default.mp3",
-								},
+					'trackName': track.title,
+					'artistName': track.artist,
+					'audio1': "track_default.mp3",
+					},
 	)
 
 def upload(request):
 	"""
 	put stuff here
 	"""
-
 	return render(
 		request,
 		'upload.html',
@@ -142,7 +141,6 @@ def contest(request):
 	"""
 	put stuff here
 	"""
-
 	sponsor1 = Sponsor.objects.get (name = 'Red Bull')
 	sponsor2 = Sponsor.objects.get (name = 'Google')
 	sponsor3 = Sponsor.objects.get (name = 'Coca-Cola')
@@ -151,4 +149,35 @@ def contest(request):
 		request,
 		'contest.html',
 		context= {'sponsor1':sponsor1, 'sponsor2':sponsor2, 'sponsor3':sponsor3, }
-		)
+	)
+
+#ronny's testing stuff out below this
+@login_required
+def makeTrack(request):
+	if request.method == 'POST':
+		user = request.user
+		form = TrackForm(request.POST)
+		if form.is_valid():
+			title = form.cleaned_data['title']
+			artist = form.cleaned_data['artist']
+			upvotes = form.cleaned_data['upvotes']
+			genre = form.cleaned_data['genre']
+			description = form.cleaned_data['description']
+			keywords = form.cleaned_data['keywords']
+			track = Track(title=title, artist=artist, upvotes=upvotes, genre=genre, description=description, keywords=keywords)
+			track.save()
+			return HttpResponseRedirect(reverse('profile'))
+	else:
+		form = TrackForm()
+	return render(request, 'trackForm.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
