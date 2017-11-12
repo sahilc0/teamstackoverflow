@@ -137,6 +137,12 @@ class User(models.Model):
     email = models.EmailField(max_length=254)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=40)
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, **kwargs):
+        if kwargs.get('created', False):
+            artist = Artist.objects.get_or_create(user=kwargs.get('instance'))
+            #artist.user = kwargs['instance']
+
     def __str__(self):
         """
         String for representing the lyrics object
@@ -187,11 +193,17 @@ class Artist(models.Model):
         """
         return '%s, %s' % (self.last_name, self.first_name)
 
+
+
+    """
     @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
+    def create_user_profile(sender, **kwargs):
         if created:
             Artist.objects.create(user=instance)
-
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.artist.save()
+    """
+
+
+
