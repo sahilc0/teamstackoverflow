@@ -102,6 +102,9 @@ class Track(models.Model):  #the genre of a track is all the possible genres. Th
         """
         return self.title
 
+    def createTrack(self, id, title, artist, upvotes, genre, description, keywords):
+        track = self.create(title=title, artist=artist, upvotes=upvotes, genre=genre, description=description, keywords=keywords)
+        return track
 
 class Lyrics(models.Model): #this model looks good
     """
@@ -134,12 +137,17 @@ class User(models.Model):
     email = models.EmailField(max_length=254)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=40)
+    def __str__(self):
+        """
+        String for representing the lyrics object
+        """
+        return self.first_name
 
 class Artist(models.Model): 
     """
     Model for Users/Artists (for purposes of simplicity we assume all users are potential artists even if they post no tracks)
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null = True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = 'artist', null = True)
     # set the default value
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular artist across whole site")
     if user.null == False:

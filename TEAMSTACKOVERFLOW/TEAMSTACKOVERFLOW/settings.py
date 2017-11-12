@@ -123,6 +123,8 @@ STATIC_URL = '/static/'
 #MEDIA_ROOT = os.path.join('TEAMSTACKOVERFLOW/spitfire/', 'media')
 #MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/' #this redirects to homepage after logging in
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SESSION_SAVE_EVERY_REQUEST = True
