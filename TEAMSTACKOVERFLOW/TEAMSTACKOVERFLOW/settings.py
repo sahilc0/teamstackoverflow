@@ -128,3 +128,4 @@ LOGIN_REDIRECT_URL = '/' #this redirects to homepage after logging in
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SESSION_SAVE_EVERY_REQUEST = True
+

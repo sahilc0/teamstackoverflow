@@ -80,21 +80,6 @@ def index(request):
 					 'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
 					 },
 	)
-#need to fix profile viewfunction, this is hardcoded
-@login_required
-def profile(request):
-	user = request.user
-	#artist = user.get(artist)
-	#artist = Artist.objects.get_or_create(user=request.user)
-	artist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f')
-	tracks = Track.objects.filter(artist = '72f7f315034b4d9fbd7f140b8270156f').order_by('-upvotes')
-	return render(
-		request,
-		'profile.html',
-		context = { 'artist': artist,
-					'tracks': tracks,
-				  },
-	)
 
 def track(request):
 	thisArtist = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
@@ -152,6 +137,25 @@ def contest(request):
 		request,
 		'contest.html',
 		context= {'sponsor1':sponsor1, 'sponsor2':sponsor2, 'sponsor3':sponsor3, }
+	)
+
+#need to fix profile viewfunction, this is hardcoded
+@login_required
+def profile(request):
+	user = request.user
+
+	#artist.save()
+	artist = Artist(user=user)
+	#artist.save()
+	#artist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f')
+	#tracks = Track.objects.filter(artist = '72f7f315034b4d9fbd7f140b8270156f').order_by('-upvotes')
+	tracks = Track.objects.filter(artist=artist).order_by('-upvotes')
+	return render(
+		request,
+		'profile.html',
+		context = { 'artist': artist,
+					'tracks': tracks,
+				  },
 	)
 
 #ronny's testing stuff out below this
