@@ -139,13 +139,13 @@ def contest(request):
 		context= {'sponsor1':sponsor1, 'sponsor2':sponsor2, 'sponsor3':sponsor3, }
 	)
 
-#need to fix profile viewfunction, this is hardcoded
+#need to fix profile viewfunction, this is hardcoded. Implementation is not done yet, but its on the right track I think.
 @login_required
 def profile(request):
 	user = request.user
-
 	#artist.save()
-	artist = Artist(user=user)
+	artist = Artist(user=user, firstName = user.first_name, lastName = user.last_name)
+	user.artist = artist
 	#artist.save()
 	#artist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f')
 	#tracks = Track.objects.filter(artist = '72f7f315034b4d9fbd7f140b8270156f').order_by('-upvotes')
@@ -153,7 +153,7 @@ def profile(request):
 	return render(
 		request,
 		'profile.html',
-		context = { 'artist': artist,
+		context = { #'artist': artist,
 					'tracks': tracks,
 				  },
 	)

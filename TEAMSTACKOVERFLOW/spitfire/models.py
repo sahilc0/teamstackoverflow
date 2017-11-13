@@ -149,8 +149,8 @@ class Artist(models.Model):
     user = models.OneToOneField(User, related_name = 'artist', on_delete=models.CASCADE, null = True)
     # set the default value
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular artist across whole site")
-    first_name = models.CharField(max_length=100, default = "Firstname")
-    last_name = models.CharField(max_length=100, default = "Lastname")
+    firstName = models.CharField(max_length=100, default = "Firstname")
+    lastName = models.CharField(max_length=100, default = "Lastname")
     """
     if user.null == False:
         first_name = user.first_name
@@ -187,15 +187,16 @@ class Artist(models.Model):
     def create_user_Artist(sender, instance, created, **kwargs):
         if created:
             artist = Artist.objects.create(user=instance)
-            artist.first_name = user.first_name
-            artist.last_name = user.last_name
-    post_save.connect(create_user_Artist, sender=User)
+            artist.firstName = User.first_name
+            artist.lastName = User.last_name
+        post_save.connect(create_user_Artist, sender=User)
 
     def __str__(self):
         """
         String for representing the Model object.
         """
-        return '%s, %s' % (self.last_name, self.first_name)
+        return '%s, %s' % (self.lastName, self.firstName)
+
 
 
     """    
