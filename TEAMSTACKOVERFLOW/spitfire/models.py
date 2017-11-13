@@ -130,38 +130,35 @@ class Lyrics(models.Model): #this model looks good
         """
         return self.title
 
-
+"""
 class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=254)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=40)
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, **kwargs):
-        if kwargs.get('created', False):
-            artist = Artist.objects.get_or_create(user=kwargs.get('instance'))
-            #artist.user = kwargs['instance']
-
     def __str__(self):
-        """
-        String for representing the lyrics object
-        """
+        
+        #String for representing the lyrics object
         return self.first_name
-
+"""
 class Artist(models.Model): 
     """
     Model for Users/Artists (for purposes of simplicity we assume all users are potential artists even if they post no tracks)
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = 'artist', null = True)
+    user = models.OneToOneField(User, related_name = 'artist', on_delete=models.CASCADE, null = True)
     # set the default value
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular artist across whole site")
+    firstName = models.CharField(max_length=100, default = "Firstname")
+    lastName = models.CharField(max_length=100, default = "Lastname")
+    """
     if user.null == False:
         first_name = user.first_name
         last_name = user.last_name
     else:
         first_name = models.CharField(max_length=100, default = "Firstname")
         last_name = models.CharField(max_length=100, default = "Lastname")
+    """
     city = models.CharField(max_length=100, blank = True, null=True)
     number_of_spits = models.CharField(max_length=100, blank = True, null=True)
     number_of_followers = models.PositiveIntegerField(default=0)
@@ -187,19 +184,28 @@ class Artist(models.Model):
         return reverse('artist-detail', args=[str(self.id)])
     
 
+    def create_user_Artist(sender, instance, created, **kwargs):
+        if created:
+            artist = Artist.objects.create(user=instance)
+            artist.firstName = User.first_name
+            artist.lastName = User.last_name
+        post_save.connect(create_user_Artist, sender=User)
+
     def __str__(self):
         """
         String for representing the Model object.
         """
-        return '%s, %s' % (self.last_name, self.first_name)
+        return '%s, %s' % (self.lastName, self.firstName)
 
 
 
-    """
+    """    
     @receiver(post_save, sender=User)
     def create_user_profile(sender, **kwargs):
         if created:
-            Artist.objects.create(user=instance)
+            artist = Artist.objects.create(user=instance)
+            artist.user = sender
+            artist.save()
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.artist.save()
