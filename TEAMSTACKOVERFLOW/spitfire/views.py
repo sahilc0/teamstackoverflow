@@ -143,18 +143,17 @@ def contest(request):
 @login_required
 def profile(request):
 	user = request.user
-	#artist.save()
 	artist = Artist(user=user, firstName = user.first_name, lastName = user.last_name)
-	user.artist = artist
-	#artist.save()
+	#user.artist = artist
+	artist.save()
 	#artist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f')
 	#tracks = Track.objects.filter(artist = '72f7f315034b4d9fbd7f140b8270156f').order_by('-upvotes')
-	tracks = Track.objects.filter(artist=artist).order_by('-upvotes')
+	#tracks = Track.objects.filter(artist=artist).order_by('-upvotes')
 	return render(
 		request,
 		'profile.html',
 		context = { #'artist': artist,
-					'tracks': tracks,
+					#'tracks': tracks,
 				  },
 	)
 

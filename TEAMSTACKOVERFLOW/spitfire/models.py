@@ -189,6 +189,7 @@ class Artist(models.Model):
             artist = Artist.objects.create(user=instance)
             artist.firstName = User.first_name
             artist.lastName = User.last_name
+            artist.save()
         post_save.connect(create_user_Artist, sender=User)
 
     def __str__(self):
