@@ -8,6 +8,7 @@ class UserForm(forms.Form):
     email = forms.EmailField(max_length=254)
     username = forms.CharField(max_length=100)
     password = forms.CharField(max_length=40)
+    city = forms.CharField(max_length=40)
 
 
 """
@@ -15,13 +16,13 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name','username','password', 'email')
-"""
+
 class ArtistForm(forms.ModelForm):
     class Meta:
         model = Artist
         fields = (
             'city',)
-
+"""
 class TrackForm(forms.ModelForm):
 	class Meta:
 		model = Track

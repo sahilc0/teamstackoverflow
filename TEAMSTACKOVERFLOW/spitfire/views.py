@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 from django.contrib.auth.models import User
 from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Sponsor
-from .forms import UserForm, ArtistForm
+from .forms import UserForm
 from .forms import TrackForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
@@ -14,29 +14,34 @@ from django.contrib.auth.decorators import login_required
 def create_profile(request):
 	if request.method == 'POST':
 		user_form = UserForm(request.POST)
-		artist_form = ArtistForm(request.POST)
-		if user_form.is_valid() and artist_form.is_valid():
+		#artist_form = ArtistForm(request.POST)
+		if user_form.is_valid():
 			first_name = user_form.cleaned_data['first_name']
 			last_name = user_form.cleaned_data['last_name']
 			username = user_form.cleaned_data['username']
 			password = user_form.cleaned_data['password']
 			email = user_form.cleaned_data['email']
-			city = artist_form.cleaned_data['city']
+			city = user_form.cleaned_data['city']
+			#city = artist_form.cleaned_data['city']
 			user = User.objects.create_user(username, email, password)
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
+			#we can substitute the bottom code with a @receiver decorator
+			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city)
+			artist.save()
+
 			return render(request,'index.html')
 	else:
 		user_form = UserForm()
-		artist_form = ArtistForm()
+		#artist_form = ArtistForm()
 
 	return render(
 		request,
 		'create_profile.html',
 		context = {
 			'user_form':user_form,
-			'artist_form':artist_form,
+			#'artist_form':artist_form,
 		},
 	)
 
@@ -143,17 +148,13 @@ def contest(request):
 @login_required
 def profile(request):
 	user = request.user
-	artist = Artist(user=user, firstName = user.first_name, lastName = user.last_name)
-	#user.artist = artist
-	artist.save()
-	#artist = Artist.objects.get(id = '72f7f315034b4d9fbd7f140b8270156f')
-	#tracks = Track.objects.filter(artist = '72f7f315034b4d9fbd7f140b8270156f').order_by('-upvotes')
-	#tracks = Track.objects.filter(artist=artist).order_by('-upvotes')
+	artist = user.artist
+	tracks = Track.objects.filter(artist = artist).order_by('-upvotes')
 	return render(
 		request,
 		'profile.html',
-		context = { #'artist': artist,
-					#'tracks': tracks,
+		context = { 'artist': artist,
+					'tracks': tracks,
 				  },
 	)
 

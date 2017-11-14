@@ -175,42 +175,41 @@ class Artist(models.Model):
         """
         Returns the full name of this Artist.
         """
-        return self.first_name + " " + self.last_name
+        return self.firstName + " " + self.lastName
 
     def get_absolute_url(self):
         """
         Returns the url to access a particular artist instance.
         """
         return reverse('artist-detail', args=[str(self.id)])
-    
+   
 
-    def create_user_Artist(sender, instance, created, **kwargs):
-        if created:
-            artist = Artist.objects.create(user=instance)
-            artist.firstName = User.first_name
-            artist.lastName = User.last_name
-            artist.save()
-        post_save.connect(create_user_Artist, sender=User)
 
     def __str__(self):
         """
         String for representing the Model object.
         """
         return '%s, %s' % (self.lastName, self.firstName)
+"""
+@receiver(post_save, sender=User)
+def create_user_Artist(sender, instance, created, **kwargs):
+    if created:
+        artist = Artist.objects.create(user=instance, firstName=User.first_name, lastName=User.last_name)
+        artist.save()
 
 
 
-    """    
     @receiver(post_save, sender=User)
     def create_user_profile(sender, **kwargs):
         if created:
             artist = Artist.objects.create(user=instance)
             artist.user = sender
             artist.save()
+
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.artist.save()
-    """
+"""
 
 
 
