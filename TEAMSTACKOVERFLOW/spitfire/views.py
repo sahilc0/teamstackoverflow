@@ -30,7 +30,6 @@ def create_profile(request):
 			#we can substitute the bottom code with a @receiver decorator
 			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city)
 			artist.save()
-
 			return render(request,'index.html')
 	else:
 		user_form = UserForm()
@@ -178,6 +177,11 @@ def makeTrack(request):
 		form = TrackForm()
 	return render(request, 'trackForm.html', {'form': form})
 
+@login_required
+def getTrackInfo(request, pk):
+	track = get_object_or_404(Track, pk = pk)
+	if request.method == 'GET':
+		return render(request, 'soundtrack.html', {'track': track})
 
 
 
