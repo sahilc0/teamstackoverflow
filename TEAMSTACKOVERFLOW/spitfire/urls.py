@@ -14,6 +14,7 @@ urlpatterns = [
 	url(r'^contest$', views.contest, name='contest'),
     url(r'^create_profile$', views.create_profile, name='create_profile'),
     url(r'^profile/track$', views.makeTrack, name='makeTrack'),   
-    url(r'^soundtrack/(?P<pk>[-\w]+)$', views.getTrackInfo, name='trackInfo')
+    url(r'^soundtrack/(?P<pk>[-\w]+)$', views.getTrackInfo, name='trackInfo'),
+    url(r'^profile/(?P<pk>[-\w]+)$', views.getArtistInfo, name='artistInfo')
 ]   #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 	#the line above is for uploading files. ignore for now ~Ronny
