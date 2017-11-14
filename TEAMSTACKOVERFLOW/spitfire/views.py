@@ -59,11 +59,17 @@ def index(request):
 	yesterdayLyrics = Lyrics.objects.filter(Track = yesterdayTrack.id)
 	#change the code above to dynamic
 	track1Artist_Id = featTrack1.artist.id
+	track2Artist_Id = featTrack2.artist.id
+	track3Artist_Id = featTrack3.artist.id
+
 	return render(
 		request,
 		'index.html',
 		context = {'featTrack1': featTrack1, 
 				  'track1Artist_Id': track1Artist_Id,
+  				  'track2Artist_Id': track2Artist_Id,
+				  'track3Artist_Id': track3Artist_Id,
+
 				  'featTrack2': featTrack2, 
 				  'featTrack3': featTrack3, 
 				  'lyricsList1': lyricsList1[0],
