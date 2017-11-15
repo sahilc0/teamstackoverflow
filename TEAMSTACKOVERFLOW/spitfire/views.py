@@ -14,7 +14,6 @@ from django.contrib.auth.decorators import login_required
 def create_profile(request):
 	if request.method == 'POST':
 		user_form = UserForm(request.POST)
-		#artist_form = ArtistForm(request.POST)
 		if user_form.is_valid():
 			first_name = user_form.cleaned_data['first_name']
 			last_name = user_form.cleaned_data['last_name']
@@ -22,7 +21,6 @@ def create_profile(request):
 			password = user_form.cleaned_data['password']
 			email = user_form.cleaned_data['email']
 			city = user_form.cleaned_data['city']
-			#city = artist_form.cleaned_data['city']
 			user = User.objects.create_user(username, email, password)
 			user.first_name = first_name
 			user.last_name = last_name
@@ -33,14 +31,11 @@ def create_profile(request):
 			return render(request,'index.html')
 	else:
 		user_form = UserForm()
-		#artist_form = ArtistForm()
-
 	return render(
 		request,
 		'create_profile.html',
 		context = {
 			'user_form':user_form,
-			#'artist_form':artist_form,
 		},
 	)
 
@@ -58,6 +53,12 @@ def index(request):
 	yesterdayTrack = Track.objects.get(id = 'b95a3265471b43f49172029cfdceaeb1')
 	yesterdayLyrics = Lyrics.objects.filter(Track = yesterdayTrack.id)
 	#change the code above to dynamic
+
+	topList = Track.objects.order_by('upvotes')[:3]
+	topTrack1 = topList[0]
+
+
+
 	track1Artist_Id = featTrack1.artist.id
 	track2Artist_Id = featTrack2.artist.id
 	track3Artist_Id = featTrack3.artist.id
@@ -69,6 +70,9 @@ def index(request):
 				  'track1Artist_Id': track1Artist_Id,
   				  'track2Artist_Id': track2Artist_Id,
 				  'track3Artist_Id': track3Artist_Id,
+				  'topList': topList,
+				  'topTrack1': topTrack1,
+
 
 				  'featTrack2': featTrack2, 
 				  'featTrack3': featTrack3, 
