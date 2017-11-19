@@ -11,19 +11,8 @@ class UserForm(forms.Form):
     city = forms.CharField(max_length=40)
 
 
-"""
-class UserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name','username','password', 'email')
-
-class ArtistForm(forms.ModelForm):
-    class Meta:
-        model = Artist
-        fields = (
-            'city',)
-"""
 class TrackForm(forms.ModelForm):
 	class Meta:
 		model = Track
-		fields = ['title', 'artist', 'upvotes', 'genre', 'description', 'keywords']
+		exclude = ['upvotes', 'id']
+		#fields = ['title', 'artist', 'genre', 'description', 'keywords', 'file']

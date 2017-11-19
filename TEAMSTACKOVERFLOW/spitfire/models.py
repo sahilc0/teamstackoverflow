@@ -76,9 +76,8 @@ class Track(models.Model):  #the genre of a track is all the possible genres. Th
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     description = models.TextField(blank=True, max_length=300)
     keywords = models.TextField(blank = True, max_length=30)
-    
-    # file should be named trackid_userid_number
-    mp3 = models.FileField(default = "user_audio/track_default.mp3",upload_to='user_audio/')
+    #file = models.FileField(upload_to='songs', blank=True)  #change this line so that it cannot be blank. Right now blank is true for testing
+    mp3 = models.FileField(upload_to='user_audio/', blank=True)
 
     def get_absolute_url(self):
         """

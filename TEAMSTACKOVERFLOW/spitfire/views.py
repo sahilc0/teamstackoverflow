@@ -130,16 +130,25 @@ def lyrics(request):
 					'audio1': "track_default.mp3",
 					},
 	)
-
+@login_required
 def upload(request):
-	"""
-	put stuff here
-	"""
-	return render(
-		request,
-		'upload.html',
-		context = {},
-	)
+	if request.method == 'POST':
+		user = request.user
+		form = TrackForm(request.POST, request.FILES)
+		if form.is_valid():
+			title = form.cleaned_data['title']
+			artist = form.cleaned_data['artist']
+			#upvotes = form.cleaned_data['upvotes']
+			genre = form.cleaned_data['genre']
+			description = form.cleaned_data['description']
+			keywords = form.cleaned_data['keywords']
+			file = form.cleaned_data['mp3']
+			track = Track(title=title, artist=artist, genre=genre, description=description, keywords=keywords, mp3=file)
+			track.save()
+			return HttpResponseRedirect(reverse('profile'))
+	else:
+		form = TrackForm()
+	return render(request, 'trackForm.html', {'form': form})
 
 def contest(request):
 	"""
@@ -170,24 +179,7 @@ def profile(request):
 	)
 
 #ronny's testing stuff out below this
-@login_required
-def makeTrack(request):
-	if request.method == 'POST':
-		user = request.user
-		form = TrackForm(request.POST)
-		if form.is_valid():
-			title = form.cleaned_data['title']
-			artist = form.cleaned_data['artist']
-			upvotes = form.cleaned_data['upvotes']
-			genre = form.cleaned_data['genre']
-			description = form.cleaned_data['description']
-			keywords = form.cleaned_data['keywords']
-			track = Track(title=title, artist=artist, upvotes=upvotes, genre=genre, description=description, keywords=keywords)
-			track.save()
-			return HttpResponseRedirect(reverse('profile'))
-	else:
-		form = TrackForm()
-	return render(request, 'trackForm.html', {'form': form})
+
 
 @login_required
 def getTrackInfo(request, pk):
