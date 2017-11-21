@@ -27,3 +27,5 @@ class TrackForm(forms.ModelForm):
 	class Meta:
 		model = Track
 		fields = ['title', 'artist', 'upvotes', 'genre', 'description', 'keywords']
+
+
