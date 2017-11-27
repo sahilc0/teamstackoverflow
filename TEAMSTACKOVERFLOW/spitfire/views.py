@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 def create_profile(request):
 	if request.method == 'POST':
@@ -41,24 +42,52 @@ def create_profile(request):
 		},
 	)
 
-# def create_comment (request):
-# 	if request.method == 'POST':
-# 		comment_form = CommentForm(request.POST)
-# 		if comment_form.is_valid():
-# 			comment = comment_form.cleaned_data['comment'];
-# 			TrackComment = TrackComment (upvotes=0, text=comment)
+def create_comment (request, pk):
+	print ("start of method")
+	if request.method == 'POST':
+		track = get_object_or_404(Track, pk = pk)
 
-# 			return render(request, 'soundtrack.html')
-# 	else:
-# 		comment_form = CommentForm()
-# 	return render(
-# 		request,
-# 		'soundtrack.html',
-# 		context = {
-# 		'comment_form': comment_form
-# 		},
-# 	)
+		comment = CommentForm(request.POST)
+		# print ("before second if")
 
+		if comment.is_valid():
+			comment = comment.cleaned_data['comment'];
+			# track_comment = TrackComment (upvotes=0, text=comment, track=track)
+			# track_comment.save()
+			# print ("hello")
+			return render(request, 'soundtrack.html')
+	else:
+		comment = CommentForm()
+		# print ("hello from else")
+
+
+	return render(
+		request,
+		'soundtrack.html',
+		context = {
+		'comment': comment
+		},
+	)
+
+
+		
+@login_required
+def upvoteTrack(request, pk):
+	track = get_object_or_404(Track, pk = pk)
+
+	if request.method == 'POST':
+		track.upvotes = track.upvotes + 1
+		track.save()
+		return HttpResponse(track.upvotes)
+
+@login_required
+def upvoteLyric(request, pk):
+	lyric = get_object_or_404(Lyrics, pk = pk)
+
+	if request.method == 'POST':
+		lyric.upvotes = lyric.upvotes + 1
+		lyric.save()
+		return HttpResponse(lyric.upvotes)
 
 def index(request):
 	featTrack1 = Track.objects.get(title='Rolling in the Deep')
@@ -96,25 +125,27 @@ def index(request):
 def track(request):
 	thisArtist = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
 	thisTrack = Track.objects.get(artist_id = thisArtist.id)
-	lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-	comment1 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
-	lyric2 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-	comment2 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
+	# lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
+	# comment1 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
+	# lyric2 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
+	# comment2 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
+
 
 	# if request.method == 'POST':
-	# 	comment1_form = CommentForm(request.POST)
-	# 	if comment1_form.is_valid():
-	# 		comment1 = comment1_form.cleaned_data['comment1'];
+	# 	comment1 = CommentForm(request.POST)
+	# 	if comment1.is_valid():
+	# 		comment1 = comment1.cleaned_data['comment1'];
 	# 		TrackComment1 = TrackComment1 (upvotes=0, text=comment1)
+	# 		TrackComment1.save()
 
 	# 		return render(request, 'soundtrack.html')
 	# else:
-	# 	comment1_form = CommentForm()
+	# 	comment1 = CommentForm()
 	# return render(
 	# 	request,
 	# 	'soundtrack.html',
 	# 	context = {
-	# 	'comment1_form': comment1_form
+	# 	'comment1': comment1
 	# 	},
 	# )
 
@@ -195,8 +226,9 @@ def profile(request):
 @login_required
 def getTrackInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
-	if request.method == 'GET':
-		return render(request, 'soundtrack.html', {'track': track})
+	commentPostURL = '/spitfire/soundtrack/' + str(track.id) + '/comment'
+	if request.method == 'GET' or 'POST':
+		return render(request, 'soundtrack.html', {'track': track, 'commentPostURL': commentPostURL})
 
 @login_required
 def getArtistInfo(request, pk):

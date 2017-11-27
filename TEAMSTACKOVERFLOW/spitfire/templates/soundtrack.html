@@ -69,9 +69,9 @@
                   <div>
                     <input type="text" class = "form-control" id = "user">
                   </div>
-                  <form method="post"> 
+                  <form action ={{commentPostURL}} method="post"> 
                     {% csrf_token %}
-                    {{ comment_form.as_p }}
+                    {{ comment }}
                     <button type="submit">Save changes</button>
                   </form>
                 </p>
