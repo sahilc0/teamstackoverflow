@@ -41,6 +41,32 @@ def create_profile(request):
 		},
 	)
 
+def create_comment (request, pk):
+	print ("start of method")
+	if request.method == 'POST':
+		track = get_object_or_404(Track, pk = pk)
+
+		comment = CommentForm(request.POST)
+		# print ("before second if")
+
+		if comment.is_valid():
+			comment = comment.cleaned_data['comment'];
+			# track_comment = TrackComment (upvotes=0, text=comment, track=track)
+			# track_comment.save()
+			# print ("hello")
+			return render(request, 'soundtrack.html')
+	else:
+		comment = CommentForm()
+		# print ("hello from else")
+
+	return render(
+		request,
+		'soundtrack.html',
+		context = {
+		'comment': comment
+		},
+	)
+
 def index(request):
 	featTrack1 = Track.objects.get(title='Rolling in the Deep')
 	featTrack2 = Track.objects.get(title='UptownFunk')
@@ -83,22 +109,23 @@ def track(request):
 	# comment2 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
 
 
-	if request.method == 'POST':
-		comment1 = CommentForm(request.POST)
-		if comment1.is_valid():
-			comment1 = comment1.cleaned_data['comment1'];
-			TrackComment1 = TrackComment1 (upvotes=0, text=comment1)
+	# if request.method == 'POST':
+	# 	comment1 = CommentForm(request.POST)
+	# 	if comment1.is_valid():
+	# 		comment1 = comment1.cleaned_data['comment1'];
+	# 		TrackComment1 = TrackComment1 (upvotes=0, text=comment1)
+	# 		TrackComment1.save()
 
-			return render(request, 'soundtrack.html')
-	else:
-		comment1 = CommentForm()
-	return render(
-		request,
-		'soundtrack.html',
-		context = {
-		'comment1': comment1
-		},
-	)
+	# 		return render(request, 'soundtrack.html')
+	# else:
+	# 	comment1 = CommentForm()
+	# return render(
+	# 	request,
+	# 	'soundtrack.html',
+	# 	context = {
+	# 	'comment1': comment1
+	# 	},
+	# )
 
 	return render(
 		request,
@@ -177,8 +204,9 @@ def profile(request):
 @login_required
 def getTrackInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
+	commentPostURL = '/spitfire/soundtrack/' + str(track.id) + '/comment'
 	if request.method == 'GET' or 'POST':
-		return render(request, 'soundtrack.html', {'track': track})
+		return render(request, 'soundtrack.html', {'track': track, 'commentPostURL': commentPostURL})
 
 @login_required
 def getArtistInfo(request, pk):
