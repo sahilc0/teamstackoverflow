@@ -71,7 +71,7 @@
                   </div>
                   <form method="post"> 
                     {% csrf_token %}
-                    {{ comment_form.as_p }}
+                    {{ comment_form }}
                     <button type="submit">Save changes</button>
                   </form>
                 </p>

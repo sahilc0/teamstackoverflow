@@ -64,7 +64,8 @@ class LyricComment(models.Model):
     def __str__(self):
         """
         """
-        return 'Artist %s %s comment on %s' % (self.artist.firstName,self.artist.lastName,self.lyrics.title)
+        # return 'Artist %s %s comment on %s' % (self.artist.firstName,self.artist.lastName,self.lyrics.title)
+        return self.text
 
 class Track(models.Model):  #the genre of a track is all the possible genres. This is a problem. Need fix
     """
