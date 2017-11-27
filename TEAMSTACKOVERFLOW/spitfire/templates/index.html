@@ -83,7 +83,7 @@
                 <h4>{{ track.title }}</h4>
                 <h5>{{ track.artist.full_name }}</h5>
               </div>
-              <button type="button-track" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ track.upvotes }}</b></button>
+              <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
               <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
@@ -97,7 +97,7 @@
                 {% for lyric in track.top_lyrics%}
                   <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
                   <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
-                  <button type="button-lyric" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric.upvotes }}</b></button>
+                  <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
                 {% endfor %}
               </div>
             </div>
@@ -119,7 +119,7 @@
                 <h4>{{ yesterdayTrack.artist }}</h4>
                 <h5>{{ yesterdayTrack.title }}</h5>
               </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ yesterdayTrack.upvotes }}</b></button>
+              <button type="button" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ yesterdayTrack.upvotes }}</button>
               <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
@@ -132,11 +132,11 @@
                 <h4 class="card-title">Top Lyrics</h4>
                 <h5 class='card-text float-left'>{{ yesterdayLyric1.title }}</h5>
                 <p class="card-text float-left">{{ yesterdayLyric1.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ yesterdayLyric1.upvotes }}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ yesterdayLyric1.upvotes }}</button>
 
                 <h5 class='card-text float-left'>{{ yesterdayLyric2.title }}</h5>
                 <p class="card-text float-left">{{ yesterdayLyric2.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ yesterdayLyric2.upvotes}}</b></button>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ yesterdayLyric2.upvotes}}</button>
               </div>
             </div>
           </div>
@@ -150,6 +150,5 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>

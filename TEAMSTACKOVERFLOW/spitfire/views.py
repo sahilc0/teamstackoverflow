@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 def create_profile(request):
 	if request.method == 'POST':
@@ -59,6 +60,21 @@ def create_comment (request):
 		},
 	)
 
+def upvoteTrack(request, pk):
+	track = get_object_or_404(Track, pk = pk)
+
+	if request.method == 'POST':
+		track.upvotes = track.upvotes + 1
+		track.save()
+		return HttpResponse(track.upvotes)
+
+def upvoteLyric(request, pk):
+	lyric = get_object_or_404(Lyrics, pk = pk)
+
+	if request.method == 'POST':
+		lyric.upvotes = lyric.upvotes + 1
+		lyric.save()
+		return HttpResponse(lyric.upvotes)
 
 def index(request):
 	featTrack1 = Track.objects.get(title='Rolling in the Deep')
