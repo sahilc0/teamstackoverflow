@@ -78,7 +78,7 @@ class Track(models.Model):  #the genre of a track is all the possible genres. Th
     description = models.TextField(blank=True, max_length=300)
     keywords = models.TextField(blank = True, max_length=30)
     #file = models.FileField(upload_to='songs', blank=True)  #change this line so that it cannot be blank. Right now blank is true for testing
-    mp3 = models.FileField(upload_to='user_audio/', blank=True)
+    mp3 = models.FileField(upload_to='user_audio/', default='static/user_audio/track_default.png')
 
     def get_absolute_url(self):
         """
@@ -130,18 +130,7 @@ class Lyrics(models.Model): #this model looks good
         """
         return self.title
 
-"""
-class User(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=254)
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=40)
-    def __str__(self):
-        
-        #String for representing the lyrics object
-        return self.first_name
-"""
+
 class Artist(models.Model): 
     """
     Model for Users/Artists (for purposes of simplicity we assume all users are potential artists even if they post no tracks)
@@ -151,14 +140,6 @@ class Artist(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular artist across whole site")
     firstName = models.CharField(max_length=100, default = "Firstname")
     lastName = models.CharField(max_length=100, default = "Lastname")
-    """
-    if user.null == False:
-        first_name = user.first_name
-        last_name = user.last_name
-    else:
-        first_name = models.CharField(max_length=100, default = "Firstname")
-        last_name = models.CharField(max_length=100, default = "Lastname")
-    """
     city = models.CharField(max_length=100, blank = True, null=True)
     number_of_spits = models.CharField(max_length=100, blank = True, null=True)
     number_of_followers = models.PositiveIntegerField(default=0)
@@ -169,7 +150,7 @@ class Artist(models.Model):
     instagram_link = models.CharField(max_length=100, blank=True)
     soundcloud_link = models.CharField(max_length=100, blank=True)
     # file should be named userid_ppic_number
-    image = models.FileField(upload_to='static/media', null=True, blank=True)
+    image = models.FileField(upload_to='user_propics/', default='static/user_propics/profile_default.png')
     
     def full_name(self):
         """

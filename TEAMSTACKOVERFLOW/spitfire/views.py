@@ -23,11 +23,12 @@ def create_profile(request):
 			email = user_form.cleaned_data['email']
 			city = user_form.cleaned_data['city']
 			user = User.objects.create_user(username, email, password)
+			img = user_form.cleaned_data['image']
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
 			#we can substitute the bottom code with a @receiver decorator
-			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city)
+			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city, image=img)
 			artist.save()
 			return render(request,'index.html')
 	else:
@@ -121,9 +122,27 @@ def track(request):
 	thisArtist = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
 	thisTrack = Track.objects.get(artist_id = thisArtist.id)
 	lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-	comment1 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
+	# comment1 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
 	lyric2 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-	comment2 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
+	# comment2 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
+
+	if request.method == 'POST':
+		comment1_form = CommentForm(request.POST)
+		if comment1_form.is_valid():
+			comment1 = comment1_form.cleaned_data['comment1'];
+			TrackComment1 = TrackComment1 (upvotes=0, text=comment1)
+
+			return render(request, 'soundtrack.html')
+	else:
+		comment1_form = CommentForm()
+	return render(
+		request,
+		'soundtrack.html',
+		context = {
+		'comment1_form': comment1_form
+		},
+	)
+
 	return render(
 		request,
 		'soundtrack.html',

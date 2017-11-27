@@ -50,6 +50,13 @@ nav #contests-link{
 	color:var(--main-color);
 }
 
+nav #login-link{
+	margin: 5% 5% 0 0;
+	padding:7px;
+	display: inline-block;
+	color:var(--main-color);
+}
+
 nav #upload-button{
 	background-color: var(--main-color);
 	border:0;
