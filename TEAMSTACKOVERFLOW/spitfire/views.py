@@ -178,9 +178,6 @@ def profile(request):
 				  },
 	)
 
-#ronny's testing stuff out below this
-
-
 @login_required
 def getTrackInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
