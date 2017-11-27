@@ -15,3 +15,7 @@ class TrackForm(forms.ModelForm):
     class Meta:
         model = Track
         exclude = ['upvotes', 'id']
+        
+class CommentForm (forms.ModelForm):
+    comment = forms.CharField (max_length=400)
+    
