@@ -41,25 +41,14 @@ def create_profile(request):
 	)
 
 def index(request):
-
 	featTrack1 = Track.objects.get(title='Rolling in the Deep')
 	featTrack2 = Track.objects.get(title='UptownFunk')
 	featTrack3 = Track.objects.get(title='99Problems')
-	topTrack = Track.objects.get(title = 'Rolling in the Deep')
-	topTrack2 = Track.objects.get(title = 'UptownFunk')
-	topTrack3 = Track.objects.get(title = '10miles')
-	lyricsList1 = Lyrics.objects.filter(Track = '5443d08db1ba486a81cf27b2dcf71158')
-	lyricsList2 = Lyrics.objects.filter(Track = '445e3187e4b4468bb6c983d2b13244e7')
-	lyricsList3 = Lyrics.objects.filter(Track = 'e4dd123404ed43618195ebe356eaddd7')
 	yesterdayTrack = Track.objects.get(id = 'b95a3265471b43f49172029cfdceaeb1')
 	yesterdayLyrics = Lyrics.objects.filter(Track = yesterdayTrack.id)
 	#change the code above to dynamic
 
-	topList = Track.objects.order_by('upvotes')[:3]
-	topTrack1 = topList[0]
-
-
-
+	topTracks = Track.objects.order_by('-upvotes')[:3]
 	track1Artist_Id = featTrack1.artist.id
 	track2Artist_Id = featTrack2.artist.id
 	track3Artist_Id = featTrack3.artist.id
@@ -67,34 +56,20 @@ def index(request):
 	return render(
 		request,
 		'index.html',
-		context = {'featTrack1': featTrack1, 
-				  'track1Artist_Id': track1Artist_Id,
-  				  'track2Artist_Id': track2Artist_Id,
-				  'track3Artist_Id': track3Artist_Id,
-				  'topList': topList,
-				  'topTrack1': topTrack1,
-
-
-				  'featTrack2': featTrack2, 
-				  'featTrack3': featTrack3, 
-				  'lyricsList1': lyricsList1[0],
-				  'lyricsList12': lyricsList1[1],
-				  'lyricsList2': lyricsList2[0],
-				  'lyricsList21': lyricsList2[1],
-				  'lyricsList3': lyricsList3[0],
-				  'lyricsList31': lyricsList3[1],
-				  'topTrack': topTrack,
-				  'topTrack2': topTrack2,
-				  'topTrack3': topTrack3,
-				  'yesterdayTrack': yesterdayTrack,
-				  'yesterdayLyric1': yesterdayLyrics[0],
-				  'yesterdayLyric2': yesterdayLyrics[1],
-				  'upvoteCount': "6969", 
-							'audio1': "track_default.mp3",
-							'audio2': "track_default.mp3",
-							'audio3': "track_default.mp3",
-							'yesterdayAudio': "track_default.mp3",
-				  'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
+		context = {	'featTrack1': featTrack1,
+					'featTrack2': featTrack2,
+				  	'featTrack3': featTrack3,
+				  	'track1Artist_Id': track1Artist_Id,
+  				  	'track2Artist_Id': track2Artist_Id,
+				  	'track3Artist_Id': track3Artist_Id,
+		  			'tracks': topTracks,
+				  	'yesterdayTrack': yesterdayTrack,
+				  	'yesterdayLyric1': yesterdayLyrics[0],
+				  	'yesterdayLyric2': yesterdayLyrics[1],
+					'audio1': "track_default.mp3",
+					'audio2': "track_default.mp3",
+					'audio3': "track_default.mp3",
+					'yesterdayAudio': "track_default.mp3",
 				},
 	)
 
@@ -190,11 +165,3 @@ def getArtistInfo(request, pk):
 	artist = get_object_or_404(Artist, pk = pk)
 	if request.method == 'GET':
 		return render(request, 'profile.html', {'artist': artist})
-
-
-
-
-
-
-
-
