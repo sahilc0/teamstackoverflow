@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 def create_profile(request):
 	if request.method == 'POST':
@@ -39,8 +40,13 @@ def create_profile(request):
 		},
 	)
 
-def index(request):
+def upvoteTrack(request, pk):
+	track = get_object_or_404(Track, pk = pk)
+	track.upvotes = track.upvotes + 1
+	track.save()
+	return HttpResponse(track.upvotes)
 
+def index(request):
 	featTrack1 = Track.objects.get(title='Rolling in the Deep')
 	featTrack2 = Track.objects.get(title='UptownFunk')
 	featTrack3 = Track.objects.get(title='99Problems')
@@ -66,7 +72,7 @@ def index(request):
 	return render(
 		request,
 		'index.html',
-		context = {'featTrack1': featTrack1, 
+		context = {'featTrack1': featTrack1,
 				  'track1Artist_Id': track1Artist_Id,
   				  'track2Artist_Id': track2Artist_Id,
 				  'track3Artist_Id': track3Artist_Id,
@@ -74,8 +80,8 @@ def index(request):
 				  'topTrack1': topTrack1,
 
 
-				  'featTrack2': featTrack2, 
-				  'featTrack3': featTrack3, 
+				  'featTrack2': featTrack2,
+				  'featTrack3': featTrack3,
 				  'lyricsList1': lyricsList1[0],
 				  'lyricsList12': lyricsList1[1],
 				  'lyricsList2': lyricsList2[0],
@@ -88,12 +94,12 @@ def index(request):
 				  'yesterdayTrack': yesterdayTrack,
 				  'yesterdayLyric1': yesterdayLyrics[0],
 				  'yesterdayLyric2': yesterdayLyrics[1],
-				  'upvoteCount': "6969", 
+				  'upvoteCount': "6969",
 							'audio1': "track_default.mp3",
 							'audio2': "track_default.mp3",
 							'audio3': "track_default.mp3",
 							'yesterdayAudio': "track_default.mp3",
-				  'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual", 
+				  'lyrics': "I'm a spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical <br></br> individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual spiritual lyrical spiritual lyrical individual",
 				},
 	)
 
@@ -192,11 +198,3 @@ def getArtistInfo(request, pk):
 	artist = get_object_or_404(Artist, pk = pk)
 	if request.method == 'GET':
 		return render(request, 'profile.html', {'artist': artist})
-
-
-
-
-
-
-
-
