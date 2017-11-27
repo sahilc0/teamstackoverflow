@@ -12,7 +12,6 @@ class UserForm(forms.Form):
 
 
 class TrackForm(forms.ModelForm):
-	class Meta:
-		model = Track
+    class Meta:
+        model = Track
         exclude = ['upvotes', 'id']
-        #fields = ['title', 'artist', 'genre', 'description', 'keywords', 'file']
