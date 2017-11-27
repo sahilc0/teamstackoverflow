@@ -60,9 +60,8 @@
                 <button href="{% url 'profile' %}" class="btn btn-secondary dropdown-toggle"
                         type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-
-                        <img src ="{% static '/images/profile_default.png' %}" width='35px'> 
-                      {% block UserProfilePic %} {% endblock %}
+                        <span>{{user.artist.firstName}}</span>
+                        {{user.artist.image}}
                     
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -74,7 +73,9 @@
               </div> <!-- dropdown div ends here-->
 
               {% else %}
-              <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+              <a href="{% url 'login' %}?next={{request.path}}">
+              <p id="contests-link" class="btn-link">Login</p>
+              </a>
               {% endif %}
             </li>
           </ul>

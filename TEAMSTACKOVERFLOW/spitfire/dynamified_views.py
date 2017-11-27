@@ -22,12 +22,11 @@ def create_profile(request):
 			email = user_form.cleaned_data['email']
 			city = user_form.cleaned_data['city']
 			user = User.objects.create_user(username, email, password)
-			img = user_form.cleaned_data['image']
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
 			#we can substitute the bottom code with a @receiver decorator
-			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city, image=img)
+			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city)
 			artist.save()
 			return render(request,'index.html')
 	else:
@@ -178,6 +177,9 @@ def profile(request):
 					'tracks': tracks,
 				  },
 	)
+
+#ronny's testing stuff out below this
+
 
 @login_required
 def getTrackInfo(request, pk):
