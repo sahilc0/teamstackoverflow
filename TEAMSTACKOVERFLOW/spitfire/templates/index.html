@@ -2,7 +2,7 @@
 
 
 
-{% block includeCSS %} 
+{% block includeCSS %}
   {% load static %}
   <link rel="stylesheet" href= "{% static 'css/index.css' %}">
 {% endblock %}
@@ -23,7 +23,7 @@
                   <p class="card-text">
                     {{ featTrack1.description }}
                   </p>
-                  <a href="./soundtrack" class="card-link">LISTEN</a>
+                  <a href="./soundtrack/{{ featTrack1.id }}" class="card-link">LISTEN</a>
                   <a href="./profile/{{ track1Artist_Id }}" class="card-link">VIEW ARTIST</a>
                 </div>
             </div>
@@ -37,12 +37,12 @@
               <p class="card-text">
                 {{ featTrack2.description }}
               </p>
-              <a href="./soundtrack/" class="card-link">LISTEN</a>
+              <a href="./soundtrack/{{ featTrack2.id }}" class="card-link">LISTEN</a>
               <a href="./profile/{{ track2Artist_Id }}" class="card-link">VIEW ARTIST</a>
             </div>
           </div>
         </div>
-        <div class='col-md-4'>  
+        <div class='col-md-4'>
           <div class="card">
             <div class="card-body">
               <img src='https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg' class="soundtrack-image">
@@ -51,12 +51,12 @@
               <p class="card-text">
                 {{ featTrack3.description }}
               </p>
-              <a href="./soundtrack" class="card-link">LISTEN</a>
+              <a href="./soundtrack/{{ featTrack3.id }}" class="card-link">LISTEN</a>
               <a href="./profile/{{ track3Artist_Id }}" class="card-link">VIEW ARTIST</a>
             </div>
           </div>
         </div>
-      </div>  
+      </div>
       <div class='row'>
         <h2 class="section-title">Top</h2>
       </div>
@@ -75,94 +75,38 @@
 
       <div class='row'>
         <div class="col-md-12">
-          <div class="card-group soundtrack-box">
+          {% for track in tracks %}
+  				<div class="card-group soundtrack-box" track-id={{track.id}}>
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ topTrack1.artist }}</h4>
-                <h5>{{ topTrack1.title }}</h5>
+                <h4>{{ track.title }}</h4>
+                <h5>{{ track.artist.full_name }}</h5>
               </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ topTrack.upvotes }}</b></button>
-              <img src="http://inyourspeakers.com/files/images/reviews/odesza-13120.jpg" class="soundtrack-image">
+              <button type="button-track" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ track.upvotes }}</b></button>
+              <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
-                <source src="/static/{{ audio1 }}" type="audio/mpeg">
+                <source src="/static/track_default.mp3" type="audio/mpeg">
               </audio>
               </div>
             </div>
             <div class="card col-md-8">
               <div class="card-body">
                 <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricsList1.title }}</h5>
-                <p class="card-text float-left">{{ lyricsList1.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList1.upvotes }}</b></button>
-
-                <h5 class='card-text float-left'>{{ lyricsList12.title }}</h5>
-                <p class="card-text float-left">{{ lyricsList12.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList12.upvotes }}</b></button>
+                {% for lyric in track.top_lyrics%}
+                  <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
+                  <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
+                  <button type="button-lyric" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric.upvotes }}</b></button>
+                {% endfor %}
               </div>
             </div>
           </div>
-
-          <div class="card-group soundtrack-box">
-          <div class="card col-md-4">
-            <div class="card-body">
-              <div class = 'float-left'>
-                <h4>{{ topTrack2.artist }}</h4>
-                <h5>{{ topTrack2.title }}</h5>
-              </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ topTrack2.upvotes }}</b></button>
-              <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
-              <audio controls="controls">
-                Your browser does not support the audio element.
-                <source src="/static/{{ audio2 }}" type="audio/mpeg">
-              </audio>
-              </div>
-            </div>
-            <div class="card col-md-8">
-              <div class="card-body">
-                <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricsList2.title }}</h5>
-                <p class="card-text float-left">{{ lyricsList2.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList2.upvotes }}</b></button>
-
-                <h5 class='card-text float-left'> {{ lyricsList21.title }}</h5>
-                <p class="card-text float-left">{{ lyricsList21.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList21.upvotes }}</b></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-group soundtrack-box">
-          <div class="card col-md-4">
-            <div class="card-body">
-              <div class = 'float-left'>
-                <h4>{{ topTrack3.artist }}</h4>
-                <h5>{{ topTrack3.title }}</h5>
-              </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ topTrack3.upvotes }}</b></button>
-              <img src="http://inyourspeakers.com/files/images/reviews/odesza-13120.jpg" class="soundtrack-image">
-              <audio controls="controls">
-                Your browser does not support the audio element.
-                <source src="/static/{{ audio3 }}" type="audio/mpeg">
-              </audio>
-              </div>
-            </div>
-            <div class="card col-md-8">
-              <div class="card-body">
-                <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ lyricsList3.title }}</h5>
-                <p class="card-text float-left">{{ lyricsList3.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyricsList3.upvotes }}</b></button>
-
-                <h5 class='card-text float-left'>{{ lyricsList31.title }}</h5>
-                <p class="card-text float-left">{{ lyricsList31.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ .upvotes}}</b></button>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
+
+
       <div class='row'>
         <h2 class="section-title">Yesterday</h2>
       </div>
@@ -196,7 +140,7 @@
               </div>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
     </div>
 
