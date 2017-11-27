@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 def create_profile(request):
 	if request.method == 'POST':
@@ -40,6 +41,42 @@ def create_profile(request):
 			'user_form':user_form,
 		},
 	)
+
+def create_comment (request):
+	if request.method == 'POST':
+		comment_form = CommentForm(request.POST)
+		if comment_form.is_valid():
+			comment = comment_form.cleaned_data['comment'];
+			TrackComment = TrackComment (upvotes=0, text=comment)
+
+			return render(request, 'soundtrack.html')
+	else:
+		comment_form = CommentForm()
+	return render(
+		request,
+		'soundtrack.html',
+		context = {
+		'comment_form': comment_form
+		},
+	)
+
+@login_required
+def upvoteTrack(request, pk):
+	track = get_object_or_404(Track, pk = pk)
+
+	if request.method == 'POST':
+		track.upvotes = track.upvotes + 1
+		track.save()
+		return HttpResponse(track.upvotes)
+
+@login_required
+def upvoteLyric(request, pk):
+	lyric = get_object_or_404(Lyrics, pk = pk)
+
+	if request.method == 'POST':
+		lyric.upvotes = lyric.upvotes + 1
+		lyric.save()
+		return HttpResponse(lyric.upvotes)
 
 def index(request):
 	featTrack1 = Track.objects.get(title='Rolling in the Deep')
