@@ -60,6 +60,7 @@ def create_comment (request):
 		},
 	)
 
+@login_required
 def upvoteTrack(request, pk):
 	track = get_object_or_404(Track, pk = pk)
 
@@ -68,6 +69,7 @@ def upvoteTrack(request, pk):
 		track.save()
 		return HttpResponse(track.upvotes)
 
+@login_required
 def upvoteLyric(request, pk):
 	lyric = get_object_or_404(Lyrics, pk = pk)
 
@@ -112,25 +114,26 @@ def index(request):
 def track(request):
 	thisArtist = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
 	thisTrack = Track.objects.get(artist_id = thisArtist.id)
-	lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
+	# lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
 	# comment1 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
-	lyric2 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
+	# lyric2 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
 	# comment2 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
 
+
 	if request.method == 'POST':
-		comment1_form = CommentForm(request.POST)
-		if comment1_form.is_valid():
-			comment1 = comment1_form.cleaned_data['comment1'];
+		comment1 = CommentForm(request.POST)
+		if comment1.is_valid():
+			comment1 = comment1.cleaned_data['comment1'];
 			TrackComment1 = TrackComment1 (upvotes=0, text=comment1)
 
 			return render(request, 'soundtrack.html')
 	else:
-		comment1_form = CommentForm()
+		comment1 = CommentForm()
 	return render(
 		request,
 		'soundtrack.html',
 		context = {
-		'comment1_form': comment1_form
+		'comment1': comment1
 		},
 	)
 
@@ -211,7 +214,7 @@ def profile(request):
 @login_required
 def getTrackInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
-	if request.method == 'GET':
+	if request.method == 'GET' or 'POST':
 		return render(request, 'soundtrack.html', {'track': track})
 
 @login_required
