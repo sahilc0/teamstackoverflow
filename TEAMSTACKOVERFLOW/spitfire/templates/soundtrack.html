@@ -25,8 +25,8 @@
               <div id="picture"><img src ="{% static '/images/profile_default.png' %}" width= '100px'></div>
                 <ul id="names-and-info">
                   <li>{{ track.title }}</li>
-                  <li>{{ thisArtist.first_name }} {{ thisArtist.last_name }}</li>
-                  <li>{{ thisTrack.keywords }}</li>
+                  <li>{{ track.artist.firstName }} {{ track.artist.lastName }}</li>
+                  <li>{{ track.keywords }}</li>
                 </ul>
             </div>
           </div>
@@ -49,14 +49,15 @@
         </div>
       </div>
  <!-- LYRICS SECTION BELOW -->
+    {% for lyric in track.top_lyrics%}
       <div class="row" id='lyrics'> 
         <div class='col-md-12'>
           <div class="card-group">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">{{ lyric1.title }}</h4>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric1.upvotes }}</b></button>
-                <p class="card-text">{{ lyric1.text }}</p>
+                <h4 class="card-title">{{ lyric.title }}</h4>
+                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric.upvotes }}</b></button>
+                <p class="card-text">{{ lyric.text }}</p>
               </div>
             </div>
             <div class="card">
@@ -79,29 +80,8 @@
           </div>
         </div> 
       </div>
-      <div class="row"> 
-        <div class='col-md-12'>
-          <div class="card-group">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">{{ lyric2.title }}</h4>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric2.upvotes }}</b></button>
-                <p class="card-text"> {{ lyric2.text }}</p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Comments</h4>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ comment2.upvotes }}</b></button>
-                <p class="card-text">
-                  <strong> {{ comment2.artist.first_name }} {{ comment2.artist.last_name }}</strong>
-                  <p> {{ comment2.text }} </p>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div> 
-      </div>
+    {% endfor %}
+    
     <div class="row">
         <div class='col-md-12'>
           <a href="{% url 'lyrics' %}">
