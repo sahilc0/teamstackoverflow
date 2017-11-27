@@ -65,7 +65,14 @@
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ comment1.upvotes }}</b></button>
                 <p class="card-text">
                   <strong> {{ comment1.artist.first_name }}</strong>
-                  <p> {{ comment1.text }} </p>
+                  <div>
+                    <input type="text" class = "form-control" id = "user">
+                  </div>
+                  <form method="post"> 
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button type="submit">Save changes</button>
+                  </form>
                 </p>
               </div>
             </div>

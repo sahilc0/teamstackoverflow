@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Sponsor
 from .forms import UserForm
 from .forms import TrackForm
+from .forms import CommentForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
@@ -38,6 +39,25 @@ def create_profile(request):
 			'user_form':user_form,
 		},
 	)
+
+def create_comment (request):
+	if request.method == 'POST':
+		comment_form = CommentForm(request.POST)
+		if comment_form.is_valid():
+			comment = comment_form.cleaned_data['comment'];
+			TrackComment = TrackComment (upvotes=0, text=comment)
+
+			return render(request, 'soundtrack.html')
+	else:
+		comment_form = CommentForm()
+	return render(
+		request,
+		'soundtrack.html',
+		context = {
+		'comment_form': comment_form
+		},
+	)
+
 
 def index(request):
 
