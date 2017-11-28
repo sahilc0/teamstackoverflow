@@ -15,7 +15,7 @@ class Sponsor (models.Model):
 
     name = models.CharField (max_length=200)
     description = models.CharField (max_length=2000)
-    # sponsor_image = models.TextField (max_length=200, help_text="Enter Image URL", default = "http://static.djbooth.net/pics-features/chance-3-artwork.jpg")
+    image = models.FileField(upload_to='sponsor/', default='sponsor/sponsor_default.png')
 
     def __str__(self):
         """
@@ -41,17 +41,14 @@ class TrackComment(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
     upvotes = models.PositiveIntegerField(default=0)
-    artist = models.ForeignKey('Artist', on_delete=models.SET_NULL, null=True)
+    artist = models.ForeignKey('Artist', on_delete=models.CASCADE)
     text = models.TextField(max_length=1000, help_text="Enter a comment")
-    track = models.ForeignKey('Track', on_delete=models.SET_NULL, null=True)
-
-
+    track = models.ForeignKey('Track', on_delete=models.CASCADE)
 
     def __str__(self):
         """
         """
         return 'Artist %s %s comment %s on %s' % (self.artist.firstName,self.artist.lastName,self.id,self.track.title)
-        # return self.id
 
 class LyricComment(models.Model):
     """
@@ -59,11 +56,9 @@ class LyricComment(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
     upvotes = models.PositiveIntegerField(default=0)
-    artist = models.ForeignKey('Artist', on_delete=models.SET_NULL, null=True)
+    artist = models.ForeignKey('Artist', on_delete=models.CASCADE)
     text = models.TextField(max_length=1000, help_text="Enter a comment")
-    lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL, null=True)
-
-
+    lyrics = models.ForeignKey('Lyrics', on_delete=models.CASCADE)
 
     def __str__(self):
         """
@@ -71,19 +66,18 @@ class LyricComment(models.Model):
         # return 'Artist %s %s comment on %s' % (self.artist.firstName,self.artist.lastName,self.lyrics.title)
         return self.text
 
-class Track(models.Model):  #the genre of a track is all the possible genres. This is a problem. Need fix
+class Track(models.Model): 
     """
     Model for track
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular track across whole site")
     title = models.CharField(max_length=200)
-    artist = models.ForeignKey('Artist', on_delete=models.SET_NULL,null=True)
+    artist = models.ForeignKey('Artist', on_delete=models.CASCADE)
     upvotes = models.PositiveIntegerField(default=0)
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     description = models.TextField(blank=True, max_length=300)
     keywords = models.TextField(blank = True, max_length=30)
-    #file = models.FileField(upload_to='songs', blank=True)  #change this line so that it cannot be blank. Right now blank is true for testing
-    mp3 = models.FileField(upload_to='user_audio/', default='static/user_audio/track_default.png')
+    mp3 = models.FileField(upload_to='user_audio/', default='user_audio/track_default.mp3')
 
     def get_absolute_url(self):
         """
@@ -116,10 +110,10 @@ class Lyrics(models.Model): #this model looks good
     Model for lyrics
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
-    artist = models.ForeignKey('Artist', on_delete=models.SET_NULL,null=True)
-    title = models.CharField(max_length=100, null=True)
+    artist = models.ForeignKey('Artist', on_delete=models.CASCADE)
+    title = models.CharField(max_length=100, default="Some Terrific Lyrics")
     upvotes = models.PositiveIntegerField(default=0)
-    Track = models.ForeignKey('Track', on_delete=models.SET_NULL, null=True)
+    Track = models.ForeignKey('Track', on_delete=models.CASCADE)
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     text = models.TextField(max_length=1000, help_text="Enter lyrics", default="Lyrical spiritual lyrics!")
 
@@ -143,21 +137,20 @@ class Artist(models.Model):
     """
     Model for Users/Artists (for purposes of simplicity we assume all users are potential artists even if they post no tracks)
     """
-    user = models.OneToOneField(User, related_name = 'artist', on_delete=models.CASCADE, null = True)
+    user = models.OneToOneField(User, related_name = 'artist', on_delete=models.CASCADE)
     # set the default value
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular artist across whole site")
     firstName = models.CharField(max_length=100, default = "Firstname")
     lastName = models.CharField(max_length=100, default = "Lastname")
-    city = models.CharField(max_length=100, blank = True, null=True)
-    number_of_spits = models.CharField(max_length=100, blank = True, null=True)
+    city = models.CharField(max_length=100, null=True)
+    number_of_spits = models.PositiveIntegerField(default=0)
     number_of_followers = models.PositiveIntegerField(default=0)
     number_of_following = models.PositiveIntegerField(default=0)
-    date_of_birth = models.DateField(null=True, blank=True)
-    first_joined = models.DateField(null=True, blank=True)
-    twitter_link = models.CharField(max_length=100, blank=True)
-    instagram_link = models.CharField(max_length=100, blank=True)
-    soundcloud_link = models.CharField(max_length=100, blank=True)
-    # file should be named userid_ppic_number
+    date_of_birth = models.DateField(null=True)
+    first_joined = models.DateField(null=True)
+    twitter_link = models.CharField(max_length=100,blank=True,null=True)
+    instagram_link = models.CharField(max_length=100,blank=True, null=True)
+    soundcloud_link = models.CharField(max_length=100,blank=True, null=True)
     image = models.FileField(upload_to='user_propics/', default='user_propics/profile_default.png')
 
     def full_name(self):
@@ -172,30 +165,8 @@ class Artist(models.Model):
         """
         return reverse('artist-detail', args=[str(self.id)])
 
-
-
     def __str__(self):
         """
         String for representing the Model object.
         """
         return '%s, %s' % (self.lastName, self.firstName)
-"""
-@receiver(post_save, sender=User)
-def create_user_Artist(sender, instance, created, **kwargs):
-    if created:
-        artist = Artist.objects.create(user=instance, firstName=User.first_name, lastName=User.last_name)
-        artist.save()
-
-
-
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, **kwargs):
-        if created:
-            artist = Artist.objects.create(user=instance)
-            artist.user = sender
-            artist.save()
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.artist.save()
-"""
