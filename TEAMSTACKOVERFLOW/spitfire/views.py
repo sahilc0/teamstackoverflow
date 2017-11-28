@@ -50,7 +50,7 @@ def create_comment (request):
 		if comment.is_valid():
 			comment = comment.cleaned_data['comment'];
 			track_comment = TrackComment (upvotes=0, text=comment, track=track)
-			track_comment.save()			
+			track_comment.save()
 		return render(request, 'soundtrack.html')
 	else:
 		comment = CommentForm()
@@ -63,8 +63,12 @@ def create_comment (request):
 		},
 	)
 
+def search(request):
+	search_field = request.GET.get('search_field', None)
+	search_results = Track.objects.filter(title__contains=search_field) | Track.objects.filter(description__contains=search_field) | Track.objects.filter(keywords__contains=search_field)
 
-		
+	return render(request, "search_result.html", context = {'tracks': search_results,},)
+
 @login_required
 def upvoteTrack(request, pk):
 	track = get_object_or_404(Track, pk = pk)
@@ -238,4 +242,3 @@ def getLyricsInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
 	if request.method == 'GET':
 		return render(request, 'lyrics-sync.html', {'track': track})
-
