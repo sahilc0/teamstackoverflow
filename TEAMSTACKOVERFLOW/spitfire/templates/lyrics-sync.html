@@ -50,10 +50,15 @@
               <div class="card-body">
                 <h4 class="card-title">Paste Your Lyrics Here</h4>
                 <div class="form-group">
-                  <label for="comment"></label>
-                  <textarea class="form-control" rows="5" id="comment"></textarea>
+                  <form action="" method="post">
+                  {% csrf_token %}
+                  <table>
+                  {{ form }}
+                  </table>
+                  <input type="submit" value="Spit Fire" />
+                  </form>
                 </div>
-                <button type="button" class="btn btn-primary float-right">Spit Fire</button>
+                <!--<button type="button" class="btn btn-primary float-right">Submit</button>-->
               </div>
             </div>
           </div>
@@ -61,3 +66,7 @@
       </div>
   </div>
 {% endblock %}
+
+
+
+

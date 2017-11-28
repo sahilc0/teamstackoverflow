@@ -11,7 +11,7 @@ $(function(){
     }
     return "";
   }
-  
+
   $('.upvote-btn').on('click', function(event){
     var attr = $(this).attr('track-id');
 
@@ -21,18 +21,50 @@ $(function(){
 
     if(typeof attr !== typeof undefined && attr !== false){//track upvote btn
       var id = $(event.target).attr("track-id");
-      $.post("soundtrack/" + id + "/upvote", function(upvoteCount){
+      $.post("/spitfire/soundtrack/" + id + "/upvote", function(upvoteCount){
         $(event.target).html("▲ " + upvoteCount);
         $(event.target).prop("disabled", true);
       });
     } else{ //lyric upvote btn
       var id = $(event.target).attr("lyric-id");
-      $.post("lyric/" + id + "/upvote", function(upvoteCount){
+      $.post("/spitfire/lyric/" + id + "/upvote", function(upvoteCount){
         $(event.target).html("▲ " + upvoteCount);
         $(event.target).prop("disabled", true);
       });
     }
-
     console.log(event);
   });
+
+  $('.soundtrack-image').hover(function() {
+    $(this).css('cursor','pointer');
+  }, function() {
+    $(this).css('cursor','auto');
+  });
+
+  $('.track-title').hover(function() {
+    $(this).css('cursor','pointer');
+  }, function() {
+    $(this).css('cursor','auto');
+  });
+
+  $('.track-artist').hover(function() {
+    $(this).css('cursor','pointer');
+  }, function() {
+    $(this).css('cursor','auto');
+  });
+
+  $('.soundtrack-image').on('click', function(event){
+    var trackid = $(this).attr('track-id');
+    window.location.replace("http://localhost:8000/spitfire/soundtrack/" + trackid);
+  })
+
+  $('.track-title').on('click', function(event){
+    var trackid = $(this).attr('track-id');
+    window.location.replace("http://localhost:8000/spitfire/soundtrack/" + trackid);
+  })
+
+  $('.track-artist').on('click', function(event){
+    var artistid = $(this).attr('artist-id');
+    window.location.replace("http://localhost:8000/spitfire/profile/" + artistid);
+  })
 });

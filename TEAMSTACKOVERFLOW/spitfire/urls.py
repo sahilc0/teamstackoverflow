@@ -7,7 +7,6 @@ from django.conf import settings
 
 urlpatterns = [
 	url(r'^$', views.index, name="index"),
-	url(r'^soundtrack$', views.track, name='track'),
 	url(r'^soundtrack/lyrics/(?P<pk>[-\w]+)$', views.getLyricsInfo, name='lyrics'),
 	url(r'^profile$', views.profile, name='profile'),
 	url(r'^contest$', views.contest, name='contest'),

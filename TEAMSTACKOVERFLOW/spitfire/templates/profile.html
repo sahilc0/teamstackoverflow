@@ -8,8 +8,8 @@
     <script src="https://use.fontawesome.com/9d055d83d3.js"></script>
 {% endblock %}
 
-{% block UserProfilePic %}
-    {{ profileImage }}
+{% block propic %}
+<img src ="../{{artist.image.url}}" width= '35px'>
 {% endblock %}
 
 {% block bodyContent %}
@@ -20,7 +20,7 @@
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <div class="card-body" id="user-header-details">
-                  <img src="https://pbs.twimg.com/profile_images/891552595059146753/mao5zWtT_400x400.jpg" class="rounded-circle" id="user-pic" alt="User profile picture">
+                  <img src ="../{{artist.image.url}}" class="rounded-circle" id="user-pic" alt="User profile picture">
                   <div>
                     <h2 class="card-title" id="user-info-name">{{ artist.firstName }} </h2>
                     <p class="card-subtitle" id="user-info-location">{{ artist.city }}</p>
@@ -37,15 +37,15 @@
                 <div class="card-body" id="user-header-stats">
                   <div id="user-stats">
                     <div>
-                      <strong id="strong1">{{ user.artist.number_of_spits }}</strong>
+                      <strong id="strong1">{{ artist.number_of_spits }}</strong>
                       <p class="card-text">Spits</p>
                     </div>
                     <div>
-                      <strong id ="strong2">{{ user.artist.number_of_following }}</strong>
+                      <strong id ="strong2">{{ artist.number_of_following }}</strong>
                       <p class="card-text">Following</p>
                     </div>
                     <div>
-                      <strong id ="strong3">{{ user.artist.number_of_followers }} </strong>
+                      <strong id ="strong3">{{ artist.number_of_followers }} </strong>
                       <p class="card-text">Followers</p>
                     </div>
                   </div>
@@ -70,25 +70,25 @@
   				</div>
 
           {% for track in tracks %}
-  				<div class="card-group soundtrack-box">
+  				<div  class="card-group soundtrack-box" track-id={{track.id}}>
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ track.title }}</h4>
-                <h5>{{ track.artist.full_name }}</h5>
+                <h4 track-id="{{track.id}}" class="track-title">{{ track.title }}</h4>
+                <h5 artist-id="{{track.artist.id}}" class="track-artist">{{ track.artist.full_name }}</h5>
               </div>
               <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
-              <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" class="soundtrack-image">
+              <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" track-id="{{track.id}}" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
-                <source src="/static/track_default.mp3" type="audio/mpeg">
+                <source src="../{{track.mp3.url}}" type="audio/mpeg">
               </audio>
               </div>
             </div>
             <div class="card col-md-8">
               <div class="card-body">
                 <h4 class="card-title">Top Lyrics</h4>
-                {% for lyric in track.top_lyrics%}
+                {% for lyric in track.top_lyrics %}
                   <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
                   <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
                   <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>

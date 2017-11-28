@@ -45,7 +45,7 @@ class TrackComment(models.Model):
     text = models.TextField(max_length=1000, help_text="Enter a comment")
     track = models.ForeignKey('Track', on_delete=models.SET_NULL, null=True)
 
-  
+
 
     def __str__(self):
         """
@@ -53,7 +53,7 @@ class TrackComment(models.Model):
         return 'Artist %s %s comment %s on %s' % (self.artist.firstName,self.artist.lastName,self.id,self.track.title)
         # return self.id
 
-class LyricComment(models.Model):  
+class LyricComment(models.Model):
     """
     Model for the comments to a lyric
     """
@@ -63,8 +63,6 @@ class LyricComment(models.Model):
     text = models.TextField(max_length=1000, help_text="Enter a comment")
     lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL, null=True)
 
-    def top_comments(self):
-        return LyricComment.objects.filter(LyricComment=self.id).order_by('-upvotes')
 
 
     def __str__(self):
@@ -131,6 +129,9 @@ class Lyrics(models.Model): #this model looks good
         """
         self.track.display_genre()
 
+    def top_comments(self):
+        return LyricComment.objects.filter(lyrics=self.id).order_by('-upvotes')
+
     def __str__(self):
         """
         String for representing the lyrics object
@@ -138,7 +139,7 @@ class Lyrics(models.Model): #this model looks good
         return self.title
 
 
-class Artist(models.Model): 
+class Artist(models.Model):
     """
     Model for Users/Artists (for purposes of simplicity we assume all users are potential artists even if they post no tracks)
     """
@@ -157,8 +158,8 @@ class Artist(models.Model):
     instagram_link = models.CharField(max_length=100, blank=True)
     soundcloud_link = models.CharField(max_length=100, blank=True)
     # file should be named userid_ppic_number
-    image = models.FileField(upload_to='user_propics/', default='static/user_propics/profile_default.png')
-    
+    image = models.FileField(upload_to='user_propics/', default='user_propics/profile_default.png')
+
     def full_name(self):
         """
         Returns the full name of this Artist.
@@ -170,7 +171,7 @@ class Artist(models.Model):
         Returns the url to access a particular artist instance.
         """
         return reverse('artist-detail', args=[str(self.id)])
-   
+
 
 
     def __str__(self):
@@ -198,6 +199,3 @@ def create_user_Artist(sender, instance, created, **kwargs):
     def save_user_profile(sender, instance, **kwargs):
         instance.artist.save()
 """
-
-
-

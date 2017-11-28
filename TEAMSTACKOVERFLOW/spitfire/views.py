@@ -7,6 +7,7 @@ from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Sp
 from .forms import UserForm
 from .forms import TrackForm
 from .forms import CommentForm
+from .forms import LyricsForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
@@ -24,12 +25,13 @@ def create_profile(request):
 			email = user_form.cleaned_data['email']
 			city = user_form.cleaned_data['city']
 			user = User.objects.create_user(username, email, password)
-			img = user_form.cleaned_data['image']
+			# image = user_form.cleaned_data['image']
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
 			#we can substitute the bottom code with a @receiver decorator
-			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city, image=img)
+			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city,)
+			# add image = image to above when that gets fixed
 			artist.save()
 			return render(request,'index.html')
 	else:
@@ -42,6 +44,7 @@ def create_profile(request):
 		},
 	)
 
+@login_required
 def create_comment (request):
 	if request.method == 'GET':
 		thing = request.GET.get(user_comment, None) #tried post but wasn't working so GET
@@ -49,7 +52,7 @@ def create_comment (request):
 		comment = CommentForm(request.POST)
 		if comment.is_valid():
 			comment = comment.cleaned_data['comment'];
-			track_comment = TrackComment (upvotes=0, text=comment, track=track)
+			track_comment = TrackComment (upvotes=0, text=comment, track=track, artist=request.user)
 			track_comment.save()
 		return render(request, 'soundtrack.html')
 	else:
@@ -119,44 +122,7 @@ def index(request):
 				},
 	)
 
-def track(request):
-	thisArtist = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
-	thisTrack = Track.objects.get(artist_id = thisArtist.id)
-	# lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-	# comment1 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
-	# lyric2 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-	# comment2 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
 
-
-	# if request.method == 'POST':
-	# 	comment1 = CommentForm(request.POST)
-	# 	if comment1.is_valid():
-	# 		comment1 = comment1.cleaned_data['comment1'];
-	# 		TrackComment1 = TrackComment1 (upvotes=0, text=comment1)
-	# 		TrackComment1.save()
-
-	# 		return render(request, 'soundtrack.html')
-	# else:
-	# 	comment1 = CommentForm()
-	# return render(
-	# 	request,
-	# 	'soundtrack.html',
-	# 	context = {
-	# 	'comment1': comment1
-	# 	},
-	# )
-
-	return render(
-		request,
-		'soundtrack.html',
-		context = {'thisTrack': thisTrack,
-					 'thisArtist': thisArtist,
-					 'lyric1': lyric1,
-					 'comment1': comment1,
-						 'lyric2': lyric2,
-					 'comment2': comment2,
-					},
-	)
 #change request page for the functions below~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -195,9 +161,10 @@ def contest(request):
 	"""
 	put stuff here
 	"""
-	sponsor1 = Sponsor.objects.get (name = 'Red Bull')
-	sponsor2 = Sponsor.objects.get (name = 'Google')
-	sponsor3 = Sponsor.objects.get (name = 'Coca-Cola')
+	sponsers = Sponsor.objects.all()
+	sponsor1 = sponsers[0]
+	sponsor2 = sponsers[1]
+	sponsor3 = sponsers[2]
 
 	return render(
 		request,
@@ -229,11 +196,25 @@ def getTrackInfo(request, pk):
 @login_required
 def getArtistInfo(request, pk):
 	artist = get_object_or_404(Artist, pk = pk)
+	tracks = Track.objects.filter(artist = artist).order_by('-upvotes')
 	if request.method == 'GET':
-		return render(request, 'profile.html', {'artist': artist})
+		return render(request, 'profile.html', {'artist': artist,'tracks':tracks})
 
 @login_required
 def getLyricsInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
-	if request.method == 'GET':
-		return render(request, 'lyrics-sync.html', {'track': track})
+	print('y')
+	if request.method == 'POST':
+		print('x')
+		user = request.user
+		form = LyricsForm(request.POST, request.FILES)
+		if form.is_valid():
+			title = form.cleaned_data['title']
+			text = form.cleaned_data['text']
+			lyrics = Lyrics(title=title, artist=user.artist, Track=track, text=text)
+			lyrics.save()
+			return HttpResponseRedirect(reverse('profile'))
+	else:
+		form = LyricsForm()
+	return render(request, 'lyrics-sync.html', {'form': form})
+

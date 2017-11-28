@@ -65,8 +65,9 @@
                         type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span>{{user.artist.firstName}}</span>
-                        {{user.artist.image}}
-
+                        {% block propic %}
+                        <img width="35px" src="{{user.artist.image.url}}">
+                        {% endblock %}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
