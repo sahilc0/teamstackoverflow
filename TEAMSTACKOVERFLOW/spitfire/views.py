@@ -24,12 +24,12 @@ def create_profile(request):
 			email = user_form.cleaned_data['email']
 			city = user_form.cleaned_data['city']
 			user = User.objects.create_user(username, email, password)
-			img = user_form.cleaned_data['image']
+			#img = user_form.cleaned_data['image']
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
 			#we can substitute the bottom code with a @receiver decorator
-			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city, image=img)
+			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city) #image=img)
 			artist.save()
 			return render(request,'index.html')
 	else:
@@ -101,6 +101,8 @@ def index(request):
 	track1Artist_Id = featTrack1.artist.id
 	track2Artist_Id = featTrack2.artist.id
 	track3Artist_Id = featTrack3.artist.id
+	trialTrack = Track.objects.get(title='NSYNC2222')
+
 
 	return render(
 		request,
@@ -108,6 +110,8 @@ def index(request):
 		context = {	'featTrack1': featTrack1,
 					'featTrack2': featTrack2,
 				  	'featTrack3': featTrack3,
+				  	'trialTrack': trialTrack,
+
 				  	'track1Artist_Id': track1Artist_Id,
   				  	'track2Artist_Id': track2Artist_Id,
 				  	'track3Artist_Id': track3Artist_Id,
@@ -183,7 +187,6 @@ def upload(request):
 		if form.is_valid():
 			title = form.cleaned_data['title']
 			artist = form.cleaned_data['artist']
-			#upvotes = form.cleaned_data['upvotes']
 			genre = form.cleaned_data['genre']
 			description = form.cleaned_data['description']
 			keywords = form.cleaned_data['keywords']

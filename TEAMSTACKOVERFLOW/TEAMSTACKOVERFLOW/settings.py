@@ -120,8 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #the two lines below this is for uploading files, ignore this
-MEDIA_ROOT = os.path.join('TEAMSTACKOVERFLOW/spitfire/', 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join('spitfire/', 'media/')
+MEDIA_URL = 'media/'
 
 LOGIN_REDIRECT_URL = '/' #this redirects to homepage after logging in
 

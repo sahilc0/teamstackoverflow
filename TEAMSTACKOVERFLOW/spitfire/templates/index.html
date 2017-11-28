@@ -32,10 +32,13 @@
           <div class="card">
             <div class="card-body">
               <img src='https://pbs.twimg.com/media/DEEg9ZmUIAAcdEb.jpg' class="soundtrack-image">
-              <h4 class="card-title">{{ featTrack2.title }}</h4>
-              <h6 class="card-subtitle mb-2 text-muted">{{ featTrack2.artist }}</h6>
+              <h4 class="card-title">{{ trialTrack.title }}</h4>
+              <h6 class="card-subtitle mb-2 text-muted">{{ trialTrack.artist }}</h6>
               <p class="card-text">
                 {{ featTrack2.description }}
+                <audio controls>
+                  <source src="{{ trialTrack.mp3.url }}" type="audio/mpeg">                
+                </audio>
               </p>
               <a href="./soundtrack/{{ featTrack2.id }}" class="card-link">LISTEN</a>
               <a href="./profile/{{ track2Artist_Id }}" class="card-link">VIEW ARTIST</a>
