@@ -24,12 +24,12 @@ def create_profile(request):
 			email = user_form.cleaned_data['email']
 			city = user_form.cleaned_data['city']
 			user = User.objects.create_user(username, email, password)
-			#img = user_form.cleaned_data['image']
+			img = user_form.cleaned_data['image']
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
 			#we can substitute the bottom code with a @receiver decorator
-			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city) #image=img)
+			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city, image=img)
 			artist.save()
 			return render(request,'index.html')
 	else:
@@ -85,7 +85,7 @@ def upvoteLyric(request, pk):
 
 def index(request):
 	featTrack1 = Track.objects.get(title='Rolling in the Deep')
-	featTrack2 = Track.objects.get(title='UptownFunk')
+	featTrack2 = Track.objects.get(title='Bye Bye Bye')
 	featTrack3 = Track.objects.get(title='99Problems')
 	yesterdayTrack = Track.objects.get(id = 'b95a3265471b43f49172029cfdceaeb1')
 	yesterdayLyrics = Lyrics.objects.filter(Track = yesterdayTrack.id)
@@ -95,7 +95,6 @@ def index(request):
 	track1Artist_Id = featTrack1.artist.id
 	track2Artist_Id = featTrack2.artist.id
 	track3Artist_Id = featTrack3.artist.id
-	trialTrack = Track.objects.get(title='NSYNC2222')
 
 
 	return render(
@@ -104,8 +103,6 @@ def index(request):
 		context = {	'featTrack1': featTrack1,
 					'featTrack2': featTrack2,
 				  	'featTrack3': featTrack3,
-				  	'trialTrack': trialTrack,
-
 				  	'track1Artist_Id': track1Artist_Id,
   				  	'track2Artist_Id': track2Artist_Id,
 				  	'track3Artist_Id': track3Artist_Id,

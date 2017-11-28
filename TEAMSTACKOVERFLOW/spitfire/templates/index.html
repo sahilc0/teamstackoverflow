@@ -22,6 +22,9 @@
                   <h6 class="card-subtitle mb-2 text-muted">{{ featTrack1.artist }}</h6>
                   <p class="card-text">
                     {{ featTrack1.description }}
+                    <audio controls>
+                      <source src="{{ featTrack1.mp3.url }}" type="audio/mpeg">                
+                    </audio>
                   </p>
                   <a href="./soundtrack/{{ featTrack1.id }}" class="card-link">LISTEN</a>
                   <a href="./profile/{{ track1Artist_Id }}" class="card-link">VIEW ARTIST</a>
@@ -32,12 +35,12 @@
           <div class="card">
             <div class="card-body">
               <img src='https://pbs.twimg.com/media/DEEg9ZmUIAAcdEb.jpg' class="soundtrack-image">
-              <h4 class="card-title">{{ trialTrack.title }}</h4>
-              <h6 class="card-subtitle mb-2 text-muted">{{ trialTrack.artist }}</h6>
+              <h4 class="card-title">{{ featTrack2.title }}</h4>
+              <h6 class="card-subtitle mb-2 text-muted">{{ featTrack2.artist }}</h6>
               <p class="card-text">
                 {{ featTrack2.description }}
                 <audio controls>
-                  <source src="{{ trialTrack.mp3.url }}" type="audio/mpeg">                
+                  <source src="{{ featTrack2.mp3.url }}" type="audio/mpeg">                
                 </audio>
               </p>
               <a href="./soundtrack/{{ featTrack2.id }}" class="card-link">LISTEN</a>
@@ -53,6 +56,9 @@
               <h6 class="card-subtitle mb-2 text-muted">{{ featTrack3.artist }}</h6>
               <p class="card-text">
                 {{ featTrack3.description }}
+                <audio controls>
+                  <source src="{{ featTrack3.mp3.url }}" type="audio/mpeg">                
+                </audio>
               </p>
               <a href="./soundtrack/{{ featTrack3.id }}" class="card-link">LISTEN</a>
               <a href="./profile/{{ track3Artist_Id }}" class="card-link">VIEW ARTIST</a>
@@ -90,7 +96,7 @@
               <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
-                <source src="/static/track_default.mp3" type="audio/mpeg">
+                <source src="{{ track.mp3.url }}" type="audio/mpeg">
               </audio>
               </div>
             </div>
@@ -126,7 +132,7 @@
               <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
-                <source src="/static/{{ yesterdayAudio }}" type="audio/mpeg">
+                <source src="{{ yesterdayTrack.mp3.url}}" type="audio/mpeg">
               </audio>
               </div>
             </div>
