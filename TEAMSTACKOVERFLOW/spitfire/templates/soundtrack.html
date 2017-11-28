@@ -63,18 +63,25 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Comments</h4>
+
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ comment1.upvotes }}</b></button>
-                <p class="card-text">
-                  <strong> {{ comment1.artist.first_name }}</strong>
-                  <div>
-                    <input type="text" class = "form-control" id = "user">
-                  </div>
-                  <form action ={{commentPostURL}} method="post"> 
-                    {% csrf_token %}
-                    {{ comment }}
-                    <button type="submit">Save changes</button>
-                  </form>
-                </p>
+
+                {% for lyric_comment in lyric.top_comments%}
+
+                  <p class="card-text">
+                    <strong> {{ lyric_comment.artist.user }}</strong>
+                {% endfor %}
+
+<!--                 <p><a href="{% url 'create_comment' %}">Create Comment</a></p>
+ -->
+                  
+                    <form action="create_comment" method="post"> 
+                      {% csrf_token %}  
+                      <input name = "user_comment" type="text" class = "form-control" id = "user">
+                      {{ comment }}
+                      <button type="submit">Submit</button>
+                    </form>
+                  </p>
               </div>
             </div>
           </div>
@@ -84,7 +91,7 @@
     
     <div class="row">
         <div class='col-md-12'>
-          <a href="{% url 'lyrics' %}">
+          <a href="./lyrics/{{ track.id }}">
             <button type="button" id="postLyrics" class="btn btn-secondary">Post Lyrics</button>
           </a>
           <button type="button" id="postComment" class="btn btn-secondary">Post Comment</button>

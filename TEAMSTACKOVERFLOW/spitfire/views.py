@@ -42,24 +42,18 @@ def create_profile(request):
 		},
 	)
 
-def create_comment (request, pk):
-	print ("start of method")
-	if request.method == 'POST':
-		track = get_object_or_404(Track, pk = pk)
-
+def create_comment (request):
+	if request.method == 'GET':
+		thing = request.GET.get(user_comment, None) #tried post but wasn't working so GET
+		print (thing)
 		comment = CommentForm(request.POST)
-		# print ("before second if")
-
 		if comment.is_valid():
 			comment = comment.cleaned_data['comment'];
-			# track_comment = TrackComment (upvotes=0, text=comment, track=track)
-			# track_comment.save()
-			# print ("hello")
-			return render(request, 'soundtrack.html')
+			track_comment = TrackComment (upvotes=0, text=comment, track=track)
+			track_comment.save()			
+		return render(request, 'soundtrack.html')
 	else:
 		comment = CommentForm()
-		# print ("hello from else")
-
 
 	return render(
 		request,
@@ -238,3 +232,10 @@ def getArtistInfo(request, pk):
 	artist = get_object_or_404(Artist, pk = pk)
 	if request.method == 'GET':
 		return render(request, 'profile.html', {'artist': artist})
+
+@login_required
+def getLyricsInfo(request, pk):
+	track = get_object_or_404(Track, pk = pk)
+	if request.method == 'GET':
+		return render(request, 'lyrics-sync.html', {'track': track})
+

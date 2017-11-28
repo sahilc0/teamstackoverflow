@@ -45,6 +45,8 @@ class TrackComment(models.Model):
     text = models.TextField(max_length=1000, help_text="Enter a comment")
     track = models.ForeignKey('Track', on_delete=models.SET_NULL, null=True)
 
+  
+
     def __str__(self):
         """
         """
@@ -60,6 +62,10 @@ class LyricComment(models.Model):
     artist = models.ForeignKey('Artist', on_delete=models.SET_NULL, null=True)
     text = models.TextField(max_length=1000, help_text="Enter a comment")
     lyrics = models.ForeignKey('Lyrics', on_delete=models.SET_NULL, null=True)
+
+    def top_comments(self):
+        return LyricComment.objects.filter(LyricComment=self.id).order_by('-upvotes')
+
 
     def __str__(self):
         """

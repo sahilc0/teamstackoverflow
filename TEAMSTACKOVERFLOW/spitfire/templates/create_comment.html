@@ -1,0 +1,20 @@
+<!-- MAY NOT NEED TO USE THIS -->
+
+{% extends 'baseTemplate.html' %}
+
+{% block includeCSS %}
+  {% load static %}
+    <link rel="stylesheet" href="{% static '../static/css/profileStyles.css' %}">
+    <!-- Font Awesome for Social Links -->
+    <script src="https://use.fontawesome.com/9d055d83d3.js"></script>
+{% endblock %}
+
+{% block bodyContent %}
+
+    <form method="post">
+      {% csrf_token %}
+      {{ comment.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+
+{% endblock %}
