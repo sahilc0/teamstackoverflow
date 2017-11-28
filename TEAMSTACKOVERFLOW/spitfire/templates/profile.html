@@ -24,7 +24,7 @@
                   <div>
                     <h2 class="card-title" id="user-info-name">{{ artist.firstName }} </h2>
                     <p class="card-subtitle" id="user-info-location">{{ artist.city }}</p>
-                    <p class="card-text" id="user-info-description">Rapper/Producer from the Bean.</p>
+                    <p class="card-text" id="user-info-description">{{artist.description}}</p>
                     <div>
                       <i class="fa fa-twitter" id="twitter-link" aria-hidden="true"></i>
                       <i class="fa fa-instagram" id="instagram-link" aria-hidden="true"></i>
@@ -78,7 +78,7 @@
                 <h5 artist-id="{{track.artist.id}}" class="track-artist">{{ track.artist.full_name }}</h5>
               </div>
               <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
-              <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" track-id="{{track.id}}" class="soundtrack-image">
+              <img src="../{{track.image.url}}" track-id="{{track.id}}" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
                 <source src="../{{track.mp3.url}}" type="audio/mpeg">

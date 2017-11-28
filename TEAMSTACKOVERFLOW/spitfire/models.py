@@ -8,14 +8,15 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-class Sponsor (models.Model):
+class Contest(models.Model):
     """
     Model for sponsors for contests
     """
-
+    sponsor = models.ForeignKey('Artist',on_delete=models.CASCADE)
     name = models.CharField (max_length=200)
     description = models.CharField (max_length=2000)
     image = models.FileField(upload_to='sponsor/', default='sponsor/sponsor_default.png')
+    reward = models.PositiveIntegerField(default = 0)
 
     def __str__(self):
         """
@@ -77,6 +78,8 @@ class Track(models.Model):
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this track")
     description = models.TextField(blank=True, max_length=300)
     keywords = models.TextField(blank = True, max_length=30)
+    featured = models.BooleanField(default=False)
+    image = models.FileField(upload_to='track_pics/', default='track_pics/trackpic_default.jpg')
     mp3 = models.FileField(upload_to='user_audio/', default='user_audio/track_default.mp3')
 
     def get_absolute_url(self):
@@ -105,7 +108,7 @@ class Track(models.Model):
         track = self.create(title=title, artist=artist, upvotes=upvotes, genre=genre, description=description, keywords=keywords)
         return track
 
-class Lyrics(models.Model): #this model looks good
+class Lyrics(models.Model): 
     """
     Model for lyrics
     """
@@ -143,6 +146,7 @@ class Artist(models.Model):
     firstName = models.CharField(max_length=100, default = "Firstname")
     lastName = models.CharField(max_length=100, default = "Lastname")
     city = models.CharField(max_length=100, null=True)
+    description = models.TextField(max_length=2000)
     number_of_spits = models.PositiveIntegerField(default=0)
     number_of_followers = models.PositiveIntegerField(default=0)
     number_of_following = models.PositiveIntegerField(default=0)
