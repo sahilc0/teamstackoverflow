@@ -4,10 +4,10 @@
 <title>A Soundtrack</title>
 {% endblock %}
 
-{% block includeCSS %} 
+{% block includeCSS %}
   {% load static %}
-  <link rel="stylesheet" href="{% static 'css/soundtrack.css' %}"> 
-  
+  <link rel="stylesheet" href="{% static 'css/soundtrack.css' %}">
+
 {% endblock %}
 
 
@@ -21,7 +21,7 @@
   <div class="container">
       <div class="row" id="profile"> <!-- header section -->
         <div class='col-md-8'>
-          <div id="trackInfo">                                
+          <div id="trackInfo">
               <div id="picture"><img src ="{% static '/images/profile_default.png' %}" width= '100px'></div>
                 <ul id="names-and-info">
                   <li>{{ track.title }}</li>
@@ -50,13 +50,13 @@
       </div>
  <!-- LYRICS SECTION BELOW -->
     {% for lyric in track.top_lyrics%}
-      <div class="row" id='lyrics'> 
+      <div class="row" id='lyrics'>
         <div class='col-md-12'>
           <div class="card-group">
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">{{ lyric.title }}</h4>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric.upvotes }}</b></button>
+                <button type="button" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
                 <p class="card-text">{{ lyric.text }}</p>
               </div>
             </div>
@@ -64,31 +64,29 @@
               <div class="card-body">
                 <h4 class="card-title">Comments</h4>
 
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ comment1.upvotes }}</b></button>
-
+                <ul>
                 {% for lyric_comment in lyric.top_comments%}
 
-                  <p class="card-text">
-                    <strong> {{ lyric_comment.artist.user }}</strong>
-                {% endfor %}
+                  <li> <strong>{{ lyric_comment.artist }}</strong>:  {{ lyric_comment.text }} <button type="button" lyric-comment-id="{{lyric_comment.id}}" class="btn btn-outline-secondary float-right upvote-btn">{{ lyric_comment.upvotes }}</button></li>
 
+                {% endfor %}
+                </ul>
 <!--                 <p><a href="{% url 'create_comment' %}">Create Comment</a></p>
  -->
-                  
-                    <form action="create_comment" method="post"> 
-                      {% csrf_token %}  
+
+                    <form action="create_comment" method="post">
+                      {% csrf_token %}
                       <input name = "user_comment" type="text" class = "form-control" id = "user">
                       {{ comment }}
                       <button type="submit">Submit</button>
                     </form>
-                  </p>
               </div>
             </div>
           </div>
-        </div> 
+        </div>
       </div>
     {% endfor %}
-    
+
     <div class="row">
         <div class='col-md-12'>
           <a href="./lyrics/{{ track.id }}">
@@ -100,6 +98,3 @@
   </div><!--content close-->
 
 {% endblock %}
-
-
-
