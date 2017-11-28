@@ -34,4 +34,37 @@ $(function(){
     }
     console.log(event);
   });
+
+  $('.soundtrack-image').hover(function() {
+    $(this).css('cursor','pointer');
+  }, function() {
+    $(this).css('cursor','auto');
+  });
+
+  $('.track-title').hover(function() {
+    $(this).css('cursor','pointer');
+  }, function() {
+    $(this).css('cursor','auto');
+  });
+
+  $('.track-artist').hover(function() {
+    $(this).css('cursor','pointer');
+  }, function() {
+    $(this).css('cursor','auto');
+  });
+
+  $('.soundtrack-image').on('click', function(event){
+    var trackid = $(this).attr('track-id');
+    window.location.replace("http://localhost:8000/spitfire/soundtrack/" + trackid);
+  })
+
+  $('.track-title').on('click', function(event){
+    var trackid = $(this).attr('track-id');
+    window.location.replace("http://localhost:8000/spitfire/soundtrack/" + trackid);
+  })
+
+  $('.track-artist').on('click', function(event){
+    var artistid = $(this).attr('artist-id');
+    window.location.replace("http://localhost:8000/spitfire/profile/" + artistid);
+  })
 });
