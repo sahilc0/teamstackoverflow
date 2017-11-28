@@ -158,7 +158,7 @@ class Artist(models.Model):
     instagram_link = models.CharField(max_length=100, blank=True)
     soundcloud_link = models.CharField(max_length=100, blank=True)
     # file should be named userid_ppic_number
-    image = models.FileField(upload_to='user_propics/', default='static/user_propics/profile_default.png')
+    image = models.FileField(upload_to='user_propics/', default='user_propics/profile_default.png')
 
     def full_name(self):
         """
