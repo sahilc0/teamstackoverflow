@@ -23,7 +23,7 @@
                   <p class="card-text">
                     {{ featTrack1.description }}
                     <audio controls>
-                      <source src="{{ featTrack1.mp3.url }}" type="audio/mpeg">                
+                      <source src="{{ featTrack1.mp3.url }}" type="audio/mpeg">
                     </audio>
                   </p>
                   <a href="./soundtrack/{{ featTrack1.id }}" class="card-link">LISTEN</a>
@@ -40,7 +40,7 @@
               <p class="card-text">
                 {{ featTrack2.description }}
                 <audio controls>
-                  <source src="{{ featTrack2.mp3.url }}" type="audio/mpeg">                
+                  <source src="{{ featTrack2.mp3.url }}" type="audio/mpeg">
                 </audio>
               </p>
               <a href="./soundtrack/{{ featTrack2.id }}" class="card-link">LISTEN</a>
@@ -57,7 +57,7 @@
               <p class="card-text">
                 {{ featTrack3.description }}
                 <audio controls>
-                  <source src="{{ featTrack3.mp3.url }}" type="audio/mpeg">                
+                  <source src="{{ featTrack3.mp3.url }}" type="audio/mpeg">
                 </audio>
               </p>
               <a href="./soundtrack/{{ featTrack3.id }}" class="card-link">LISTEN</a>
@@ -85,15 +85,15 @@
       <div class='row'>
         <div class="col-md-12">
           {% for track in tracks %}
-  				<div class="card-group soundtrack-box" track-id={{track.id}}>
+  				<div  class="card-group soundtrack-box" track-id={{track.id}}>
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ track.title }}</h4>
-                <h5>{{ track.artist.full_name }}</h5>
+                <h4 track-id="{{track.id}}" class="track-title">{{ track.title }}</h4>
+                <h5 artist-id="{{track.artist.id}}" class="track-artist">{{ track.artist.full_name }}</h5>
               </div>
               <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
-              <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" class="soundtrack-image">
+              <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" track-id="{{track.id}}" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
                 <source src="{{ track.mp3.url }}" type="audio/mpeg">
