@@ -7,6 +7,7 @@ from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Sp
 from .forms import UserForm
 from .forms import TrackForm
 from .forms import CommentForm
+from .forms import LyricsForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
@@ -235,5 +236,18 @@ def getArtistInfo(request, pk):
 @login_required
 def getLyricsInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
-	if request.method == 'GET':
-		return render(request, 'lyrics-sync.html', {'track': track})
+	print('y')
+	if request.method == 'POST':
+		print('x')
+		user = request.user
+		form = LyricsForm(request.POST, request.FILES)
+		if form.is_valid():
+			title = form.cleaned_data['title']
+			text = form.cleaned_data['text']
+			lyrics = Lyrics(title=title, artist=user.artist, Track=track, text=text)
+			lyrics.save()
+			return HttpResponseRedirect(reverse('profile'))
+	else:
+		form = LyricsForm()
+	return render(request, 'lyricsForm.html', {'form': form})
+

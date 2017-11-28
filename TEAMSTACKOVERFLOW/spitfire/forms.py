@@ -22,4 +22,8 @@ class CommentForm (forms.ModelForm):
     #     model = LyricComment
     #     exclude = ['upvotes', 'id']
     comment = forms.CharField (max_length=400)
-    
+
+class LyricsForm(forms.ModelForm):
+    class Meta:
+        model = Lyrics
+        exclude = ['upvotes', 'id','genre','Track','artist']
