@@ -235,3 +235,10 @@ def getArtistInfo(request, pk):
 	artist = get_object_or_404(Artist, pk = pk)
 	if request.method == 'GET':
 		return render(request, 'profile.html', {'artist': artist})
+
+@login_required
+def getLyricsInfo(request, pk):
+	track = get_object_or_404(Track, pk = pk)
+	if request.method == 'GET':
+		return render(request, 'lyrics-sync.html', {'track': track})
+
