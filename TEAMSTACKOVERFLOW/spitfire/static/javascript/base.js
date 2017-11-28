@@ -11,7 +11,7 @@ $(function(){
     }
     return "";
   }
-  
+
   $('.upvote-btn').on('click', function(event){
     var attr = $(this).attr('track-id');
 
@@ -21,18 +21,17 @@ $(function(){
 
     if(typeof attr !== typeof undefined && attr !== false){//track upvote btn
       var id = $(event.target).attr("track-id");
-      $.post("soundtrack/" + id + "/upvote", function(upvoteCount){
+      $.post("/spitfire/soundtrack/" + id + "/upvote", function(upvoteCount){
         $(event.target).html("▲ " + upvoteCount);
         $(event.target).prop("disabled", true);
       });
     } else{ //lyric upvote btn
       var id = $(event.target).attr("lyric-id");
-      $.post("lyric/" + id + "/upvote", function(upvoteCount){
+      $.post("/spitfire/lyric/" + id + "/upvote", function(upvoteCount){
         $(event.target).html("▲ " + upvoteCount);
         $(event.target).prop("disabled", true);
       });
     }
-
     console.log(event);
   });
 });
