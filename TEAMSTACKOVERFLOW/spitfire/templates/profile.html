@@ -77,7 +77,7 @@
                 <h4>{{ track.title }}</h4>
                 <h5>{{ track.artist.full_name }}</h5>
               </div>
-              <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ track.upvotes }}</b></button>
+              <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
               <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
@@ -91,7 +91,7 @@
                 {% for lyric in track.top_lyrics%}
                   <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
                   <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
-                  <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn"><b>▲ {{ lyric.upvotes }}</b></button>
+                  <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
                 {% endfor %}
               </div>
             </div>
