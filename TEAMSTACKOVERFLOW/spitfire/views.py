@@ -213,5 +213,5 @@ def getLyricsInfo(request, pk):
 			return HttpResponseRedirect(reverse('profile'))
 	else:
 		form = LyricsForm()
-	return render(request, 'lyricsForm.html', {'form': form})
+	return render(request, 'lyrics-sync.html', {'form': form})
 
