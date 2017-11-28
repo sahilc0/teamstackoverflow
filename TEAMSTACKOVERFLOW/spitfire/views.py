@@ -193,8 +193,9 @@ def getTrackInfo(request, pk):
 @login_required
 def getArtistInfo(request, pk):
 	artist = get_object_or_404(Artist, pk = pk)
+	tracks = Track.objects.filter(artist = artist).order_by('-upvotes')
 	if request.method == 'GET':
-		return render(request, 'profile.html', {'artist': artist})
+		return render(request, 'profile.html', {'artist': artist,'tracks':tracks})
 
 @login_required
 def getLyricsInfo(request, pk):
