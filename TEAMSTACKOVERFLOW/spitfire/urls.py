@@ -19,5 +19,5 @@ urlpatterns = [
 	url(r'^lyric/(?P<pk>[-\w]+)/upvote$', views.upvoteLyric, name='upvote_lyric'),
     url(r'^profile/upload$', views.upload, name='upload'),
     url(r'^profile/(?P<pk>[-\w]+)$', views.getArtistInfo, name='artistInfo'),
-	url(r'^soundtrack/(?P<pk>[-\w]+)/comment$', views.create_comment, name='create_comment'),
+	url(r'^soundtrack/create_comment$', views.create_comment, name='create_comment'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
