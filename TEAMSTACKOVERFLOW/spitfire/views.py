@@ -25,12 +25,13 @@ def create_profile(request):
 			email = user_form.cleaned_data['email']
 			city = user_form.cleaned_data['city']
 			user = User.objects.create_user(username, email, password)
-			img = user_form.cleaned_data['image']
+			# image = user_form.cleaned_data['image']
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
 			#we can substitute the bottom code with a @receiver decorator
-			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city, image=img)
+			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city,)
+			# add image = image to above when that gets fixed
 			artist.save()
 			return render(request,'index.html')
 	else:
@@ -43,6 +44,7 @@ def create_profile(request):
 		},
 	)
 
+@login_required
 def create_comment (request):
 	if request.method == 'GET':
 		thing = request.GET.get(user_comment, None) #tried post but wasn't working so GET
@@ -50,7 +52,7 @@ def create_comment (request):
 		comment = CommentForm(request.POST)
 		if comment.is_valid():
 			comment = comment.cleaned_data['comment'];
-			track_comment = TrackComment (upvotes=0, text=comment, track=track)
+			track_comment = TrackComment (upvotes=0, text=comment, track=track, artist=request.user)
 			track_comment.save()
 		return render(request, 'soundtrack.html')
 	else:
