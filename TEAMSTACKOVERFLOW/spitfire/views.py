@@ -159,9 +159,10 @@ def contest(request):
 	"""
 	put stuff here
 	"""
-	sponsor1 = Sponsor.objects.get (name = 'Red Bull')
-	sponsor2 = Sponsor.objects.get (name = 'Google')
-	sponsor3 = Sponsor.objects.get (name = 'Coca-Cola')
+	sponsers = Sponsor.objects.all()
+	sponsor1 = sponsers[0]
+	sponsor2 = sponsers[1]
+	sponsor3 = sponsers[2]
 
 	return render(
 		request,
