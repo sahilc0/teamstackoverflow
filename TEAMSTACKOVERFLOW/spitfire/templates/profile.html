@@ -8,8 +8,8 @@
     <script src="https://use.fontawesome.com/9d055d83d3.js"></script>
 {% endblock %}
 
-{% block UserProfilePic %}
-    {{ profileImage }}
+{% block propic %}
+<img src ="../{{artist.image.url}}" width= '35px'>
 {% endblock %}
 
 {% block bodyContent %}
@@ -20,7 +20,7 @@
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <div class="card-body" id="user-header-details">
-                  <img src="https://pbs.twimg.com/profile_images/891552595059146753/mao5zWtT_400x400.jpg" class="rounded-circle" id="user-pic" alt="User profile picture">
+                  <img src ="../{{artist.image.url}}" class="rounded-circle" id="user-pic" alt="User profile picture">
                   <div>
                     <h2 class="card-title" id="user-info-name">{{ artist.firstName }} </h2>
                     <p class="card-subtitle" id="user-info-location">{{ artist.city }}</p>
