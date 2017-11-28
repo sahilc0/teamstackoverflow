@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^profile/upload$', views.upload, name='upload'),
     url(r'^profile/(?P<pk>[-\w]+)$', views.getArtistInfo, name='artistInfo'),
 	url(r'^soundtrack/(?P<pk>[-\w]+)/comment$', views.create_comment, name='create_comment'),
+	url(r'^search/$', views.search, name='search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

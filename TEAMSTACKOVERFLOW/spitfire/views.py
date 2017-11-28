@@ -70,7 +70,16 @@ def create_comment (request, pk):
 	)
 
 
-		
+def search(request):
+	search_field = request.GET.get('search_field', None)
+	search_results = Track.objects.filter(title__contains=search_field) | Track.objects.filter(description__contains=search_field) | Track.objects.filter(keywords__contains=search_field)
+
+	return render(
+			request,
+			"search_result.html",
+			context = {'tracks': search_results,},
+	)
+
 @login_required
 def upvoteTrack(request, pk):
 	track = get_object_or_404(Track, pk = pk)
