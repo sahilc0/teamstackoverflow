@@ -94,13 +94,10 @@ def index(request):
 	yesterdayTrack = Track.objects.get(id = 'b95a3265471b43f49172029cfdceaeb1')
 	yesterdayLyrics = Lyrics.objects.filter(Track = yesterdayTrack.id)
 	#change the code above to dynamic
-
 	topTracks = Track.objects.order_by('-upvotes')[:3]
 	track1Artist_Id = featTrack1.artist.id
 	track2Artist_Id = featTrack2.artist.id
 	track3Artist_Id = featTrack3.artist.id
-
-
 	return render(
 		request,
 		'index.html',
@@ -114,10 +111,11 @@ def index(request):
 				  	'yesterdayTrack': yesterdayTrack,
 				  	'yesterdayLyric1': yesterdayLyrics[0],
 				  	'yesterdayLyric2': yesterdayLyrics[1],
-					'audio1': "track_default.mp3",
-					'audio2': "track_default.mp3",
-					'audio3': "track_default.mp3",
-					'yesterdayAudio': "track_default.mp3",
+					#'audio1': "track_default.mp3",
+					#'audio2': "track_default.mp3",
+					#'audio3': "track_default.mp3",
+					#'yesterdayAudio': "track_default.mp3",
+					
 				},
 	)
 
