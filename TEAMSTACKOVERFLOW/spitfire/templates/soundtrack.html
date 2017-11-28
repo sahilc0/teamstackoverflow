@@ -74,14 +74,15 @@
                 {% endfor %}
                 </ul>
 <!--                 <p><a href="{% url 'create_comment' %}">Create Comment</a></p>
- -->
-
-                    <form action="create_comment" method="post">
+ -->                <input type = 'text'>
+                    <button type="submit">Submit</button>
+                    <!-- <form action="create_comment" method="post">
                       {% csrf_token %}
                       <input name = "user_comment" type="text" class = "form-control" id = "user">
                       {{ comment }}
                       <button type="submit">Submit</button>
-                    </form>
+                    </form>-->
+                   
               </div>
             </div>
           </div>
