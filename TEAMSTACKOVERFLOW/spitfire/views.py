@@ -120,44 +120,7 @@ def index(request):
 				},
 	)
 
-def track(request):
-	thisArtist = Artist.objects.get(id = '4c8b7e638ce24032ac6eb8225eafa76a')
-	thisTrack = Track.objects.get(artist_id = thisArtist.id)
-	# lyric1 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-	# comment1 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
-	# lyric2 = Lyrics.objects.get(id = 'd40bd2d5970a4760b7a7ea56e7628759')
-	# comment2 = LyricComment.objects.get(id = 'ec4862f401974ba4ba592ff9c0be1794')
 
-
-	# if request.method == 'POST':
-	# 	comment1 = CommentForm(request.POST)
-	# 	if comment1.is_valid():
-	# 		comment1 = comment1.cleaned_data['comment1'];
-	# 		TrackComment1 = TrackComment1 (upvotes=0, text=comment1)
-	# 		TrackComment1.save()
-
-	# 		return render(request, 'soundtrack.html')
-	# else:
-	# 	comment1 = CommentForm()
-	# return render(
-	# 	request,
-	# 	'soundtrack.html',
-	# 	context = {
-	# 	'comment1': comment1
-	# 	},
-	# )
-
-	return render(
-		request,
-		'soundtrack.html',
-		context = {'thisTrack': thisTrack,
-					 'thisArtist': thisArtist,
-					 'lyric1': lyric1,
-					 'comment1': comment1,
-						 'lyric2': lyric2,
-					 'comment2': comment2,
-					},
-	)
 #change request page for the functions below~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
