@@ -7,64 +7,30 @@
   <div class = "container">
 			<div class = "row">
         <div class = "col-md-12">
-				<h1 style="padding:20px">Contests</h1>
-				<div class="card-group soundtrack-box">
-            <div class="card col-md-4">
-              <div class="card-body">
-                <img src=http://static.djbooth.net/pics-features/chance-3-artwork.jpg class="soundtrack-image">
-                </div>
-              </div>
-              <div class="card col-md-6">
+  				<h1 style="padding:20px">Contests</h1>
+  				
+          {% for contest in contests %}
+          <div class="card-group soundtrack-box">
+              <div class="card col-md-4">
                 <div class="card-body">
-                  <h4 class="card-title">{{ sponsor1.name }}</h4>
-                  <p class="card-text">{{ sponsor1.description }}</p>
+                  <img src="{{contest.image.url}}" class="soundtrack-image">
+                  </div>
                 </div>
-              </div>
-              <div class = "card col-md-2">
-                <div class = "card-body">
-                  <p class = "card-text">Reward:</p>
-                  <img src = "{% static 'images/reward.png' %}" class="contest-image">
+                <div class="card col-md-6">
+                  <div class="card-body">
+                    <h4 class="card-title">{{contest.name}}</h4>
+                    <p class="card-text">{{contest.sponsor.full_name}}</p>
+                    <p class="card-text">{{contest.description}}</p>
+                  </div>
                 </div>
-              </div>
-        </div>
-        <div class="card-group soundtrack-box">
-            <div class="card col-md-4">
-              <div class="card-body">
-                <img src=http://static.djbooth.net/pics-features/chance-3-artwork.jpg class="soundtrack-image">
+                <div class = "card col-md-2">
+                  <div class = "card-body">
+                    <p class = "card-text">Reward: {{contest.reward}}</p>
+                  </div>
                 </div>
-              </div>
-              <div class="card col-md-6">
-                <div class="card-body">
-                  <h4 class="card-title">{{ sponsor2.name }}</h4>
-                  <p class="card-text">{{ sponsor2.description }}</p>
-                </div>
-              </div>
-              <div class = "card col-md-2">
-                <div class = "card-body">
-                  <p class = "card-text">Reward:</p>
-                  <img src = "{% static 'images/reward.png' %}" class="contest-image">
-                </div>
-              </div>
-        </div>
-        <div class="card-group soundtrack-box">
-            <div class="card col-md-4">
-              <div class="card-body">
-                <img src=http://static.djbooth.net/pics-features/chance-3-artwork.jpg class="soundtrack-image">
-                </div>
-              </div>
-              <div class="card col-md-6">
-                <div class="card-body">
-                  <h4 class="card-title">{{ sponsor3.name }}</h4>
-                  <p class="card-text">{{ sponsor3.description }}</p>
-                </div>
-              </div>
-              <div class = "card col-md-2">
-                <div class = "card-body">
-                  <p class = "card-text">Reward:</p>
-                  <img src = "{% static 'images/reward.png' %}" class="contest-image">
-                </div>
-              </div>
-        </div>
+          </div>
+          {% endfor %}
+
         </div>
 			</div>
 	</div>

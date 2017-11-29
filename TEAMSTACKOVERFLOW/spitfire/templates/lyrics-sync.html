@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{% static 'css/lyrics-sync.css' %}">
 {% endblock %}
 
+{% block propic %}
+<img src ="../../{{user.artist.image.url}}" width= '35px'>
+{% endblock %}
+
 {% block bodyContent %}
   <div class = 'container'>
     <div class = 'row'>
@@ -15,7 +19,7 @@
         <div class="card-group soundtrack-box">
           <div class="card col-md-4">
             <div class="card-body">
-              <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
+              <img width='300px' src="../../{{track.image.url}}">
               </div>
             </div>
             <div class="card col-md-8">
@@ -24,7 +28,7 @@
                 <p class="card-text">{{ track.artist }}</p>
                 <audio controls="controls">
                   Your browser does not support the audio element.
-                  <source src="/static/{{ audio1 }}" type="audio/mpeg">
+                  <source src="../../{{track.mp3.url}}" type="audio/mpeg">
                 </audio>
               </div>
             </div>
@@ -58,7 +62,6 @@
                   <input type="submit" value="Spit Fire" />
                   </form>
                 </div>
-                <!--<button type="button" class="btn btn-primary float-right">Submit</button>-->
               </div>
             </div>
           </div>

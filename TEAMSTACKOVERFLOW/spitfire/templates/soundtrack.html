@@ -12,7 +12,7 @@
 
 
 {% block propic %}
-<img src ="../{{track.artist.image.url}}" width= '35px'>
+<img src ="../{{user.artist.image.url}}" width= '35px'>
 {% endblock %}
 
 
@@ -67,15 +67,15 @@
                 <h4 class="card-title">Comments</h4>
 
                 <ul>
-                {% for lyric_comment in lyric.top_comments%}
+                {% for lyric_comment in lyric.top_comments %}
 
                   <li> <strong>{{ lyric_comment.artist }}</strong>:  {{ lyric_comment.text }} <button type="button" lyric-comment-id="{{lyric_comment.id}}" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric_comment.upvotes }}</button></li>
 
                 {% endfor %}
                 </ul>
 <!--                 <p><a href="{% url 'create_comment' %}">Create Comment</a></p>
- -->                <input type = 'text'>
-                    <button type="submit">Submit</button>
+ -->                <!-- <input type = 'text'>
+                    <button type="submit">Submit</button> -->
                     <!-- <form action="create_comment" method="post">
                       {% csrf_token %}
                       <input name = "user_comment" type="text" class = "form-control" id = "user">
@@ -95,7 +95,7 @@
           <a href="./lyrics/{{ track.id }}">
             <button type="button" id="postLyrics" class="btn btn-secondary">Post Lyrics</button>
           </a>
-          <button type="button" id="postComment" class="btn btn-secondary">Post Comment</button>
+          <!-- <button type="button" id="postComment" class="btn btn-secondary">Post Comment</button> -->
         </div>
     </div>
   </div><!--content close-->

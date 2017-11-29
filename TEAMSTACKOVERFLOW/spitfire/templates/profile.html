@@ -8,9 +8,15 @@
     <script src="https://use.fontawesome.com/9d055d83d3.js"></script>
 {% endblock %}
 
+
 {% block propic %}
-<img src ="../{{artist.image.url}}" width= '35px'>
+<img src ="../{{user.artist.image.url}}" width= '35px'>
 {% endblock %}
+
+{% block profile_link %}
+<a class="dropdown-item" href="#">Profile</a>
+{% endblock %}
+
 
 {% block bodyContent %}
   	<div class="container">
@@ -24,11 +30,17 @@
                   <div>
                     <h2 class="card-title" id="user-info-name">{{ artist.firstName }} </h2>
                     <p class="card-subtitle" id="user-info-location">{{ artist.city }}</p>
-                    <p class="card-text" id="user-info-description">Rapper/Producer from the Bean.</p>
+                    <p class="card-text" id="user-info-description">{{artist.description}}</p>
                     <div>
-                      <i class="fa fa-twitter" id="twitter-link" aria-hidden="true"></i>
-                      <i class="fa fa-instagram" id="instagram-link" aria-hidden="true"></i>
-                      <i class="fa fa-soundcloud" id="soundcloud-link" aria-hidden="true"></i>
+                      {% if artist.twitter_link %}
+                      <i class="fa fa-twitter" id="twitter-link" aria-hidden="true">{{artist.twitter_link}}</i>
+                      {% endif %}
+                      {% if artist.instagram_link %}
+                      <i class="fa fa-instagram" id="instagram-link" aria-hidden="true">{{artist.instagram_link}}</i>
+                      {% endif %}
+                      {% if artist.soundcloud_link %}
+                      <i class="fa fa-soundcloud" id="soundcloud-link" aria-hidden="true">{{artist.soundcloud_link}}</i>
+                      {% endif %}
                     </div>
                   </div>
                 </div>
@@ -78,7 +90,7 @@
                 <h5 artist-id="{{track.artist.id}}" class="track-artist">{{ track.artist.full_name }}</h5>
               </div>
               <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
-              <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" track-id="{{track.id}}" class="soundtrack-image">
+              <img src="../{{track.image.url}}" track-id="{{track.id}}" class="soundtrack-image">
               <audio controls="controls">
                 Your browser does not support the audio element.
                 <source src="../{{track.mp3.url}}" type="audio/mpeg">
