@@ -8,9 +8,15 @@
     <script src="https://use.fontawesome.com/9d055d83d3.js"></script>
 {% endblock %}
 
+
 {% block propic %}
-<img src ="../{{artist.image.url}}" width= '35px'>
+<img src ="../{{user.artist.image.url}}" width= '35px'>
 {% endblock %}
+
+{% block profile_link %}
+<a class="dropdown-item" href="#">Profile</a>
+{% endblock %}
+
 
 {% block bodyContent %}
   	<div class="container">
@@ -26,9 +32,15 @@
                     <p class="card-subtitle" id="user-info-location">{{ artist.city }}</p>
                     <p class="card-text" id="user-info-description">{{artist.description}}</p>
                     <div>
-                      <i class="fa fa-twitter" id="twitter-link" aria-hidden="true"></i>
-                      <i class="fa fa-instagram" id="instagram-link" aria-hidden="true"></i>
-                      <i class="fa fa-soundcloud" id="soundcloud-link" aria-hidden="true"></i>
+                      {% if artist.twitter_link %}
+                      <i class="fa fa-twitter" id="twitter-link" aria-hidden="true">{{artist.twitter_link}}</i>
+                      {% endif %}
+                      {% if artist.instagram_link %}
+                      <i class="fa fa-instagram" id="instagram-link" aria-hidden="true">{{artist.instagram_link}}</i>
+                      {% endif %}
+                      {% if artist.soundcloud_link %}
+                      <i class="fa fa-soundcloud" id="soundcloud-link" aria-hidden="true">{{artist.soundcloud_link}}</i>
+                      {% endif %}
                     </div>
                   </div>
                 </div>

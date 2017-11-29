@@ -15,7 +15,7 @@ class UserForm(forms.Form):
 class TrackForm(forms.ModelForm):
     class Meta:
         model = Track
-        exclude = ['upvotes', 'id']
+        exclude = ['artist','featured','upvotes', 'id']
         
 class TrackCommentForm (forms.ModelForm):
     class Meta:

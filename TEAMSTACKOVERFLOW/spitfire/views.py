@@ -28,35 +28,22 @@ def index(request):
 				},
 	)
 
-
-# def lyrics(request):
-# 	track = Track.objects.get(title="Rudolph the Reindeer")
-
-# 	return render(
-# 		request,
-# 		'lyrics-sync.html',
-# 		context = {
-# 					'trackName': track.title,
-# 					'artistName': track.artist,
-# 					'audio1': "track_default.mp3",
-# 					},
-# 	)
-
 @login_required
 def upload(request):
 	if request.method == 'POST':
 		user = request.user
 		form = TrackForm(request.POST, request.FILES)
 		if form.is_valid():
+			artist = user.artist
 			title = form.cleaned_data['title']
-			artist = form.cleaned_data['artist']
 			genre = form.cleaned_data['genre']
 			description = form.cleaned_data['description']
 			keywords = form.cleaned_data['keywords']
+			image = form.cleaned_data['image']
 			file = form.cleaned_data['mp3']
-			track = Track(title=title, artist=artist, genre=genre, description=description, keywords=keywords, mp3=file)
+			track = Track(title=title,artist = artist, genre=genre, description=description, keywords=keywords, image = image, mp3=file)
 			track.save()
-			return HttpResponseRedirect(reverse('profile'))
+			return render(request, 'soundtrack.html', {'track': track})
 	else:
 		form = TrackForm()
 	return render(request, 'trackForm.html', {'form': form})
@@ -89,16 +76,6 @@ def create_contest(request):
 		form = ContestForm()
 	return render(request, 'createContest.html', {'form':form})
 
-@login_required
-def profile(request):
-	artist = request.user
-	return render(
-		request,
-		'profile.html',
-		context = { 'artist': artist,
-				  },
-	)
-
 def create_profile(request):
 	if request.method == 'POST':
 		user_form = UserForm(request.POST)
@@ -129,37 +106,33 @@ def create_profile(request):
 		},
 	)
 
-@login_required
 def getTrackInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
-	commentPostURL = '/spitfire/soundtrack/' + str(track.id) + '/comment'
-	if request.method == 'GET':
-		return render(request, 'soundtrack.html', {'track': track, 'commentPostURL': commentPostURL})
+	#commentPostURL = '/spitfire/soundtrack/' + str(track.id) + '/comment'
+	return render(request, 'soundtrack.html', {'track': track})
 
 @login_required
 def getArtistInfo(request, pk):
 	artist = get_object_or_404(Artist, pk = pk)
 	tracks = Track.objects.filter(artist = artist).order_by('-upvotes')
-	if request.method == 'GET':
-		return render(request, 'profile.html', {'artist': artist,'tracks':tracks})
+	return render(request, 'profile.html', {'artist': artist,'tracks':tracks})
 
 @login_required
 def getLyricsInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
-	print('y')
 	if request.method == 'POST':
-		print('x')
 		user = request.user
 		form = LyricsForm(request.POST)
 		if form.is_valid():
+			artist = user.artist
 			title = form.cleaned_data['title']
 			text = form.cleaned_data['text']
-			lyrics = Lyrics(title=title, artist=user.artist, Track=track, text=text)
+			lyrics = Lyrics(title=title, artist=artist, track=track, text=text)
 			lyrics.save()
-			return HttpResponseRedirect(reverse('profile'))
+			return render(request, 'soundtrack.html', {'track': track})
 	else:
 		form = LyricsForm()
-	return render(request, 'lyrics-sync.html', {'form': form})
+	return render(request, 'lyrics-sync.html', {'track':track,'form': form})
 
 @login_required
 def upvoteTrack(request, pk):
@@ -178,6 +151,35 @@ def upvoteLyric(request, pk):
 		lyric.upvotes = lyric.upvotes + 1
 		lyric.save()
 		return HttpResponse(lyric.upvotes)
+
+def create_comment(request):
+	track = get_object_or_404(Track, pk = pk)
+	if request.method == 'POST':
+		form = TrackCommentForm(request.POST)
+		if form.is_valid():
+			artist = request.user
+			text = form.cleaned_data['text'];
+			track_comment = TrackComment (upvotes=0, text=text, track=track, artist=artist)
+			track_comment.save()
+			# TODO:
+			# this should return to (or render) the original
+			# page from which it was originally
+			# called, not just any old soundtrack page
+			return render(request, 'soundtrack.html', {'track':track})
+	else:
+		form = CommentForm()
+
+	# TODO:
+	# we want this render to be for the comment creation page
+	# or somehow figure out how to use this function (perhaps
+	# as a class-based view), in the actual soundtrack page
+	return render(
+		request,
+		'soundtrack.html',
+		context = {
+		'form': form
+		},
+	)
 
 # TODO: 
 # what needs to be figured out to create track and lyric
@@ -198,7 +200,7 @@ def create_track_comment (request,pk):
 			# this should return to (or render) the original
 			# page from which it was originally
 			# called, not just any old soundtrack page
-			return render(request, 'soundtrack.html')
+			return render(request, 'soundtrack.html', {'track':track})
 	else:
 		form = CommentForm()
 
