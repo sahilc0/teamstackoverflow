@@ -23,8 +23,9 @@ def index(request):
 	return render(
 		request,
 		'index.html',
+
 		context = {	'featTracks': featTracks,
-		  			'tracks': topTracks,					
+		  			'tracks': topTracks,
 				},
 	)
 
