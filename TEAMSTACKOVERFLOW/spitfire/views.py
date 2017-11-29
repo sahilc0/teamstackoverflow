@@ -152,6 +152,8 @@ def upvoteLyric(request, pk):
 		lyric.save()
 		return HttpResponse(lyric.upvotes)
 
+
+# this is just here to make sure soundtrack doesn't crash!
 def create_comment(request):
 	track = get_object_or_404(Track, pk = pk)
 	if request.method == 'POST':
