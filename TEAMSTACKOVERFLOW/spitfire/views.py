@@ -94,7 +94,7 @@ def index(request):
 	featTrack1 = Track.objects.get(title='Rolling in the Deep')
 	featTrack2 = Track.objects.get(title='Bye Bye Bye')
 	featTrack3 = Track.objects.get(title='99Problems')
-	yesterdayTrack = Track.objects.get(id = 'b95a3265471b43f49172029cfdceaeb1')
+	yesterdayTrack = Track.objects.get(title = '99Problems')
 	yesterdayLyrics = Lyrics.objects.filter(Track = yesterdayTrack.id)
 	#change the code above to dynamic
 	topTracks = Track.objects.order_by('-upvotes')[:3]
@@ -113,12 +113,7 @@ def index(request):
 		  			'tracks': topTracks,
 				  	'yesterdayTrack': yesterdayTrack,
 				  	'yesterdayLyric1': yesterdayLyrics[0],
-				  	'yesterdayLyric2': yesterdayLyrics[1],
-					#'audio1': "track_default.mp3",
-					#'audio2': "track_default.mp3",
-					#'audio3': "track_default.mp3",
-					#'yesterdayAudio': "track_default.mp3",
-					
+				  	#'yesterdayLyric2': yesterdayLyrics[1],
 				},
 	)
 
@@ -191,7 +186,7 @@ def getTrackInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
 	commentPostURL = '/spitfire/soundtrack/' + str(track.id) + '/comment'
 	if request.method == 'GET' or 'POST':
-		return render(request, 'soundtrack.html', {'track': track, 'commentPostURL': commentPostURL})
+		return render(request, 'soundtrack.html', {'track': track})
 
 @login_required
 def getArtistInfo(request, pk):
