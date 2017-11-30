@@ -18,12 +18,11 @@ def search(request):
 	return render(request, "search_result.html", context = {'tracks': search_results,},)
 
 def index(request):
-	featTracks = Track.objects.all().filter(featured = True)
+	featTracks = Track.objects.all().filter(featured = True)[:3]
 	topTracks = Track.objects.order_by('-upvotes')[:3]
 	return render(
 		request,
 		'index.html',
-
 		context = {	'featTracks': featTracks,
 		  			'tracks': topTracks,
 				},
@@ -109,7 +108,6 @@ def create_profile(request):
 
 def getTrackInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
-	#commentPostURL = '/spitfire/soundtrack/' + str(track.id) + '/comment'
 	return render(request, 'soundtrack.html', {'track': track})
 
 @login_required
@@ -250,7 +248,7 @@ def create_lyric_comment (request,pk):
 		if form.is_valid():
 			artist = request.user
 			text = form.cleaned_data['text'];
-			lyric_comment = :LyricComment (upvotes=0, text=text, track=track, artist=artist)
+			lyric_comment = LyricComment (upvotes=0, text=text, track=track, artist=artist)
 			lyric_comment.save()
 			# TODO:
 			# this should return to (or render) the original
