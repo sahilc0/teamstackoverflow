@@ -250,7 +250,7 @@ def create_lyric_comment (request,pk):
 		if form.is_valid():
 			artist = request.user
 			text = form.cleaned_data['text'];
-			lyric_comment = :LyricComment (upvotes=0, text=text, track=track, artist=artist)
+			lyric_comment = LyricComment (upvotes=0, text=text, track=track, artist=artist)
 			lyric_comment.save()
 			# TODO:
 			# this should return to (or render) the original
