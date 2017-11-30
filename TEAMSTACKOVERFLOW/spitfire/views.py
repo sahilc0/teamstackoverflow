@@ -132,9 +132,9 @@ def getLyricsInfo(request, pk):
 			artist = user.artist
 			title = form.cleaned_data['title']
 			text = form.cleaned_data['text']
-			lyrics = Lyrics(title=title, artist=artist, track=track, text=text)
+			lyrics = Lyrics(title=title, artist=artist, Track=track, text=text)
 			lyrics.save()
-			return render(request, 'soundtrack.html', {'track': track})
+			return HttpResponseRedirect('/spitfire/soundtrack/'+pk)
 	else:
 		form = LyricsForm()
 	return render(request, 'lyrics-sync.html', {'track':track,'form': form})
