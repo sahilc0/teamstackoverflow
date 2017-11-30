@@ -132,9 +132,9 @@ def getLyricsInfo(request, pk):
 			artist = user.artist
 			title = form.cleaned_data['title']
 			text = form.cleaned_data['text']
-			lyrics = Lyrics(title=title, artist=artist, track=track, text=text)
+			lyrics = Lyrics(title=title, artist=artist, Track=track, text=text)
 			lyrics.save()
-			return render(request, 'soundtrack.html', {'track': track})
+			return HttpResponseRedirect('/spitfire/soundtrack/'+pk)
 	else:
 		form = LyricsForm()
 	return render(request, 'lyrics-sync.html', {'track':track,'form': form})
@@ -232,3 +232,42 @@ def create_track_comment (request,pk):
 # different
 # @login_required
 # def create_lyric_comment(request):
+
+
+
+# LYRIC COMMENT
+
+# TODO:
+# what needs to be figured out to create track and lyric
+# comments is how it is that you determine what track
+# is being commented on, maybe this gets passed to the form
+# or maybe there can be some helper function
+@login_required
+def create_lyric_comment (request,pk):
+	lyric = get_object_or_404(Lyric, pk = pk)
+	if request.method == 'POST':
+		form = LyricCommentForm(request.POST)
+		if form.is_valid():
+			artist = request.user
+			text = form.cleaned_data['text'];
+			lyric_comment = :LyricComment (upvotes=0, text=text, track=track, artist=artist)
+			lyric_comment.save()
+			# TODO:
+			# this should return to (or render) the original
+			# page from which it was originally
+			# called, not just any old soundtrack page
+			return render(request, 'soundtrack.html', {'track':track})
+	else:
+		form = CommentForm()
+
+	# TODO:
+	# we want this render to be for the comment creation page
+	# or somehow figure out how to use this function (perhaps
+	# as a class-based view), in the actual soundtrack page
+	return render(
+		request,
+		'soundtrack.html',
+		context = {
+		'form': form
+		},
+	)
