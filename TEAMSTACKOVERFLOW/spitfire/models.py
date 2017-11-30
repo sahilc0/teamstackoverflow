@@ -17,7 +17,7 @@ class Contest(models.Model):
     description = models.CharField (max_length=2000)
     image = models.FileField(upload_to='sponsor/', default='sponsor/sponsor_default.png')
     reward = models.PositiveIntegerField(default = 0)
-    track = models.ForeignKey('Track', on_delete=models.CASCADE)
+    track = models.ForeignKey('Track', related_name = 'contest',on_delete=models.CASCADE)
 
     def __str__(self):
         """
