@@ -8,12 +8,12 @@
 			<div class = "row">
         <div class = "col-md-12">
   				<h1 style="padding:20px">Contests</h1>
-  				
+
           {% for contest in contests %}
           <div class="card-group soundtrack-box">
               <div class="card col-md-4">
                 <div class="card-body">
-                  <img src="{{contest.image.url}}" class="soundtrack-image">
+                  <img src="{{contest.image.url}}" track-id={{contest.track.id}} class="soundtrack-image">
                   </div>
                 </div>
                 <div class="card col-md-6">
@@ -34,8 +34,6 @@
         </div>
 			</div>
 	</div>
-  
+
 
 {% endblock %}
-
-
