@@ -31,16 +31,15 @@
           </div>
           <div class='col-md-4'>
                 <ul id="social-buttons">        <!-- Make this part dynamic -->
-                  <li>Facebook</li>
-                  <li>Twitter</li>
-                  <li>SoundCloud</li>
-                  <li>YouTube</li>
+                  <li><a href="https://{{track.artist.twitter_link}}">Twitter</a></li>
+                  <li><a href="https://{{track.artist.instagram_link}}">Instagram</a></li>
+                  <li><a href="https://{{track.artist.soundcloud_link}}">Soundcloud</a></li>
                 </ul>
           </div>
       </div>
       <div class="row" id='music-icon'> <!-- the wave thing + on-site social -->
         <div class='col-md-12'>
-          <audio controls="controls">
+          <audio controls="controls" controlsList="nodownload">
                 Your browser does not support the audio element.
                 <source src="../{{ track.mp3.url }}" type="audio/mpeg">
               </audio>
@@ -82,12 +81,14 @@
                       {{ comment }}
                       <button type="submit">Submit</button>
                     </form>-->
-                   
+
               </div>
             </div>
           </div>
         </div>
       </div>
+      {% empty %}
+        <i class="card-text"> No lyrics posted for this track. Spit your's today.</i>
     {% endfor %}
 
     <div class="row">

@@ -67,7 +67,7 @@ class LyricComment(models.Model):
         # return 'Artist %s %s comment on %s' % (self.artist.firstName,self.artist.lastName,self.lyrics.title)
         return self.text
 
-class Track(models.Model): 
+class Track(models.Model):
     """
     Model for track
     """
@@ -108,7 +108,7 @@ class Track(models.Model):
         track = self.create(title=title, artist=artist, upvotes=upvotes, genre=genre, description=description, keywords=keywords)
         return track
 
-class Lyrics(models.Model): 
+class Lyrics(models.Model):
     """
     Model for lyrics
     """

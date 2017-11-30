@@ -116,7 +116,11 @@ def getTrackInfo(request, pk):
 def getArtistInfo(request, pk):
 	artist = get_object_or_404(Artist, pk = pk)
 	tracks = Track.objects.filter(artist = artist).order_by('-upvotes')
-	return render(request, 'profile.html', {'artist': artist,'tracks':tracks})
+
+	allLyrics = Lyrics.objects.filter(artist = artist)
+	spitTracks = Track.objects.filter(id__in=allLyrics.values('Track'));
+
+	return render(request, 'profile.html', {'artist': artist,'tracks':tracks, 'spitTracks':spitTracks})
 
 @login_required
 def getLyricsInfo(request, pk):
@@ -184,7 +188,7 @@ def create_comment(request):
 		},
 	)
 
-# TODO: 
+# TODO:
 # what needs to be figured out to create track and lyric
 # comments is how it is that you determine what track
 # is being commented on, maybe this gets passed to the form
@@ -220,11 +224,11 @@ def create_track_comment (request,pk):
 	)
 
 # TODO:
-# once the TODOs in the create_track_comment have been 
+# once the TODOs in the create_track_comment have been
 # cleared up, the resulting code can be easily ported to
 # fill in create_lyric_comment. the only difference will be
 # that track will be lyric, and the form being delivered
-# will be different, the model being created will be 
+# will be different, the model being created will be
 # different
 # @login_required
 # def create_lyric_comment(request):

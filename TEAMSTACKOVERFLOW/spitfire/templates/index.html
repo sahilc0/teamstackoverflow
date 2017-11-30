@@ -21,12 +21,12 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                  <img src='{{featTrack.image.url}}' class="soundtrack-image">
+                  <img src='{{featTrack.image.url}}' track-id="{{featTrack.id}}" class="soundtrack-image">
                   <h4 class="card-title">{{ featTrack.title }}</h4>
                   <h6 class="card-subtitle mb-2 text-muted">{{ featTrack.artist }}</h6>
                   <p class="card-text">
                     {{ featTrack.description }}
-                    <audio controls>
+                    <audio controls="controls" controlsList="nodownload">
                       <source src="{{ featTrack.mp3.url }}" type="audio/mpeg">
                     </audio>
                   </p>
@@ -66,7 +66,7 @@
               </div>
               <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
               <img src="{{track.image.url}}" track-id="{{track.id}}" class="soundtrack-image">
-              <audio controls="controls">
+              <audio controls="controls" controlsList="nodownload">
                 Your browser does not support the audio element.
                 <source src="{{ track.mp3.url }}" type="audio/mpeg">
               </audio>
@@ -79,6 +79,8 @@
                   <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
                   <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
                   <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
+                {% empty %}
+                  <i class="card-text"> No lyrics posted for this track. Spit your's today.</i>
                 {% endfor %}
               </div>
             </div>
@@ -114,7 +116,7 @@
                 <h5 class='card-text float-left'>{{ yesterdayLyric1.title }}</h5>
                 <p class="card-text float-left">{{ yesterdayLyric1.text }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ yesterdayLyric1.upvotes }}</button>
-<!--
+<!
                 <h5 class='card-text float-left'>{{ yesterdayLyric2.title }}</h5>
                 <p class="card-text float-left">{{ yesterdayLyric2.text }}</p>
                 <button type="button" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ yesterdayLyric2.upvotes}}</button>
@@ -123,7 +125,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
 
 {% endblock %}
