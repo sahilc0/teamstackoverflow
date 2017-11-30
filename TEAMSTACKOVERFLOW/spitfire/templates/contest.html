@@ -8,32 +8,34 @@
 			<div class = "row">
         <div class = "col-md-12">
   				<h1 style="padding:20px">Contests</h1>
-
+  				
           {% for contest in contests %}
           <div class="card-group soundtrack-box">
               <div class="card col-md-4">
                 <div class="card-body">
-                  <img src="{{contest.image.url}}" track-id={{contest.track.id}} class="soundtrack-image">
-                  </div>
+                  <img src="{{contest.image.url}}" class="soundtrack-image" track-id={{contest.track.id}}>
                 </div>
-                <div class="card col-md-6">
-                  <div class="card-body">
-                    <h4 class="card-title">{{contest.name}}</h4>
-                    <p class="card-text">{{contest.sponsor.full_name}}</p>
-                    <p class="card-text">{{contest.description}}</p>
-                  </div>
+              </div>
+              <div class="card col-md-6">
+                <div class="card-body">
+                  <h4 class="card-title">{{contest.name}}</h4>
+                  <p class="card-text">{{contest.sponsor.full_name}}</p>
+                  <p class="card-text">{{contest.description}}</p>
                 </div>
-                <div class = "card col-md-2">
-                  <div class = "card-body">
-                    <p class = "card-text">Reward: {{contest.reward}}</p>
-                  </div>
+              </div>
+              <div class = "card col-md-2">
+                <div class = "card-body">
+                  <p class = "card-text">Reward: {{contest.reward}}</p>
                 </div>
+              </div>
           </div>
           {% endfor %}
 
         </div>
 			</div>
 	</div>
-
+  
 
 {% endblock %}
+
+
