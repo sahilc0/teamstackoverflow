@@ -21,14 +21,14 @@
           <div class="card col-md-4">
             <div class="card-body">
               <div class = 'float-left'>
-                <h4>{{ track.title }}</h4>
-                <h5>{{ track.artist.full_name }}</h5>
+                <h4 track-id="{{track.id}}" class="track-title">{{ track.title }}</h4>
+                <h5 artist-id="{{track.artist.id}}" class="track-artist">{{ track.artist.full_name }}</h5>
               </div>
               <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
-              <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Damn._Kendrick_Lamar.jpg" class="soundtrack-image">
-              <audio controls="controls">
+              <img src="/spitfire/{{track.image.url}}" track-id="{{track.id}}" class="soundtrack-image">
+              <audio controls="controls" controlsList="nodownload">
                 Your browser does not support the audio element.
-                <source src="/static/track_default.mp3" type="audio/mpeg">
+                <source src="/spitfire/{{ track.mp3.url }}" type="audio/mpeg">
               </audio>
               </div>
             </div>
@@ -39,6 +39,8 @@
                   <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
                   <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
                   <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
+                {% empty %}
+                  <i class="card-text"> No lyrics posted for this track. Spit your's today.</i>
                 {% endfor %}
               </div>
             </div>

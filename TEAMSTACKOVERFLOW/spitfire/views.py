@@ -18,35 +18,14 @@ def search(request):
 	return render(request, "search_result.html", context = {'tracks': search_results,},)
 
 def index(request):
-<<<<<<< HEAD
-	featTrack1 = Track.objects.get(title='Rolling in the Deep')
-	featTrack2 = Track.objects.get(title='Bye Bye Bye')
-	featTrack3 = Track.objects.get(title='99Problems')
-	yesterdayTrack = Track.objects.get(title = '99Problems')
-	yesterdayLyrics = Lyrics.objects.filter(Track = yesterdayTrack.id)
-	#change the code above to dynamic
-=======
 	featTracks = Track.objects.all().filter(featured = True)
->>>>>>> c685ac4bba84cc07b067285a569967fad4036ba5
 	topTracks = Track.objects.order_by('-upvotes')[:3]
 	return render(
 		request,
 		'index.html',
-<<<<<<< HEAD
-		context = {	'featTrack1': featTrack1,
-					'featTrack2': featTrack2,
-				  	'featTrack3': featTrack3,
-				  	'track1Artist_Id': track1Artist_Id,
-  				  	'track2Artist_Id': track2Artist_Id,
-				  	'track3Artist_Id': track3Artist_Id,
-		  			'tracks': topTracks,
-				  	'yesterdayTrack': yesterdayTrack,
-				  	'yesterdayLyric1': yesterdayLyrics[0],
-				  	#'yesterdayLyric2': yesterdayLyrics[1],
-=======
+
 		context = {	'featTracks': featTracks,
-		  			'tracks': topTracks,					
->>>>>>> c685ac4bba84cc07b067285a569967fad4036ba5
+		  			'tracks': topTracks,
 				},
 	)
 
@@ -130,20 +109,18 @@ def create_profile(request):
 
 def getTrackInfo(request, pk):
 	track = get_object_or_404(Track, pk = pk)
-<<<<<<< HEAD
-	commentPostURL = '/spitfire/soundtrack/' + str(track.id) + '/comment'
-	if request.method == 'GET' or 'POST':
-		return render(request, 'soundtrack.html', {'track': track})
-=======
 	#commentPostURL = '/spitfire/soundtrack/' + str(track.id) + '/comment'
 	return render(request, 'soundtrack.html', {'track': track})
->>>>>>> c685ac4bba84cc07b067285a569967fad4036ba5
 
 @login_required
 def getArtistInfo(request, pk):
 	artist = get_object_or_404(Artist, pk = pk)
 	tracks = Track.objects.filter(artist = artist).order_by('-upvotes')
-	return render(request, 'profile.html', {'artist': artist,'tracks':tracks})
+
+	allLyrics = Lyrics.objects.filter(artist = artist)
+	spitTracks = Track.objects.filter(id__in=allLyrics.values('Track'));
+
+	return render(request, 'profile.html', {'artist': artist,'tracks':tracks, 'spitTracks':spitTracks})
 
 @login_required
 def getLyricsInfo(request, pk):
@@ -180,6 +157,8 @@ def upvoteLyric(request, pk):
 		lyric.save()
 		return HttpResponse(lyric.upvotes)
 
+
+# this is just here to make sure soundtrack doesn't crash!
 def create_comment(request):
 	track = get_object_or_404(Track, pk = pk)
 	if request.method == 'POST':
@@ -209,7 +188,7 @@ def create_comment(request):
 		},
 	)
 
-# TODO: 
+# TODO:
 # what needs to be figured out to create track and lyric
 # comments is how it is that you determine what track
 # is being commented on, maybe this gets passed to the form
@@ -245,11 +224,11 @@ def create_track_comment (request,pk):
 	)
 
 # TODO:
-# once the TODOs in the create_track_comment have been 
+# once the TODOs in the create_track_comment have been
 # cleared up, the resulting code can be easily ported to
 # fill in create_lyric_comment. the only difference will be
 # that track will be lyric, and the form being delivered
-# will be different, the model being created will be 
+# will be different, the model being created will be
 # different
 # @login_required
 # def create_lyric_comment(request):

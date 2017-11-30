@@ -16,6 +16,10 @@ urlpatterns = [
 	url(r'^lyric/(?P<pk>[-\w]+)/upvote$', views.upvoteLyric, name='upvote_lyric'),
     url(r'^profile/upload$', views.upload, name='upload'),
     url(r'^profile/(?P<pk>[-\w]+)$', views.getArtistInfo, name='artistInfo'),
+    # note the below pattern cannot be changed even though
+    # it will never be used, for reasons obscure to James,
+    # when the pattern name create_comment is not valid,
+    #  soundtrack explodes
     url(r'^soundtrack/create_comment$', views.create_track_comment, name='create_comment'),
 	url(r'^soundtrack/create_track_comment$', views.create_track_comment, name='create_track_comment'),
 	url(r'^search/$', views.search, name='search'),

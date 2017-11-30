@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static '../static/css/profileStyles.css' %}">
     <!-- Font Awesome for Social Links -->
     <script src="https://use.fontawesome.com/9d055d83d3.js"></script>
+    <script type="text/javascript" src="{% static 'javascript/profile.js' %}"></script>
 {% endblock %}
 
 
@@ -33,13 +34,13 @@
                     <p class="card-text" id="user-info-description">{{artist.description}}</p>
                     <div>
                       {% if artist.twitter_link %}
-                      <i class="fa fa-twitter" id="twitter-link" aria-hidden="true">{{artist.twitter_link}}</i>
+                      <a href="https://{{artist.twitter_link}}"><i class="fa fa-twitter" id="twitter-link" aria-hidden="true"></i></a>
                       {% endif %}
                       {% if artist.instagram_link %}
-                      <i class="fa fa-instagram" id="instagram-link" aria-hidden="true">{{artist.instagram_link}}</i>
+                      <a href="https://{{artist.instagram_link}}"><i class="fa fa-instagram" id="instagram-link" aria-hidden="true"></i></a>
                       {% endif %}
                       {% if artist.soundcloud_link %}
-                      <i class="fa fa-soundcloud" id="soundcloud-link" aria-hidden="true">{{artist.soundcloud_link}}</i>
+                      <a href="https://{{artist.soundcloud_link}}"><i class="fa fa-soundcloud" id="soundcloud-link" aria-hidden="true"></i></a>
                       {% endif %}
                     </div>
                   </div>
@@ -73,14 +74,14 @@
   			<div class="col-md-12">
   				<div class="dropdown">
   				  <p class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  				    Uploaded by
+  				    Tracks by
   				  </p>
   				  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-  				    <a class="dropdown-item" href="#!">Upvoted by</a>
-  				    <a class="dropdown-item" href="#!">Commented by</a>
+  				    <a class="dropdown-item" href="#!">Lyrics by</a>
   				  </div>
   				</div>
 
+          <div id="tracks-by">
           {% for track in tracks %}
   				<div  class="card-group soundtrack-box" track-id={{track.id}}>
           <div class="card col-md-4">
@@ -104,11 +105,47 @@
                   <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
                   <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
                   <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
+                {% empty %}
+                  <i class="card-text"> No lyrics posted for this track. Spit your's today.</i>
                 {% endfor %}
               </div>
             </div>
           </div>
           {% endfor %}
+          </div>
+
+          <div id="lyrics-by">
+          {% for track in spitTracks %}
+  				<div  class="card-group soundtrack-box" track-id={{track.id}}>
+          <div class="card col-md-4">
+            <div class="card-body">
+              <div class = 'float-left'>
+                <h4 track-id="{{track.id}}" class="track-title">{{ track.title }}</h4>
+                <h5 artist-id="{{track.artist.id}}" class="track-artist">{{ track.artist.full_name }}</h5>
+              </div>
+              <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
+              <img src="../{{track.image.url}}" track-id="{{track.id}}" class="soundtrack-image">
+              <audio controls="controls">
+                Your browser does not support the audio element.
+                <source src="../{{track.mp3.url}}" type="audio/mpeg">
+              </audio>
+              </div>
+            </div>
+            <div class="card col-md-8">
+              <div class="card-body">
+                <h4 class="card-title">Top Lyrics</h4>
+                {% for lyric in track.top_lyrics %}
+                  <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
+                  <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
+                  <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
+                {% empty %}
+                  <i class="card-text"> No lyrics posted for this track. Spit your's today.</i>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
 
   			</div>
   		</div>
