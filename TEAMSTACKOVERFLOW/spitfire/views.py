@@ -35,6 +35,7 @@ def upload(request):
 		form = TrackForm(request.POST, request.FILES)
 		if form.is_valid():
 			artist = user.artist
+			artist.number_of_spits += 1
 			title = form.cleaned_data['title']
 			genre = form.cleaned_data['genre']
 			description = form.cleaned_data['description']
@@ -42,6 +43,7 @@ def upload(request):
 			image = form.cleaned_data['image']
 			file = form.cleaned_data['mp3']
 			track = Track(title=title,artist = artist, genre=genre, description=description, keywords=keywords, image = image, mp3=file)
+			artist.save()
 			track.save()
 			return render(request, 'soundtrack.html', {'track': track})
 	else:

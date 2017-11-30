@@ -26,7 +26,7 @@
                   <h6 class="card-subtitle mb-2 text-muted">{{ featTrack.artist }}</h6>
                   <p class="card-text">
                     {{ featTrack.description }}
-                    <audio controls="controls" controlsList="nodownload">
+                    <audio controls="controls" preload="none" controlsList="nodownload">
                       <source src="{{ featTrack.mp3.url }}" type="audio/mpeg">
                     </audio>
                   </p>
@@ -66,7 +66,7 @@
               </div>
               <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
               <img src="{{track.image.url}}" track-id="{{track.id}}" class="soundtrack-image">
-              <audio controls="controls" controlsList="nodownload">
+              <audio controls="controls" preload="none" controlsList="nodownload">
                 Your browser does not support the audio element.
                 <source src="{{ track.mp3.url }}" type="audio/mpeg">
               </audio>
@@ -88,44 +88,5 @@
           {% endfor %}
         </div>
       </div>
-
-
-      <!-- <div class='row'>
-        <h2 class="section-title">Yesterday</h2>
-      </div>
-      <div class='row'>
-        <div class="col-md-12">
-          <div class="card-group soundtrack-box">
-          <div class="card col-md-4">
-            <div class="card-body">
-              <div class = 'float-left'>
-                <h4>{{ yesterdayTrack.artist }}</h4>
-                <h5>{{ yesterdayTrack.title }}</h5>
-              </div>
-              <button type="button" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ yesterdayTrack.upvotes }}</button>
-              <img src="http://static.djbooth.net/pics-features/chance-3-artwork.jpg" class="soundtrack-image">
-              <audio controls="controls">
-                Your browser does not support the audio element.
-                <source src="{{ yesterdayTrack.mp3.url}}" type="audio/mpeg">
-              </audio>
-              </div>
-            </div>
-            <div class="card col-md-8">
-              <div class="card-body">
-                <h4 class="card-title">Top Lyrics</h4>
-                <h5 class='card-text float-left'>{{ yesterdayLyric1.title }}</h5>
-                <p class="card-text float-left">{{ yesterdayLyric1.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ yesterdayLyric1.upvotes }}</button>
-<!
-                <h5 class='card-text float-left'>{{ yesterdayLyric2.title }}</h5>
-                <p class="card-text float-left">{{ yesterdayLyric2.text }}</p>
-                <button type="button" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ yesterdayLyric2.upvotes}}</button>
--->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
 {% endblock %}
