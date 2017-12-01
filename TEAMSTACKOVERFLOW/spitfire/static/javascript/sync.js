@@ -22,7 +22,7 @@ $('.card-title').on('click', function(){
     var duration = audioElement.duration;
     console.log(duration);
     var lyric = $(this).next().next();
-	var height = $(this).next().next().css('height');
+	var height = lyric.css('height');
 	console.log(height);
 	var speed = parseInt(height)/parseInt(duration);
 	console.log(speed);
