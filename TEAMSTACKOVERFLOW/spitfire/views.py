@@ -108,9 +108,35 @@ def create_profile(request):
 		},
 	)
 
-def getTrackInfo(request, pk):
-	track = get_object_or_404(Track, pk = pk)
-	return render(request, 'soundtrack.html', {'track': track})
+def getTrackInfo(request,pk):
+    if request.method == 'POST':
+        if 'submit-lc' in request.POST:
+            lyrics = get_object_or_404(Lyrics,pk=pk)
+            tid = str(lyrics.Track.id)
+            lcform = LyricCommentForm(request.POST)
+            if lcform.is_valid():
+                artist = (request.user).artist
+                text = lcform.cleaned_data['text']
+                upvotes = 0
+                lyric_comment = LyricComment(upvotes = upvotes,artist=artist,text=text,lyrics=lyrics)
+                lyric_comment.save()
+        if 'submit-tc' in request.POST:
+            track = get_object_or_404(Track,pk=pk)
+            tid = pk
+            tcform = TrackCommentForm(request.POST)
+            if tcform.is_valid():
+                artist = (request.user).artist
+                text = tcform.cleaned_data['text']
+                upvotes = 0
+                track_comment = TrackComment(upvotes = upvotes,artist=artist,text=text,track=track)
+                track_comment.save()
+        return HttpResponseRedirect('/spitfire/soundtrack/'+tid)
+    else:
+        track = get_object_or_404(Track, pk = pk)
+        lyric_comment_form = LyricCommentForm()
+        track_comment_form = TrackCommentForm()
+    
+    return render(request, 'soundtrack.html', {'track': track,'lyric_comment_form':lyric_comment_form,'track_comment_form':track_comment_form})
 
 @login_required
 def getArtistInfo(request, pk):
@@ -158,116 +184,3 @@ def upvoteLyric(request, pk):
 		return HttpResponse(lyric.upvotes)
 
 
-# this is just here to make sure soundtrack doesn't crash!
-def create_comment(request):
-	track = get_object_or_404(Track, pk = pk)
-	if request.method == 'POST':
-		form = TrackCommentForm(request.POST)
-		if form.is_valid():
-			artist = request.user
-			text = form.cleaned_data['text'];
-			track_comment = TrackComment (upvotes=0, text=text, track=track, artist=artist)
-			track_comment.save()
-			# TODO:
-			# this should return to (or render) the original
-			# page from which it was originally
-			# called, not just any old soundtrack page
-			return render(request, 'soundtrack.html', {'track':track})
-	else:
-		form = CommentForm()
-
-	# TODO:
-	# we want this render to be for the comment creation page
-	# or somehow figure out how to use this function (perhaps
-	# as a class-based view), in the actual soundtrack page
-	return render(
-		request,
-		'soundtrack.html',
-		context = {
-		'form': form
-		},
-	)
-
-# TODO:
-# what needs to be figured out to create track and lyric
-# comments is how it is that you determine what track
-# is being commented on, maybe this gets passed to the form
-# or maybe there can be some helper function
-@login_required
-def create_track_comment (request,pk):
-	track = get_object_or_404(Track, pk = pk)
-	if request.method == 'POST':
-		form = TrackCommentForm(request.POST)
-		if form.is_valid():
-			artist = request.user
-			text = form.cleaned_data['text'];
-			track_comment = TrackComment (upvotes=0, text=text, track=track, artist=artist)
-			track_comment.save()
-			# TODO:
-			# this should return to (or render) the original
-			# page from which it was originally
-			# called, not just any old soundtrack page
-			return render(request, 'soundtrack.html', {'track':track})
-	else:
-		form = CommentForm()
-
-	# TODO:
-	# we want this render to be for the comment creation page
-	# or somehow figure out how to use this function (perhaps
-	# as a class-based view), in the actual soundtrack page
-	return render(
-		request,
-		'soundtrack.html',
-		context = {
-		'form': form
-		},
-	)
-
-# TODO:
-# once the TODOs in the create_track_comment have been
-# cleared up, the resulting code can be easily ported to
-# fill in create_lyric_comment. the only difference will be
-# that track will be lyric, and the form being delivered
-# will be different, the model being created will be
-# different
-# @login_required
-# def create_lyric_comment(request):
-
-
-
-# LYRIC COMMENT
-
-# TODO:
-# what needs to be figured out to create track and lyric
-# comments is how it is that you determine what track
-# is being commented on, maybe this gets passed to the form
-# or maybe there can be some helper function
-@login_required
-def create_lyric_comment (request,pk):
-	lyric = get_object_or_404(Lyric, pk = pk)
-	if request.method == 'POST':
-		form = LyricCommentForm(request.POST)
-		if form.is_valid():
-			artist = request.user
-			text = form.cleaned_data['text'];
-			lyric_comment = LyricComment (upvotes=0, text=text, track=track, artist=artist)
-			lyric_comment.save()
-			# TODO:
-			# this should return to (or render) the original
-			# page from which it was originally
-			# called, not just any old soundtrack page
-			return render(request, 'soundtrack.html', {'track':track})
-	else:
-		form = CommentForm()
-
-	# TODO:
-	# we want this render to be for the comment creation page
-	# or somehow figure out how to use this function (perhaps
-	# as a class-based view), in the actual soundtrack page
-	return render(
-		request,
-		'soundtrack.html',
-		context = {
-		'form': form
-		},
-	)

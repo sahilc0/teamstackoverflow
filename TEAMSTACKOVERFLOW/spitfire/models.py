@@ -59,7 +59,7 @@ class LyricComment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
     upvotes = models.PositiveIntegerField(default=0)
     artist = models.ForeignKey('Artist', on_delete=models.CASCADE)
-    text = models.TextField(max_length=1000, help_text="Enter a comment")
+    text = models.TextField(max_length=1000)
     lyrics = models.ForeignKey('Lyrics', on_delete=models.CASCADE)
 
     def __str__(self):

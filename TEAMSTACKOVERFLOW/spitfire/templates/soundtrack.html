@@ -25,7 +25,7 @@
               <div id="picture"><img src ="../{{track.artist.image.url}}" width= '100px'></div>
                 <ul id="names-and-info">
                   <li>{{ track.title }}</li>
-                  <li>{{ track.artist.firstName }} {{ track.artist.lastName }}</li>
+                  <li>{{ track.artist.full_name }}</li>
                   <li>{{ track.keywords }}</li>
                 </ul>
             </div>
@@ -43,11 +43,11 @@
           <audio id="audio" controls="controls" controlsList="nodownload">
                 Your browser does not support the audio element.
                 <source src="../{{ track.mp3.url }}" type="audio/mpeg">
-              </audio>
-			<div class="btn-group-vertical" role="group" aria-label="Basic example">
-			  <button type="button" id="recButton" class="btn btn-secondary">Recommend</button>
-			  <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
-			</div>
+          </audio>
+            <div class="btn-group-vertical" role="group" aria-label="Basic example">
+              <button type="button" id="recButton" class="btn btn-secondary">Recommend</button>
+              <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
+            </div>
         </div>
       </div>
  <!-- LYRICS SECTION BELOW -->
@@ -73,16 +73,11 @@
 
                 {% endfor %}
                 </ul>
-<!--                 <p><a href="{% url 'create_comment' %}">Create Comment</a></p>
- -->                <!-- <input type = 'text'>
-                    <button type="submit">Submit</button> -->
-                    <!-- <form action="create_comment" method="post">
-                      {% csrf_token %}
-                      <input name = "user_comment" type="text" class = "form-control" id = "user">
-                      {{ comment }}
-                      <button type="submit">Submit</button>
-                    </form>-->
-
+                <form action="" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{lyric_comment_form.as_p}}
+                  <button formaction="/spitfire/soundtrack/{{lyric.id}}" type="submit" class="btn btn-outline-secondary float-right" name="submit-lc">Submit Comment</button>
+                </form>
               </div>
             </div>
           </div>
@@ -97,7 +92,6 @@
           <a href="./lyrics/{{ track.id }}">
             <button type="button" id="postLyrics" class="btn btn-secondary">Post Lyrics</button>
           </a>
-          <!-- <button type="button" id="postComment" class="btn btn-secondary">Post Comment</button> -->
         </div>
     </div>
   </div><!--content close-->
