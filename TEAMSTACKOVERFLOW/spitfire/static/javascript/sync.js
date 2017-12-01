@@ -21,11 +21,10 @@ $('.card-title').on('click', function(){
 	audioElement.play();
 	//audioElement.addEventListener("loadedmetadata", function(_event) {
     var duration = audioElement.duration;
-    console.log(duration);
+    //console.log(duration);
     var lyric = $(this).next().next();
 	var height = lyric.css('height');
-	console.log(height);
 	var speed = parseInt(height)/parseInt(duration);
-	console.log(speed);
-	lyric.hide().slideDown(speed*1000);
+	//change the speed to default, currently speeds it up to display small changes
+	lyric.hide().slideDown(speed*10000);
 });
