@@ -107,10 +107,33 @@ def create_profile(request):
 		},
 	)
 
-def getTrackInfo(request, pk):
-	track = get_object_or_404(Track, pk = pk)
-	lyric_comment_form = LyricCommentForm()
-	track_comment_form = TrackCommentForm()
+def getTrackInfo(request,pk):
+	if request.method == 'POST':
+		if 'submit-lc' in request.POST:
+			lyrics = get_object_or_404(Lyrics,pk=pk)
+			tid = str(lyrics.Track.id)
+			lcform = LyricCommentForm(request.POST)
+			if lcform.is_valid():
+				artist = (request.user).artist
+				text = lcform.cleaned_data['text']
+				upvotes = 0
+				lyric_comment = LyricComment(upvotes = upvotes,artist=artist,text=text,lyrics=lyrics)
+				lyric_comment.save()
+		if 'submit-tc' in request.POST:
+			track = get_object_or_404(Track,pk=pk)
+			tid = pk
+			tcform = TrackCommentForm(request.POST)
+			if tcform.is_valid():
+				artist = (request.user).artist
+				text = tcform.cleaned_data['text']
+				upvotes = 0
+				track_comment = TrackComment(upvotes = upvotes,artist=artist,text=text,track=track)
+				track_comment.save()
+		return HttpResponseRedirect('/spitfire/soundtrack/'+tid)
+	else:
+		track = get_object_or_404(Track, pk = pk)
+		lyric_comment_form = LyricCommentForm()
+		track_comment_form = TrackCommentForm()
 	
 	return render(request, 'soundtrack.html', {'track': track,'lyric_comment_form':lyric_comment_form,'track_comment_form':track_comment_form})
 
@@ -158,29 +181,3 @@ def upvoteLyric(request, pk):
 		lyric.upvotes = lyric.upvotes + 1
 		lyric.save()
 		return HttpResponse(lyric.upvotes)
-
-@login_required
-def commentTrack(request,pk):
-	track = get_object_or_404(Track,pk=pk)
-	tcform = TrackCommentForm(request.POST)
-	if tcform.is_valid():
-		artist = (request.user).artist
-		text = tcform.cleaned_data['text']
-		upvotes = 0
-		track_comment = TrackComment(upvotes = upvotes,artist=artist,text=text,track=track)
-		track_comment.save()
-	return HttpResponseRedirect('/spitfire/soundtrack/'+pk)
-
-@login_required
-def commentLyric(request,pk):
-	print("we're in commentLyric")
-	lyrics = get_object_or_404(Lyrics,pk=pk)
-	lcform = LyricCommentForm(request.POST)
-	if lcform.is_valid():
-		artist = (request.user).artist
-		text = lcform.cleaned_data['text']
-		upvotes = 0
-		lyric_comment = LyricComment(upvotes = upvotes,artist=artist,text=text,lyrics=lyrics)
-		lyric_comment.save()
-	return HttpResponseRedirect('/spitfire/')
-

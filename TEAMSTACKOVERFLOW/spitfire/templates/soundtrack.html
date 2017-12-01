@@ -75,9 +75,7 @@
                 <form action="" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   {{lyric_comment_form.as_p}}
-                  <a href="./{{track.id}}/lyric_comment">
-                  <button type="submit" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right">Post Comment</button>
-                  </a>        
+                  <button formaction="/spitfire/soundtrack/{{lyric.id}}" type="submit" class="btn btn-outline-secondary float-right" name="submit-lc">Submit Comment</button>
                 </form>
               </div>
             </div>
