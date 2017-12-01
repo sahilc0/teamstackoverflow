@@ -25,7 +25,7 @@ class TrackCommentForm (forms.ModelForm):
 class LyricCommentForm(forms.ModelForm):
     class Meta:
         model = LyricComment
-        exclude = ['upvotes', 'id','artist','lyric']        
+        exclude = ['upvotes', 'id','artist','lyrics']        
 
 class LyricsForm(forms.ModelForm):
     class Meta:
