@@ -7,6 +7,7 @@
 {% block includeCSS %}
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/soundtrack.css' %}">
+  <link rel="stylesheet" href="{% static 'css/lyricBoxes.css' %}">
 
 {% endblock %}
 
@@ -39,7 +40,7 @@
       </div>
       <div class="row" id='music-icon'> <!-- the wave thing + on-site social -->
         <div class='col-md-12'>
-          <audio controls="controls" preload="none" controlsList="nodownload">
+          <audio id="audio" controls="controls" controlsList="nodownload">
                 Your browser does not support the audio element.
                 <source src="../{{ track.mp3.url }}" type="audio/mpeg">
               </audio>
@@ -100,5 +101,6 @@
         </div>
     </div>
   </div><!--content close-->
-
+<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+<script type="text/javascript" src="{% static 'javascript/sync.js' %}"></script>
 {% endblock %}
