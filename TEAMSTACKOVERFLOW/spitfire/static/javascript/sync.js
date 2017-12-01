@@ -17,6 +17,7 @@ $('#audio')[0].onplay = function(){
 
 $('.card-title').on('click', function(){
 	var audioElement = $('#audio')[0];
+	audioElement.currentTime = 0;
 	audioElement.play();
 	//audioElement.addEventListener("loadedmetadata", function(_event) {
     var duration = audioElement.duration;
