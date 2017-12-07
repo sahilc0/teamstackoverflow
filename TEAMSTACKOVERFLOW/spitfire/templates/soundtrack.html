@@ -65,12 +65,9 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Comments</h4>
-
                 <ul>
                 {% for lyric_comment in lyric.top_comments %}
-
-                  <li> <strong>{{ lyric_comment.artist }}</strong>:  {{ lyric_comment.text }} <button type="button" lyric-comment-id="{{lyric_comment.id}}" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric_comment.upvotes }}</button></li>
-
+                  <li><strong>{{ lyric_comment.artist }}</strong>:<p>  {{ lyric_comment.text }} </p><button type="button" lyric-comment-id="{{lyric_comment.id}}" class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric_comment.upvotes }}</button></li>
                 {% endfor %}
                 </ul>
                 <form action="" method="post" enctype="multipart/form-data">

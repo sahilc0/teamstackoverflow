@@ -19,12 +19,18 @@ $('.card-title').on('click', function(){
 	var audioElement = $('#audio')[0];
 	audioElement.currentTime = 0;
 	audioElement.play();
-	//audioElement.addEventListener("loadedmetadata", function(_event) {
     var duration = audioElement.duration;
     //console.log(duration);
-    var lyric = $(this).next().next();
-	var height = lyric.css('height');
-	var speed = parseInt(height)/parseInt(duration);
+    var $lyric = $(this).next().next();
+	var $height = $lyric.css('height');
+	var $speed = parseInt($height)/parseInt(duration);
+	$(this).data('clicked', true);
 	//change the speed to default, currently speeds it up to display small changes
-	lyric.hide().slideDown(speed*10000);
+	$.each($('.card-title'), function(){
+		if($(this).data('clicked')){
+			$(this).data('clicked', false);
+			console.log("hello");
+		}
+	});
+	$lyric.hide().slideDown($speed*10000);
 });
