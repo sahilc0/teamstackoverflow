@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^$', views.index, name="index"),
     url(r'^soundtrack/lyrics/(?P<pk>[-\w]+)$', views.getLyricsInfo, name='lyrics'),
     url(r'^contest$', views.contest, name='contest'),
+    url(r'^create_contest$', views.create_contest, name='create_contest'),
     url(r'^create_profile$', views.create_profile, name='create_profile'),
     url(r'^create_contest$', views.create_contest, name='create_contest'),
     url(r'^soundtrack/(?P<pk>[-\w]+)$', views.getTrackInfo, name='trackInfo'),

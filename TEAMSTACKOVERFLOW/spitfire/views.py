@@ -28,6 +28,7 @@ def index(request):
 				},
 	)
 
+
 @login_required
 def upload(request):
 	if request.method == 'POST':
@@ -51,15 +52,12 @@ def upload(request):
 	return render(request, 'trackForm.html', {'form': form})
 
 def contest(request):
-	"""
-	put stuff here
-	"""
 	contests = Contest.objects.all()
 
 	return render(
 		request,
 		'contest.html',
-		context= {'contests':contests,}
+		context= {'contests':contests}
 	)
 
 @login_required
@@ -67,16 +65,16 @@ def create_contest(request):
 	if request.method == 'POST':
 		form = ContestForm(request.POST)
 		if form.is_valid():
-			sponsor = request.user
+			sponsor = request.user.artist
 			name = form.cleaned_data['name']
 			description = form.cleaned_data['description']
 			image = form.cleaned_data['image']
 			contest = Contest(sponsor = sponsor,name=name,description=description,image=image)
 			contest.save()
-			return render(request,'contest.html')
+			return HttpResponseRedirect('/spitfire/contest')
 	else:
 		form = ContestForm()
-	return render(request, 'createContest.html', {'form':form})
+	return render(request, 'create_contest.html', {'form':form})
 
 def create_profile(request):
 	if request.method == 'POST':
@@ -95,9 +93,7 @@ def create_profile(request):
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
-			artist = Artist(user=user, firstName = first_name, lastName=last_name, city=city)
-			artist.image = image
-			artist.description = description
+			artist = Artist(user=user, firstName = first_name, lastName=last_name,description = description, city=city,image = image)
 			artist.save()
 			return HttpResponseRedirect('/spitfire/profile/'+str(artist.id))
 	else:

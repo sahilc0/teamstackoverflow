@@ -8,6 +8,9 @@
 			<div class = "row">
         <div class = "col-md-12">
   				<h1 style="padding:20px">Contests</h1>
+          <a href="{% url 'create_contest' %}">
+              <button id="contest-create-button" type="button" class="btn btn-primary">Create your own!</button>
+            </a>
   				
           {% for contest in contests %}
           <div class="card-group soundtrack-box">
