@@ -139,7 +139,7 @@
                   <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
                   <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
                 {% empty %}
-                  <i class="card-text"> No lyrics posted for this track. Spit your's today.</i>
+                  <i class="card-text"> No lyrics posted for this track. <a href="{% url 'lyrics' %}">Spit yours</a> today.</i>
                 {% endfor %}
               </div>
             </div>

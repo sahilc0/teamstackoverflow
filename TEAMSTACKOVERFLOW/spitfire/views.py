@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 from django.contrib.auth.models import User
 from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Contest
-from .forms import UserForm,TrackForm,TrackCommentForm,LyricCommentForm,LyricsForm,ContestForm
+from .forms import UserForm,TrackForm,TrackCommentForm,LyricCommentForm,LyricsForm,ContestForm,ArtistForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
@@ -45,7 +45,7 @@ def upload(request):
 			track = Track(title=title,artist = artist, genre=genre, description=description, keywords=keywords, image = image, mp3=file)
 			artist.save()
 			track.save()
-			return render(request, 'soundtrack.html', {'track': track})
+			return HttpResponseRedirect('/spitfire/profile/'+str(artist.id))
 	else:
 		form = TrackForm()
 	return render(request, 'trackForm.html', {'form': form})
@@ -80,31 +80,35 @@ def create_contest(request):
 
 def create_profile(request):
 	if request.method == 'POST':
-		user_form = UserForm(request.POST)
-		if user_form.is_valid():
+		user_form   = UserForm(request.POST)
+		artist_form = ArtistForm(request.POST, request.FILES)
+		if user_form.is_valid() and artist_form.is_valid():
 			first_name = user_form.cleaned_data['first_name']
 			last_name = user_form.cleaned_data['last_name']
 			username = user_form.cleaned_data['username']
 			password = user_form.cleaned_data['password']
 			email = user_form.cleaned_data['email']
-			city = user_form.cleaned_data['city']
-			user = User.objects.create_user(username, email, password)
-			# image = user_form.cleaned_data['image']
+			city = artist_form.cleaned_data['city']
+			image = artist_form.cleaned_data['image']
+			description = artist_form.cleaned_data['description']
+			user = User.objects.create_user(username, email, password)			
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
-			#we can substitute the bottom code with a @receiver decorator
-			artist = Artist(user=user, firstName = user.first_name, lastName=user.last_name, city=city,)
-			# add image = image to above when that gets fixed
+			artist = Artist(user=user, firstName = first_name, lastName=last_name, city=city)
+			artist.image = image
+			artist.description = description
 			artist.save()
-			return render(request,'index.html')
+			return HttpResponseRedirect('/spitfire/profile/'+str(artist.id))
 	else:
 		user_form = UserForm()
+		artist_form = ArtistForm()
 	return render(
 		request,
 		'create_profile.html',
 		context = {
 			'user_form':user_form,
+			'artist_form':artist_form,
 		},
 	)
 

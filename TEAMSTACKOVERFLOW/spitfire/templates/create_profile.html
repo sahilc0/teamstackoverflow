@@ -9,9 +9,10 @@
 
 {% block bodyContent %}
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ user_form.as_p }}
+      {{ artist_form.as_p }}
       <button type="submit">Save changes</button>
     </form>
 
