@@ -62,7 +62,11 @@
                       <p class="card-text">Followers</p>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-primary" id="follow-btn">Follow</button>
+                  {% for follow in following %}
+                      <button type="button" class="btn btn-outline-secondary" artist-id="{{artist.id}}" follow-relationship-id="{{follow.id}}" id="follow-btn">Following</button>
+                  {% empty %}
+                      <button type="button" class="btn btn-primary" artist-id="{{artist.id}}" id="follow-btn">Follow</button>
+                  {% endfor %}
                 </div>
               </div>
             </div>

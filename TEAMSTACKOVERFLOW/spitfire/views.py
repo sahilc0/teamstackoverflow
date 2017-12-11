@@ -3,13 +3,14 @@ from django.contrib.auth import authenticate, login
 
 # Create your views here.
 from django.contrib.auth.models import User
-from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Contest
+from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Contest, FollowRelationship
 from .forms import UserForm,TrackForm,TrackCommentForm,LyricCommentForm,LyricsForm,ContestForm,ArtistForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+import json
 
 def search(request):
 	search_field = request.GET.get('search_field', None)
@@ -89,7 +90,7 @@ def create_profile(request):
 			city = artist_form.cleaned_data['city']
 			image = artist_form.cleaned_data['image']
 			description = artist_form.cleaned_data['description']
-			user = User.objects.create_user(username, email, password)			
+			user = User.objects.create_user(username, email, password)
 			user.first_name = first_name
 			user.last_name = last_name
 			user.save()
@@ -135,7 +136,7 @@ def getTrackInfo(request,pk):
         track = get_object_or_404(Track, pk = pk)
         lyric_comment_form = LyricCommentForm()
         track_comment_form = TrackCommentForm()
-    
+
     return render(request, 'soundtrack.html', {'track': track,'lyric_comment_form':lyric_comment_form,'track_comment_form':track_comment_form})
 
 @login_required
@@ -146,7 +147,36 @@ def getArtistInfo(request, pk):
 	allLyrics = Lyrics.objects.filter(artist = artist)
 	spitTracks = Track.objects.filter(id__in=allLyrics.values('Track'));
 
-	return render(request, 'profile.html', {'artist': artist,'tracks':tracks, 'spitTracks':spitTracks})
+	currentUser = get_object_or_404(Artist, user__id=request.user.id)
+	currentProfile = get_object_or_404(Artist, pk = pk)
+	following = FollowRelationship.objects.filter(follow = currentUser, following=currentProfile)
+
+	return render(request, 'profile.html', {'artist': artist,'tracks':tracks, 'spitTracks':spitTracks, 'following':following})
+
+@login_required
+def addFollower(request, pk):
+	follow = get_object_or_404(Artist, user__id=request.user.id)
+	following = get_object_or_404(Artist, pk = pk)
+
+	if request.method == 'POST':
+		followRelationship = FollowRelationship(follow = follow, following=following)
+		followRelationship.save()
+
+		follow.number_of_following = follow.number_of_following + 1;
+		follow.save();
+		following.number_of_followers = following.number_of_followers + 1;
+		following.save();
+		return HttpResponse(followRelationship.id)
+	elif request.method == 'DELETE':
+		data = json.loads(request.body)
+		relationship_id = data['relationship_id']
+		FollowRelationship.objects.filter(id=relationship_id).delete();
+
+		follow.number_of_following = follow.number_of_following - 1;
+		follow.save();
+		following.number_of_followers = following.number_of_followers - 1;
+		following.save();
+		return HttpResponse(200)
 
 @login_required
 def getLyricsInfo(request, pk):
@@ -182,5 +212,3 @@ def upvoteLyric(request, pk):
 		lyric.upvotes = lyric.upvotes + 1
 		lyric.save()
 		return HttpResponse(lyric.upvotes)
-
-
