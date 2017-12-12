@@ -5,6 +5,7 @@
 {% block includeCSS %}
   {% load static %}
   <link rel="stylesheet" href= "{% static 'css/index.css' %}">
+  <script type="text/javascript" src="{% static 'javascript/index.js' %}"></script>
 {% endblock %}
 
 
@@ -39,7 +40,20 @@
 
       </div>
       <div class='row'>
-        <h2 class="section-title">Top</h2>
+        <div class="col-md-12">
+          {% if user.is_authenticated %}
+            <div class="dropdown" id="indexDropDown">
+              <h2 class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Top
+              </h2>
+              <div class="dropdown-menu" id="indexDropDownMenu" aria-labelledby="dropdownMenu1">
+                <a class="dropdown-item" href="#!">Following</a>
+              </div>
+            </div>
+          {% else %}
+            <h2>Top</h2>
+          {% endif %}
+        </div>
       </div>
 
       <!-- <div class="row">
@@ -56,36 +70,77 @@
 
       <div class='row'>
         <div class="col-md-12">
-          {% for track in tracks %}
-  				<div  class="card-group soundtrack-box" track-id={{track.id}}>
-          <div class="card col-md-4">
-            <div class="card-body">
-              <div class = 'float-left'>
-                <h4 track-id="{{track.id}}" class="track-title">{{ track.title }}</h4>
-                <h5 artist-id="{{track.artist.id}}" class="track-artist">{{ track.artist.full_name }}</h5>
-              </div>
-              <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
-              <img src="{{track.image.url}}" track-id="{{track.id}}" class="soundtrack-image">
-              <audio controls="controls" preload="none" controlsList="nodownload">
-                Your browser does not support the audio element.
-                <source src="{{ track.mp3.url }}" type="audio/mpeg">
-              </audio>
-              </div>
-            </div>
-            <div class="card col-md-8">
+
+          <div id="top-feed">
+            {% for track in tracks %}
+    				<div  class="card-group soundtrack-box" track-id={{track.id}}>
+            <div class="card col-md-4">
               <div class="card-body">
-                <h4 class="card-title">Top Lyrics</h4>
-                {% for lyric in track.top_lyrics%}
-                  <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
-                  <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
-                  <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
-                {% empty %}
-                  <i class="card-text"> No lyrics posted for this track. Spit your's today.</i>
-                {% endfor %}
+                <div class = 'float-left'>
+                  <h4 track-id="{{track.id}}" class="track-title">{{ track.title }}</h4>
+                  <h5 artist-id="{{track.artist.id}}" class="track-artist">{{ track.artist.full_name }}</h5>
+                </div>
+                <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
+                <img src="{{track.image.url}}" track-id="{{track.id}}" class="soundtrack-image">
+                <audio controls="controls" preload="none" controlsList="nodownload">
+                  Your browser does not support the audio element.
+                  <source src="{{ track.mp3.url }}" type="audio/mpeg">
+                </audio>
+                </div>
+              </div>
+              <div class="card col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title">Top Lyrics</h4>
+                  {% for lyric in track.top_lyrics%}
+                    <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
+                    <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
+                    <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
+                  {% empty %}
+                    <i class="card-text"> No lyrics posted for this track. Spit your's today.</i>
+                  {% endfor %}
+                </div>
               </div>
             </div>
+            {% endfor %}
           </div>
-          {% endfor %}
+
+          <div id="follow-feed">
+            {% for follow in allFollowing %}
+              {% for track in follow.following.top_track %}
+      				<div  class="card-group soundtrack-box" track-id={{track.id}}>
+              <div class="card col-md-4">
+                <div class="card-body">
+                  <div class = 'float-left'>
+                    <h4 track-id="{{track.id}}" class="track-title">{{ track.title }}</h4>
+                    <h5 artist-id="{{track.artist.id}}" class="track-artist">{{ track.artist.full_name }}</h5>
+                  </div>
+                  <button type="button-track" track-id={{track.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ track.upvotes }}</button>
+                  <img src="{{track.image.url}}" track-id="{{track.id}}" class="soundtrack-image">
+                  <audio controls="controls" preload="none" controlsList="nodownload">
+                    Your browser does not support the audio element.
+                    <source src="{{ track.mp3.url }}" type="audio/mpeg">
+                  </audio>
+                  </div>
+                </div>
+                <div class="card col-md-8">
+                  <div class="card-body">
+                    <h4 class="card-title">Top Lyrics</h4>
+                    {% for lyric in track.top_lyrics%}
+                      <h5 class='card-text float-left' artist-id={{artist.id}}> {{ lyric.artist }}</h5>
+                      <p class="card-text float-left" lyric-id={{lyric.id}}> {{ lyric.text }}</p>
+                      <button type="button-lyric" lyric-id={{lyric.id}} class="btn btn-outline-secondary float-right upvote-btn">▲ {{ lyric.upvotes }}</button>
+                    {% empty %}
+                      <i class="card-text"> No lyrics posted for this track. Spit your's today.</i>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+
+            {% empty %}
+              <i class="card-text"> You haven't followed anyone yet.</i>
+            {% endfor %}
+          </div>
         </div>
       </div>
 

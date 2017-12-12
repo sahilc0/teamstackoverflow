@@ -170,6 +170,12 @@ class Artist(models.Model):
         """
         return reverse('artist-detail', args=[str(self.id)])
 
+    def top_track(self):
+        """
+        Returns the top track by this user.
+        """
+        return Track.objects.filter(artist=self).order_by('-upvotes')[:1]
+
     def __str__(self):
         """
         String for representing the Model object.
