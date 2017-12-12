@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 from django.contrib.auth.models import User
 from .models import Genre, TrackComment, LyricComment, Track, Lyrics, Artist, Contest, FollowRelationship
-from .forms import UserForm,TrackForm,TrackCommentForm,LyricCommentForm,LyricsForm,ContestForm,ArtistForm
+from .forms import UserForm,TrackForm,TrackCommentForm,LyricCommentForm,LyricsForm,ContestForm,ArtistForm,EditUserForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse #this line might not be needed
@@ -108,6 +108,55 @@ def create_profile(request):
 			'artist_form':artist_form,
 		},
 	)
+
+@login_required
+def edit_profile(request):
+    user = request.user
+    user_defaults = {
+       'first_name':user.artist.firstName,
+       'last_name':user.artist.lastName,
+       'email':user.email,
+    }
+
+    artist_defaults = {
+        'city':user.artist.city,
+        'image':user.artist.image,
+        'description':user.artist.description,
+    }
+
+    if request.method == 'POST':
+        user_form   = EditUserForm(request.POST,initial = user_defaults)
+        artist_form = ArtistForm(request.POST, request.FILES, initial = artist_defaults)
+        if user_form.is_valid() and artist_form.is_valid():
+            first_name = user_form.cleaned_data['first_name']
+            last_name = user_form.cleaned_data['last_name']
+            email = user_form.cleaned_data['email']
+            city = artist_form.cleaned_data['city']
+            image = artist_form.cleaned_data['image']
+            description = artist_form.cleaned_data['description']
+            user.first_name = first_name
+            user.last_name = last_name
+            user.email = email
+            user.save()
+            user.artist.firstName = first_name
+            user.artist.lastName=last_name
+            user.artist.description = description
+            user.artist.city=city
+            user.artist.image = image
+            user.artist.save()
+            return HttpResponseRedirect('/spitfire/profile/'+str(user.artist.id))
+    else:
+        user_form = EditUserForm(initial = user_defaults)
+        artist_form = ArtistForm(initial = artist_defaults)
+
+    return render(
+        request,
+        'edit_profile.html',
+        context={
+            'user_form':user_form,
+            'artist_form':artist_form,
+        },
+    )
 
 def getTrackInfo(request,pk):
     if request.method == 'POST':

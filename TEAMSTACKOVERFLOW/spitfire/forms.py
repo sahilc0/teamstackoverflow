@@ -2,6 +2,11 @@ from django import forms
 from django.forms import ModelForm
 from .models import Contest, Genre, TrackComment, LyricComment, Track, Lyrics, Artist, User
 
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','email']
+
 class UserForm(forms.ModelForm):
     class Meta:
         model = User

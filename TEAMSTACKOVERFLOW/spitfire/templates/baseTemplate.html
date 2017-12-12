@@ -73,7 +73,7 @@
                   {% block profile_link %}
                   <a class="dropdown-item" href="/spitfire/profile/{{ user.artist.id }}">Profile</a>
                   {% endblock %}
-                  <a class="dropdown-item" href="#!">Settings</a>
+                  <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
                   <a class="dropdown-item" href="#!">About us</a>
                   <a class="dropdown-item" href="{% url 'logout' %}?next={{request.path}}">Sign Out</a>
                 </div>
