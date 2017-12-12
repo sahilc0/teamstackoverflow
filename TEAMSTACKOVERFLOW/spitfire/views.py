@@ -21,11 +21,21 @@ def search(request):
 def index(request):
 	featTracks = Track.objects.all().filter(featured = True)[:3]
 	topTracks = Track.objects.order_by('-upvotes')[:3]
+
+	try:
+	    currentUser = Artist.objects.get(user__id=request.user.id)
+	except Artist.DoesNotExist:
+	    currentUser = None
+
+	allFollowing = FollowRelationship.get_all_following(currentUser)
+
+
 	return render(
 		request,
 		'index.html',
 		context = {	'featTracks': featTracks,
 		  			'tracks': topTracks,
+					'allFollowing': allFollowing,
 				},
 	)
 
