@@ -187,8 +187,8 @@ class FollowRelationship(models.Model):
     Model for the Artist/User's follow relationship.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular lyrics across whole site")
-    follow = models.ForeignKey('Artist', related_name='follow_set')
-    following = models.ForeignKey('Artist', related_name='to_follow_set')
+    #follow = models.ForeignKey('Artist', related_name='follow_set')
+    #following = models.ForeignKey('Artist', related_name='to_follow_set')
 
     def get_all_following(artist):
         """
